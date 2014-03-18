@@ -236,4 +236,60 @@
 
 }
 
+-(void)dismissAllViewControllersAnimated:(BOOL)theAnimatedFlag
+                              completion:(SHPresenterCompletionBlock)theCompletion; {
+  self.queue = nil;
+  dispatch_group_t signalAllDismissedComplete = dispatch_group_create();
+  [[UIApplication sharedApplication].windows enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(UIWindow * obj, __unused NSUInteger idx, BOOL *stop) {
+    if([obj.rootViewController isKindOfClass:[__SHPresentingViewController class]]) {
+      dispatch_group_enter(signalAllDismissedComplete);
+      [obj.rootViewController dismissViewControllerAnimated:theAnimatedFlag completion:^{
+        dispatch_group_leave(signalAllDismissedComplete);
+      }];
+    }
+  }];
+
+  dispatch_group_notify(signalAllDismissedComplete, dispatch_get_main_queue(), ^{
+    if(theCompletion) theCompletion(nil);
+  });
+}
+
+
+#pragma mark - Properties
+-(NSMutableOrderedSet *)queue; {
+  if(_queue == nil) _queue = [NSMutableOrderedSet orderedSet];
+  return _queue;
+}
+-(NSInteger)queuedCount; {
+  return self.queue.count;
+}
+
+#pragma mark - Privates
+-(void)presentNextInQueue; {
+  if (self.queuedCount > 0) [self.queue removeObjectAtIndex:0];
+  __SHPresentingViewController * queuedController = self.queue.firstObject;
+  [queuedController makeWindowKeyAndVisibleWithController];
+
+
+}
+
+-(__SHPresentingViewController *)prepareViewController:(UIViewController *)theViewController
+                                           windowLevel:(UIWindowLevel)theWindowLevel
+                                              animated:(BOOL)theAnimatedFlag
+                                                queued:(BOOL)theQueuedFlag
+                                            completion:(SHPresenterCompletionBlock)theCompletion; {
+  
+
+
+  return [[__SHPresentingViewController alloc]
+          initWiewController:theViewController
+          presenter:self
+          windowLevel:theWindowLevel
+          animated:theAnimatedFlag
+          queued:theQueuedFlag
+          completion:theCompletion];
+
+  
+  
+}
 @end
