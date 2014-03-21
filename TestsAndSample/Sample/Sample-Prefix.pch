@@ -1,0 +1,35 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#import <Availability.h>
+
+#if !defined(NS_BLOCK_ASSERTIONS)
+
+#define SHBlockAssert(condition, desc, ...) \
+do {\
+if (!(condition)) { \
+[[NSAssertionHandler currentHandler] handleFailureInFunction:NSStringFromSelector(_cmd) \
+file:[NSString stringWithUTF8String:__FILE__] \
+lineNumber:__LINE__ \
+description:(desc), ##__VA_ARGS__]; \
+}\
+} while(0);
+
+#else // NS_BLOCK_ASSERTIONS defined
+
+#define SHBlockAssert(condition, desc, ...)
+
+#endif
+
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+  #import <UIKit/UIKit.h>
+  #import <Foundation/Foundation.h>
+#endif

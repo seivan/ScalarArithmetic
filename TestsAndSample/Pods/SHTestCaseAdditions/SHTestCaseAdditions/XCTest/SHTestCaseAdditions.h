@@ -1,0 +1,1 @@
+#import "XCTestCase+SHTestCaseAdditions.h"

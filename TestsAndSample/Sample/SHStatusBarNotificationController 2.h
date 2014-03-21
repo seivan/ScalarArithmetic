@@ -1,0 +1,3 @@
+
+@interface SHStatusBarNotificationController : UIViewController
+@end

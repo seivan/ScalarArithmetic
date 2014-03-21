@@ -1,0 +1,5 @@
+#include "Pods-Tests-SHTransitionBlocks.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/SHTransitionBlocks" "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/KIF" "${PODS_ROOT}/Headers/SHNavigationControllerBlocks" "${PODS_ROOT}/Headers/SHTestCaseAdditions" "${PODS_ROOT}/Headers/SHTransitionBlocks"
+OTHER_LDFLAGS = -ObjC
+PODS_ROOT = ${SRCROOT}
