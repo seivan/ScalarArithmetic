@@ -26,6 +26,13 @@
 
 -(void)viewDidLoad; {
   [super viewDidLoad];
+  [SHAlertViewController styleAlertButtonWithCompletionHandler:^UIView *(NSInteger index, UIButton *button) {
+    if(index == 0) button.tintColor = [UIColor redColor];
+    else  button.tintColor = [UIColor blueColor];
+    return button;
+  }];
+  
+  []
 
 }
 -(void)viewDidAppear:(BOOL)animated; {
@@ -46,16 +53,12 @@
   SHPresenterBlocks * presenter = [SHPresenterBlocks presenterWithName:@"alert"];
 
   for (NSInteger i = 1; i != 2; i++) {
-//    SHAlertViewController * vc = SHAlertViewController.new;
-//    vc.title = [NSString stringWithFormat:@"Title %@ of %@", @(i), @(3)];
-//    vc.message = [NSString stringWithFormat:@"Message %@ of %@", @(i), @(3)];
     NSString * title = [NSString stringWithFormat:@"Title %@ of %@", @(i), @(3)];
+
     SHAlertViewController * vc = [SHAlertViewController alertWithTitle:title message:@"Message" buttonTitles:@[@"Damn"] completion:^(NSInteger buttonIndex) {
       NSLog(@"init: %@", @(buttonIndex));
     }];
 
-
-    vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeAlert:)];
 
     [vc.view addGestureRecognizer:tap];

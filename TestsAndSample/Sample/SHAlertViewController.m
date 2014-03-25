@@ -3,6 +3,42 @@
 #import <SHPresenterBlocks.h>
 @import QuartzCore;
 
+@interface SHAlertViewControllerManager : NSObject
+@property(nonatomic,strong) NSMutableDictionary     * blocksAlert;
+@property(nonatomic,strong) NSMutableDictionary     * blocksContent;
+@property(nonatomic,strong) NSMutableDictionary     * blocksButton;
++(instancetype)sharedManager;
+
+@end
+
+@implementation SHAlertViewControllerManager
+
+#pragma mark - Init & Dealloc
+-(instancetype)init; {
+  self = [super init];
+  if (self) {
+    self.blocksAlert        = @{}.mutableCopy;
+    self.blocksContent      = @{}.mutableCopy;
+    self.blocksButton       = @{}.mutableCopy;
+  }
+  
+  return self;
+}
+
+
++(instancetype)sharedManager; {
+  static id _sharedInstance;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    _sharedInstance = [[[self class] alloc] init];
+  });
+  
+  return _sharedInstance;
+  
+}
+
+@end
+
 @interface SHAlertViewController ()
 @property(nonatomic,strong)   NSMapTable * buttonCallbacks;
 @property(nonatomic,readonly) NSArray    * buttons;
@@ -18,6 +54,18 @@
 
 
 @implementation SHAlertViewController
++(void)styleAlertViewWithCompletionHandler:(SHAlertViewControllerCreateAlertBlock)completionHandler; {
+  [SHAlertViewControllerManager sharedManager].blocksAlert[NSStringFromClass([self class])] = completionHandler;
+}
+
++(void)styleAlertContentWithCompletionHandler:(SHAlertViewControllerCreateContentHolderBlock)completionHandler; {
+  [SHAlertViewControllerManager sharedManager].blocksContent[NSStringFromClass([self class])] = completionHandler;
+}
+
++(void)styleAlertButtonWithCompletionHandler:(SHAlertViewControllerCreateButtonBlock)completionHandler; {
+   [SHAlertViewControllerManager sharedManager].blocksButton[NSStringFromClass([self class])] = completionHandler;
+}
+
 +(instancetype)alertWithTitle:(NSString *)theTitle
                       message:(NSString *)theMessage
                  buttonTitles:(NSArray *)theButtonTitles
@@ -38,6 +86,8 @@
   if(self) {
     self.buttonCallbacks = [NSMapTable strongToWeakObjectsMapTable];
     self.presenter = [SHPresenterBlocks presenterWithName:@"com.SHAlertViewController.presenter"];
+    self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+
   }
   return self;
 }
@@ -243,6 +293,7 @@
   button.translatesAutoresizingMaskIntoConstraints = NO;
   [button setTitle:theButtonTitle forState:UIControlStateNormal];
   [button addTarget:self action:@selector(tappedButton:) forControlEvents:UIControlEventTouchUpInside];
+  SHAlertViewControllerCreateButtonBlock contentBlock =[SHAlertViewControllerManager sharedManager].blocksButton[NSStringFromClass([self class])];
   [self.alertView addSubview:button];
   if(theCompletion) [self.buttonCallbacks setObject:theCompletion forKey:button];
 }
@@ -299,9 +350,11 @@
     _lblTitle.text = @"Alert Title!";
     _lblTitle.font = [UIFont boldSystemFontOfSize:14];
     _lblTitle.textColor = [UIColor orangeColor];
-//    _lblTitle.backgroundColor = [UIColor greenColor];
+    _lblTitle.backgroundColor = [UIColor greenColor];
     _lblTitle.textAlignment = NSTextAlignmentCenter;
     _lblTitle.numberOfLines = 0;
+    SHAlertViewControllerCreateContentHolderBlock contentBlock =[SHAlertViewControllerManager sharedManager].blocksContent[NSStringFromClass([self class])];
+    _lblTitle = (id)contentBlock(0,_lblTitle);
   }
   return _lblTitle;
 }
@@ -313,9 +366,12 @@
     _lblMessage.text = @"Message!";
     _lblMessage.font = [UIFont systemFontOfSize:12];
     _lblMessage.textColor = [UIColor blackColor];
-//    _lblMessage.backgroundColor = [UIColor greenColor];
+    _lblMessage.backgroundColor = [UIColor greenColor];
     _lblMessage.textAlignment = NSTextAlignmentCenter;
     _lblMessage.numberOfLines = 0;
+    SHAlertViewControllerCreateContentHolderBlock contentBlock =[SHAlertViewControllerManager sharedManager].blocksContent[NSStringFromClass([self class])];
+    _lblMessage = (id)contentBlock(1,_lblMessage);
+
   }
   return _lblMessage;
 }
@@ -347,7 +403,7 @@
 
 -(NSArray *)buttons; {
   return [self.alertView.subviews filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-    return [evaluatedObject isKindOfClass:[UIButton class]];
+    return [evaluatedObject isKindOfClass:[UIControl class]];
   }]];
 }
 

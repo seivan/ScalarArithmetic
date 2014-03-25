@@ -2,6 +2,7 @@
 
 typedef void (^SHAlertViewControllerCompletionBlock)(NSInteger buttonIndex);
 
+
 @interface SHAlertViewController : UIViewController
 
 @property(nonatomic,copy) NSString * message;
@@ -14,8 +15,14 @@ typedef void (^SHAlertViewControllerCompletionBlock)(NSInteger buttonIndex);
 
 @property(nonatomic,readonly,getter=isVisible) BOOL visible;
 
+typedef UIView * (^SHAlertViewControllerCreateAlertBlock)(UIView * alertView);
++(void)styleAlertViewWithCompletionHandler:(SHAlertViewControllerCreateAlertBlock)completionHandler;
 
+typedef UIView * (^SHAlertViewControllerCreateContentHolderBlock)(NSInteger index, UILabel * lblContent);
++(void)styleAlertContentWithCompletionHandler:(SHAlertViewControllerCreateContentHolderBlock)completionHandler;
 
+typedef UIView * (^SHAlertViewControllerCreateButtonBlock)(NSInteger index, UIButton * button);
++(void)styleAlertButtonWithCompletionHandler:(SHAlertViewControllerCreateButtonBlock)completionHandler;
 
 +(instancetype)alertWithTitle:(NSString *)theTitle
                       message:(NSString *)theMessage
