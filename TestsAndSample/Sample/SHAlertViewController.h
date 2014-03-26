@@ -3,10 +3,10 @@
 typedef void (^SHAlertViewControllerCompletionBlock)(NSInteger buttonIndex);
 
 typedef NS_ENUM(NSInteger, SHAlertViewControllerPadding)  {
-  SHAlertViewControllerPaddingTitleToTop,
-  SHAlertViewControllerPaddingTitleToMessage,
-  SHAlertViewControllerPaddingMessageToButton,
-  SHAlertViewControllerPaddingButtonToButton,
+  SHAlertViewControllerPaddingTopToNext,
+  SHAlertViewControllerPaddingTitleToNext,
+  SHAlertViewControllerPaddingMessageToNext,
+  SHAlertViewControllerPaddingButtonToNext,
   SHAlertViewControllerPaddingButtonToBottom,
   SHAlertViewControllerPaddingHorizontalTitleToSide,
   SHAlertViewControllerPaddingHorizontalMessageToSide,

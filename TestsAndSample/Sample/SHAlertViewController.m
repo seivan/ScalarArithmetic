@@ -366,42 +366,49 @@
 }
 
 -(void)setupLayoutTitle; {
-  NSArray * constraintForTitle = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_lblTitle]-|"
+  NSNumber * padding = [[self class] paddingForLayoutPaddingType:SHAlertViewControllerPaddingHorizontalTitleToSide];
+  
+  NSArray * constraintForTitle = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-padding-[_lblTitle]-padding-|"
                                                                          options:kNilOptions
-                                                                         metrics:nil
+                                                                         metrics:NSDictionaryOfVariableBindings(padding)
                                                                            views:NSDictionaryOfVariableBindings(_lblTitle)];
   
 
+  padding = [[self class] paddingForLayoutPaddingType:SHAlertViewControllerPaddingTitleToTop];
+  
   constraintForTitle = [constraintForTitle arrayByAddingObjectsFromArray:
-                        [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_lblTitle]"
+                        [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-padding-[_lblTitle]"
                                                                 options:kNilOptions
-                                                                metrics:nil
+                                                                metrics:NSDictionaryOfVariableBindings(padding)
                                                                   views:NSDictionaryOfVariableBindings(_lblTitle)]
                         ];
   [self.alertView addConstraints:constraintForTitle];
 }
 
 -(void)setupLayoutMessage; {
+  NSNumber * padding = [[self class] paddingForLayoutPaddingType:SHAlertViewControllerPaddingHorizontalMessageToSide];
   NSArray * constraintForMessage = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_lblMessage]-|"
                                                                            options:kNilOptions
-                                                                           metrics:nil
+                                                                           metrics:NSDictionaryOfVariableBindings(padding)
                                                                              views:NSDictionaryOfVariableBindings(_lblMessage)];
   
   
   
-  
+  padding = [[self class] paddingForLayoutPaddingType:SHAlertViewControllerPaddingTitleToMessage];
+  paddingEnd = [[self class] paddingForLayoutPaddingType:SHAlertViewControllerPaddingMessageToButton];
   if(self.buttons.firstObject)
+
     constraintForMessage = [constraintForMessage arrayByAddingObjectsFromArray:
-                            [NSLayoutConstraint constraintsWithVisualFormat:@"V:[_lblTitle][_lblMessage]"
+                            [NSLayoutConstraint constraintsWithVisualFormat:@"V:[_lblTitle]-padding-[_lblMessage]"
                                                                     options:kNilOptions
-                                                                    metrics:nil
+                                                                    metrics:NSDictionaryOfVariableBindings(padding)
                                                                       views:NSDictionaryOfVariableBindings(_lblMessage, _lblTitle)]
                             ];
   else
     constraintForMessage = [constraintForMessage arrayByAddingObjectsFromArray:
-                            [NSLayoutConstraint constraintsWithVisualFormat:@"V:[_lblTitle]-[_lblMessage]-|"
+                            [NSLayoutConstraint constraintsWithVisualFormat:@"V:[_lblTitle]-padding-[_lblMessage]-|"
                                                                     options:kNilOptions
-                                                                    metrics:nil
+                                                                    metrics:NSDictionaryOfVariableBindings(padding)
                                                                       views:NSDictionaryOfVariableBindings(_lblMessage, _lblTitle)]
                             ];
   
@@ -487,6 +494,10 @@
 
 +(NSNumber *)paddingForLayoutPaddingType:(SHAlertViewControllerPadding)thePaddingType; {
   NSMutableDictionary * paddings = [SHAlertViewControllerManager sharedManager].paddingType[NSStringFromClass([self class])];
-  return paddings[@(thePaddingType)];
+  NSNumber * padding = paddings[@(thePaddingType)];
+  if(padding == nil) padding = @(8);
+  return padding;
+
 }
+
 @end
