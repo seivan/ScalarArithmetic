@@ -13,9 +13,11 @@
 
 -(BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions; {
   
-  [[NSUserDefaults standardUserDefaults] setBool:YES
-                                          forKey:@"UIViewShowAlignmentRects"];
-  [[NSUserDefaults standardUserDefaults] synchronize];
+//  [[NSUserDefaults standardUserDefaults] setBool:YES
+//                                          forKey:@"UIViewShowAlignmentRects"];
+//  [[NSUserDefaults standardUserDefaults] synchronize];
+  
+
   NSMutableArray * lol = @[].mutableCopy;
   for(NSInteger i = 0; i != 20; i++) {
     [lol addObject:@(i)];

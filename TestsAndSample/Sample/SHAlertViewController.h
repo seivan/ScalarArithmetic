@@ -2,10 +2,25 @@
 
 typedef void (^SHAlertViewControllerCompletionBlock)(NSInteger buttonIndex);
 
+typedef NS_ENUM(NSInteger, SHAlertViewControllerPadding)  {
+  SHAlertViewControllerPaddingTitleToTop,
+  SHAlertViewControllerPaddingTitleToMessage,
+  SHAlertViewControllerPaddingMessageToButton,
+  SHAlertViewControllerPaddingButtonToButton,
+  SHAlertViewControllerPaddingButtonToBottom,
+  SHAlertViewControllerPaddingHorizontalTitleToSide,
+  SHAlertViewControllerPaddingHorizontalMessageToSide,
+  SHAlertViewControllerPaddingHorizontalButtons,
+  SHAlertViewControllerPaddingHorizontalButtonToSide
+};
 
 @interface SHAlertViewController : UIViewController
 
 @property(nonatomic,copy) NSString * message;
+
+@property(nonatomic,copy) NSAttributedString * attributedTitle;
+@property(nonatomic,copy) NSAttributedString * attributedMessage;
+
 
 @property(nonatomic,weak) id<UIAlertViewDelegate> delegate;
 
@@ -15,14 +30,6 @@ typedef void (^SHAlertViewControllerCompletionBlock)(NSInteger buttonIndex);
 
 @property(nonatomic,readonly,getter=isVisible) BOOL visible;
 
-typedef UIView * (^SHAlertViewControllerCreateAlertBlock)(UIView * alertView);
-+(void)styleAlertViewWithCompletionHandler:(SHAlertViewControllerCreateAlertBlock)completionHandler;
-
-typedef UIView * (^SHAlertViewControllerCreateContentHolderBlock)(NSInteger index, UILabel * lblContent);
-+(void)styleAlertContentWithCompletionHandler:(SHAlertViewControllerCreateContentHolderBlock)completionHandler;
-
-typedef UIView * (^SHAlertViewControllerCreateButtonBlock)(NSInteger index, UIButton * button);
-+(void)styleAlertButtonWithCompletionHandler:(SHAlertViewControllerCreateButtonBlock)completionHandler;
 
 +(instancetype)alertWithTitle:(NSString *)theTitle
                       message:(NSString *)theMessage
@@ -38,4 +45,22 @@ typedef UIView * (^SHAlertViewControllerCreateButtonBlock)(NSInteger index, UIBu
 
 -(NSString *)buttonTitleAtIndex:(NSInteger)theButtonIndex;
 -(NSInteger)addButtonWithTitle:(NSString *)title;
+@end
+
+
+@interface SHAlertViewController (SHAlertViewControllerStyling)
+
+typedef UIView * (^SHAlertViewControllerCreateAlertBlock)(UIView * alertView);
++(void)styleAlertViewWithCompletionHandler:(SHAlertViewControllerCreateAlertBlock)completionHandler;
+
+typedef id (^SHAlertViewControllerCreateContentHolderBlock)(NSInteger index, UILabel * lblContent);
++(void)styleAlertContentWithCompletionHandler:(SHAlertViewControllerCreateContentHolderBlock)completionHandler;
+
+typedef UIControl * (^SHAlertViewControllerCreateButtonBlock)(NSInteger index, UIButton * button);
++(void)styleAlertButtonWithCompletionHandler:(SHAlertViewControllerCreateButtonBlock)completionHandler;
+
+typedef void (^SHAlertViewControllerAnimationBlock)(UIView * alertView);
++(void)styleAlertWithAnimation:(SHAlertViewControllerAnimationBlock)theAnimation;
+
++(void)setLayoutWithPaddingType:(SHAlertViewControllerPadding)thePaddingType padding:(CGFloat)thePadding;
 @end

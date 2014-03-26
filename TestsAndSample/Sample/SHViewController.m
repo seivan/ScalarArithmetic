@@ -26,13 +26,19 @@
 
 -(void)viewDidLoad; {
   [super viewDidLoad];
-  [SHAlertViewController styleAlertButtonWithCompletionHandler:^UIView *(NSInteger index, UIButton *button) {
-    if(index == 0) button.tintColor = [UIColor redColor];
-    else  button.tintColor = [UIColor blueColor];
-    return button;
+  [SHAlertViewController styleAlertContentWithCompletionHandler:^id(NSInteger index, UILabel *lblContent) {
+    UITextField * t = [[UITextField alloc] initWithFrame:CGRectZero];
+    t.placeholder = @"asdasdasdasd";
+    t.textAlignment = NSTextAlignmentCenter;
+    return t;
   }];
-  
-  []
+
+//  [SHAlertViewController styleAlertButtonWithCompletionHandler:^UIControl *(NSInteger index, UIButton *button) {
+//    if(index == 0) button.tintColor = [UIColor greenColor];
+//    else  button.tintColor = [UIColor blackColor];
+//    button.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.2];
+//    return button;
+//  }];
 
 }
 -(void)viewDidAppear:(BOOL)animated; {
@@ -50,33 +56,37 @@
 }
 
 -(IBAction)tapShowAlert:(id)sender; {
-  SHPresenterBlocks * presenter = [SHPresenterBlocks presenterWithName:@"alert"];
 
-  for (NSInteger i = 1; i != 2; i++) {
-    NSString * title = [NSString stringWithFormat:@"Title %@ of %@", @(i), @(3)];
+//  for (NSInteger i = 1; i != 2; i++) {
+    NSString * title = [NSString stringWithFormat:@"Title %@ of %@", @(3), @(3)];
 
-    SHAlertViewController * vc = [SHAlertViewController alertWithTitle:title message:@"Message" buttonTitles:@[@"Damn"] completion:^(NSInteger buttonIndex) {
+    SHAlertViewController * vc = [SHAlertViewController alertWithTitle:nil message:nil buttonTitles:@[@"Damn", @"LOL", @"last"] completion:^(NSInteger buttonIndex) {
       NSLog(@"init: %@", @(buttonIndex));
     }];
 
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeAlert:)];
 
     [vc.view addGestureRecognizer:tap];
-    [vc addButtonWithTitle:@"CANCEL" completion:^(NSInteger buttonIndex) {
-      NSLog(@"%@", @(buttonIndex));
-    }];
-    [vc addButtonWithTitle:@"OK" completion:^(NSInteger buttonIndex) {
-      NSLog(@"%@", @(buttonIndex));
-    }];
-    [vc addButtonWithTitle:@"WAT?" completion:^(NSInteger buttonIndex) {
-      NSLog(@"%@", @(buttonIndex));
-    }];
+//    [vc addButtonWithTitle:@"CANCEL" completion:^(NSInteger buttonIndex) {
+//      NSLog(@"%@", @(buttonIndex));
+//    }];
+//    [vc addButtonWithTitle:@"OK" completion:^(NSInteger buttonIndex) {
+//      NSLog(@"%@", @(buttonIndex));
+//    }];
+//    [vc addButtonWithTitle:@"WAT?" completion:^(NSInteger buttonIndex) {
+//      NSLog(@"%@", @(buttonIndex));
+//    }];
 
-
-    [presenter enqueueViewController:vc windowLevel:UIWindowLevelAlert animated:NO completion:^(UIViewController *controller) {
-      NSLog(@"PRESENTED");
-    }];
-  }
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//      for (NSInteger i = 0; i != 5; i++) {
+//        vc.title = [NSString stringWithFormat:@"%@ \n",vc.title];
+//        vc.message = [NSString stringWithFormat:@"%@ \n",vc.title];
+//      }
+//      
+//      [vc addButtonWithTitle:@"LAST BUTTON"];
+//    });
+    [vc show];
+//  }
 
 
 //  SHPresenterBlocks * presenter = [SHPresenterBlocks presenter];
