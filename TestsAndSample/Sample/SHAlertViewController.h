@@ -2,16 +2,15 @@
 
 typedef void (^SHAlertViewControllerCompletionBlock)(NSInteger buttonIndex);
 
-typedef NS_ENUM(NSInteger, SHAlertViewControllerPadding)  {
-  SHAlertViewControllerPaddingTopToNext,
-  SHAlertViewControllerPaddingTitleToNext,
-  SHAlertViewControllerPaddingMessageToNext,
-  SHAlertViewControllerPaddingButtonToNext,
-  SHAlertViewControllerPaddingButtonToBottom,
-  SHAlertViewControllerPaddingHorizontalTitleToSide,
-  SHAlertViewControllerPaddingHorizontalMessageToSide,
-  SHAlertViewControllerPaddingHorizontalButtons,
-  SHAlertViewControllerPaddingHorizontalButtonToSide
+typedef NS_ENUM(NSInteger, SHAVCPadding)  {
+  SHAVCPaddingTopToNext,
+  SHAVCPaddingTitleToNext,
+  SHAVCPaddingMessageToNext,
+  SHAVCPaddingButtonToNext,
+  SHAVCPaddingBottomToPrevious,
+  SHAVCPaddingHorizontalTitleToSide,
+  SHAVCPaddingHorizontalMessageToSide,
+  SHAVCPaddingHorizontalButtonToSide
 };
 
 @interface SHAlertViewController : UIViewController
@@ -62,5 +61,5 @@ typedef UIControl * (^SHAlertViewControllerCreateButtonBlock)(NSInteger index, U
 typedef void (^SHAlertViewControllerAnimationBlock)(UIView * alertView);
 +(void)styleAlertWithAnimation:(SHAlertViewControllerAnimationBlock)theAnimation;
 
-+(void)setLayoutWithPaddingType:(SHAlertViewControllerPadding)thePaddingType padding:(CGFloat)thePadding;
++(void)setLayoutWithPaddingType:(SHAVCPadding)thePaddingType padding:(CGFloat)thePadding;
 @end

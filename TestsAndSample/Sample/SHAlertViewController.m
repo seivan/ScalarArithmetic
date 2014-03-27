@@ -366,15 +366,14 @@
 }
 
 -(void)setupLayoutTitle; {
-  NSNumber * padding = [[self class] paddingForLayoutPaddingType:SHAlertViewControllerPaddingHorizontalTitleToSide];
-  
+  NSNumber * padding = [[self class] paddingForLayoutPaddingType:SHAVCPaddingHorizontalTitleToSide];
   NSArray * constraintForTitle = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-padding-[_lblTitle]-padding-|"
                                                                          options:kNilOptions
                                                                          metrics:NSDictionaryOfVariableBindings(padding)
                                                                            views:NSDictionaryOfVariableBindings(_lblTitle)];
   
 
-  padding = [[self class] paddingForLayoutPaddingType:SHAlertViewControllerPaddingTitleToTop];
+  padding = [[self class] paddingForLayoutPaddingType:SHAVCPaddingTopToNext];
   
   constraintForTitle = [constraintForTitle arrayByAddingObjectsFromArray:
                         [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-padding-[_lblTitle]"
@@ -386,7 +385,8 @@
 }
 
 -(void)setupLayoutMessage; {
-  NSNumber * padding = [[self class] paddingForLayoutPaddingType:SHAlertViewControllerPaddingHorizontalMessageToSide];
+  NSNumber * padding = [[self class] paddingForLayoutPaddingType:SHAVCPaddingHorizontalMessageToSide];
+  
   NSArray * constraintForMessage = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_lblMessage]-|"
                                                                            options:kNilOptions
                                                                            metrics:NSDictionaryOfVariableBindings(padding)
@@ -394,8 +394,9 @@
   
   
   
-  padding = [[self class] paddingForLayoutPaddingType:SHAlertViewControllerPaddingTitleToMessage];
-  paddingEnd = [[self class] paddingForLayoutPaddingType:SHAlertViewControllerPaddingMessageToButton];
+  padding = [[self class] paddingForLayoutPaddingType:SHAVCPaddingTitleToNext];
+  NSNumber * paddingEnd = [[self class] paddingForLayoutPaddingType:SHAVCPaddingBottomToPrevious];
+  
   if(self.buttons.firstObject)
 
     constraintForMessage = [constraintForMessage arrayByAddingObjectsFromArray:
@@ -406,9 +407,9 @@
                             ];
   else
     constraintForMessage = [constraintForMessage arrayByAddingObjectsFromArray:
-                            [NSLayoutConstraint constraintsWithVisualFormat:@"V:[_lblTitle]-padding-[_lblMessage]-|"
+                            [NSLayoutConstraint constraintsWithVisualFormat:@"V:[_lblTitle]-padding-[_lblMessage]-paddingEnd-|"
                                                                     options:kNilOptions
-                                                                    metrics:NSDictionaryOfVariableBindings(padding)
+                                                                    metrics:NSDictionaryOfVariableBindings(padding, paddingEnd)
                                                                       views:NSDictionaryOfVariableBindings(_lblMessage, _lblTitle)]
                             ];
   
@@ -419,45 +420,54 @@
 
 -(void)setupLayoutButtons; {
   [self.buttons enumerateObjectsUsingBlock:^(UIButton * button, NSUInteger idx, __unused BOOL *stop) {
-    
+    NSNumber * padding = [[self class] paddingForLayoutPaddingType:SHAVCPaddingHorizontalButtonToSide];
+
     NSArray * constraintForButton = @[];
     
     constraintForButton =  [constraintForButton arrayByAddingObjectsFromArray:
-                            [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[button]-|"
+                            [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-padding-[button]-padding-|"
                                                                     options:kNilOptions
-                                                                    metrics:nil
+                                                                    metrics:NSDictionaryOfVariableBindings(padding)
                                                                       views:NSDictionaryOfVariableBindings(button)]];
     
-    if(self.buttons.firstObject == button && self.buttons.lastObject == button)
+    if(self.buttons.firstObject == button && self.buttons.lastObject == button) {
+      padding = [[self class] paddingForLayoutPaddingType:SHAVCPaddingMessageToNext];
+      NSNumber * paddingEnd = [[self class] paddingForLayoutPaddingType:SHAVCPaddingBottomToPrevious];
       constraintForButton = [constraintForButton arrayByAddingObjectsFromArray:
-                             [NSLayoutConstraint constraintsWithVisualFormat:@"V:[_lblMessage]-[button]-|"
+                             [NSLayoutConstraint constraintsWithVisualFormat:@"V:[_lblMessage]-padding-[button]-paddingEnd-|"
                                                                      options:kNilOptions
-                                                                     metrics:nil
+                                                                     metrics:NSDictionaryOfVariableBindings(padding, paddingEnd)
                                                                        views:NSDictionaryOfVariableBindings(_lblMessage, button)]
                              ];
-    else if(self.buttons.firstObject == button)
+    }
+    else if(self.buttons.firstObject == button) {
+      padding = [[self class] paddingForLayoutPaddingType:SHAVCPaddingMessageToNext];
       constraintForButton = [constraintForButton arrayByAddingObjectsFromArray:
-                             [NSLayoutConstraint constraintsWithVisualFormat:@"V:[_lblMessage]-[button]"
+                             [NSLayoutConstraint constraintsWithVisualFormat:@"V:[_lblMessage]-padding-[button]"
                                                                      options:kNilOptions
-                                                                     metrics:nil
+                                                                     metrics:NSDictionaryOfVariableBindings(padding)
                                                                        views:NSDictionaryOfVariableBindings(_lblMessage, button)]
                              ];
+    }
     
     else if(self.buttons.lastObject == button) {
       UIButton * previousButton = self.buttons[idx-1];
+      padding = [[self class] paddingForLayoutPaddingType:SHAVCPaddingButtonToNext];
+      NSNumber * paddingEnd = [[self class] paddingForLayoutPaddingType:SHAVCPaddingBottomToPrevious];
       constraintForButton = [constraintForButton arrayByAddingObjectsFromArray:
-                             [NSLayoutConstraint constraintsWithVisualFormat:@"V:[previousButton]-[button]-|"
+                             [NSLayoutConstraint constraintsWithVisualFormat:@"V:[previousButton]-padding-[button]-paddingEnd-|"
                                                                      options:kNilOptions
-                                                                     metrics:nil
+                                                                     metrics:NSDictionaryOfVariableBindings(padding,paddingEnd)
                                                                        views:NSDictionaryOfVariableBindings(previousButton,button)]
                              ];
     }
     else {
       UIButton * previousButton = self.buttons[idx-1];
+      padding = [[self class] paddingForLayoutPaddingType:SHAVCPaddingButtonToNext];
       constraintForButton = [constraintForButton arrayByAddingObjectsFromArray:
-                             [NSLayoutConstraint constraintsWithVisualFormat:@"V:[previousButton]-[button]"
+                             [NSLayoutConstraint constraintsWithVisualFormat:@"V:[previousButton]-padding-[button]"
                                                                      options:kNilOptions
-                                                                     metrics:nil
+                                                                     metrics:NSDictionaryOfVariableBindings(padding)
                                                                        views:NSDictionaryOfVariableBindings(previousButton,button)]
                              ];
     }
@@ -485,14 +495,14 @@
   return NSStringFromClass([self class]);
 }
 
-+(void)setLayoutWithPaddingType:(SHAlertViewControllerPadding)thePaddingType padding:(CGFloat)thePadding; {
++(void)setLayoutWithPaddingType:(SHAVCPadding)thePaddingType padding:(CGFloat)thePadding; {
   NSMutableDictionary * paddings = [SHAlertViewControllerManager sharedManager].paddingType[NSStringFromClass([self class])];
   if(paddings == nil) paddings = @{}.mutableCopy;
   paddings[@(thePaddingType)] = @(thePadding);
   [[SHAlertViewControllerManager sharedManager].paddingType setObject:paddings forKey:NSStringFromClass([self class])];
 }
 
-+(NSNumber *)paddingForLayoutPaddingType:(SHAlertViewControllerPadding)thePaddingType; {
++(NSNumber *)paddingForLayoutPaddingType:(SHAVCPadding)thePaddingType; {
   NSMutableDictionary * paddings = [SHAlertViewControllerManager sharedManager].paddingType[NSStringFromClass([self class])];
   NSNumber * padding = paddings[@(thePaddingType)];
   if(padding == nil) padding = @(8);

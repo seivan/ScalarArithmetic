@@ -26,19 +26,34 @@
 
 -(void)viewDidLoad; {
   [super viewDidLoad];
+  
+  [SHAlertViewController setLayoutWithPaddingType:SHAVCPaddingTopToNext padding:25];
+  [SHAlertViewController setLayoutWithPaddingType:SHAVCPaddingButtonToNext padding:15];
+  [SHAlertViewController setLayoutWithPaddingType:SHAVCPaddingBottomToPrevious padding:25];
   [SHAlertViewController styleAlertContentWithCompletionHandler:^id(NSInteger index, UILabel *lblContent) {
-    UITextField * t = [[UITextField alloc] initWithFrame:CGRectZero];
-    t.placeholder = @"asdasdasdasd";
-    t.textAlignment = NSTextAlignmentCenter;
-    return t;
+    id contentHolder = nil;
+    if(index == 1) {
+      UITextField * message = [[UITextField alloc] initWithFrame:CGRectZero];
+      message.placeholder = @"asdasdasdasd";
+      message.textAlignment = NSTextAlignmentCenter;
+      contentHolder = message;
+    }
+    else {
+      lblContent.textColor = [UIColor redColor];
+      lblContent.font = [UIFont boldSystemFontOfSize:20.f];
+      contentHolder = lblContent;
+    }
+    return contentHolder;
+
   }];
 
-//  [SHAlertViewController styleAlertButtonWithCompletionHandler:^UIControl *(NSInteger index, UIButton *button) {
-//    if(index == 0) button.tintColor = [UIColor greenColor];
-//    else  button.tintColor = [UIColor blackColor];
-//    button.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.2];
-//    return button;
-//  }];
+  [SHAlertViewController styleAlertButtonWithCompletionHandler:^UIControl *(NSInteger index, UIButton *button) {
+    if(index == 0) button.tintColor = [UIColor blackColor];
+    else  button.tintColor = [UIColor redColor];
+    button.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.2];
+    button.titleLabel.font = [UIFont boldSystemFontOfSize:20.f];
+    return button;
+  }];
 
 }
 -(void)viewDidAppear:(BOOL)animated; {
@@ -48,25 +63,26 @@
 
 -(void)removeAlert:(UITapGestureRecognizer *)tap; {
 
-  [[SHPresenterBlocks presenter] dismissViewController:[SHPresenterBlocks presenter].topViewController animated:YES completion:^(UIViewController *controller) {
-    
-    NSLog(@"DISMISSED");
-  }];
+  
 
 }
 
 -(IBAction)tapShowAlert:(id)sender; {
 
-//  for (NSInteger i = 1; i != 2; i++) {
-    NSString * title = [NSString stringWithFormat:@"Title %@ of %@", @(3), @(3)];
+  for (NSInteger i = 0; i != 3; i++) {
+    NSString * title = [NSString stringWithFormat:@"Title %@ of %@", @(i+1), @(3)];
 
-    SHAlertViewController * vc = [SHAlertViewController alertWithTitle:nil message:nil buttonTitles:@[@"Damn", @"LOL", @"last"] completion:^(NSInteger buttonIndex) {
+    SHAlertViewController * vc = [SHAlertViewController alertWithTitle:title message:@"So this is the message" buttonTitles:@[@"Damn", @"LOL", @"last"] completion:^(NSInteger buttonIndex) {
       NSLog(@"init: %@", @(buttonIndex));
     }];
+  
+  vc.attributedTitle = [[NSAttributedString alloc] initWithString:vc.title attributes:@{NSTextEffectAttributeName : NSTextEffectLetterpressStyle}];
+  
+  vc.attributedMessage = [[NSAttributedString alloc] initWithString:vc.message attributes:@{NSTextEffectAttributeName : NSTextEffectLetterpressStyle}];
 
-    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeAlert:)];
+//    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeAlert:)];
 
-    [vc.view addGestureRecognizer:tap];
+//    [vc.view addGestureRecognizer:tap];
 //    [vc addButtonWithTitle:@"CANCEL" completion:^(NSInteger buttonIndex) {
 //      NSLog(@"%@", @(buttonIndex));
 //    }];
@@ -86,7 +102,7 @@
 //      [vc addButtonWithTitle:@"LAST BUTTON"];
 //    });
     [vc show];
-//  }
+  }
 
 
 //  SHPresenterBlocks * presenter = [SHPresenterBlocks presenter];
