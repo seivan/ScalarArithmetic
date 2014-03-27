@@ -8,6 +8,8 @@
 @property(nonatomic,strong) NSMutableDictionary     * blocksContent;
 @property(nonatomic,strong) NSMutableDictionary     * blocksButton;
 @property(nonatomic,strong) NSMutableDictionary     * paddingType;
+@property(nonatomic,strong) NSMutableDictionary     * blocksAnimation;
+
 +(instancetype)sharedManager;
 
 @end
@@ -22,6 +24,7 @@
     self.blocksContent     = @{}.mutableCopy;
     self.blocksButton      = @{}.mutableCopy;
     self.paddingType       = @{}.mutableCopy;
+    self.blocksAnimation   = @{}.mutableCopy;
   }
   
   return self;
@@ -94,6 +97,55 @@
       return alertView;
     }];
 
+  if([SHAlertViewControllerManager sharedManager].blocksAnimation[NSStringFromClass([self class])] == nil)
+    [SHAlertViewController styleAlertWithAnimation:^(UIView *alertView) {
+      alertView.layer.transform = CATransform3DMakeScale(0.5, 0.5, 1.0);
+      
+//      [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:0 options:kNilOptions animations:^{
+//        alertView.layer.transform = CATransform3DIdentity;
+//      } completion:^(BOOL finished) {
+//        alertView.layer.transform = CATransform3DIdentity;
+//      }];
+//
+      CAKeyframeAnimation *bounceAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
+      bounceAnimation.values = [NSArray arrayWithObjects:
+                                [NSNumber numberWithFloat:0.5],
+                                [NSNumber numberWithFloat:1.1],
+                                [NSNumber numberWithFloat:0.8],
+                                [NSNumber numberWithFloat:1.0], nil];
+      bounceAnimation.duration = 0.3;
+      bounceAnimation.removedOnCompletion = NO;
+      [alertView.layer addAnimation:bounceAnimation forKey:@"bounce"];
+      
+      alertView.layer.transform = CATransform3DIdentity;
+      
+      [UIView animateWithDuration:0.1 animations:^{
+        alertView.alpha = 1;
+      }];
+      
+
+//      
+//      [UIView animateKeyframesWithDuration:0.3 delay:0 options:kNilOptions animations:^{
+//        [UIView addKeyframeWithRelativeStartTime:0 relativeDuration:0.25 animations:^{
+//          alertView.layer.transform = CATransform3DMakeScale(0.5, 0.5, 1.0);
+//        }];
+//        [UIView addKeyframeWithRelativeStartTime:0.25 relativeDuration:0.25 animations:^{
+//          alertView.layer.transform = CATransform3DMakeScale(1.1, 1.1, 1.0);
+//        }];
+//        [UIView addKeyframeWithRelativeStartTime:0.5 relativeDuration:0.25 animations:^{
+//          alertView.layer.transform = CATransform3DMakeScale(0.8, 0.8, 1.0);
+//        }];
+//        [UIView addKeyframeWithRelativeStartTime:0.75 relativeDuration:0.25 animations:^{
+//          alertView.layer.transform = CATransform3DMakeScale(1.f, 1.f, 1.0);
+//        }];
+//        
+//      } completion:^(BOOL finished) {
+//        alertView.layer.transform = CATransform3DIdentity;
+//      }];
+
+      
+    }];
+
   SHAlertViewController * viewController = [[[self class] alloc] init];
   viewController.title = theTitle;
   viewController.message = theMessage;
@@ -118,11 +170,12 @@
 
 -(void)viewDidLoad; {
   [super viewDidLoad];
-  self.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
+
   [self.view addSubview:self.alertView];
   [self.alertView addSubview:self.lblTitle];  
   [self.alertView addSubview:self.lblMessage];
-//  self.alertView.alpha = 0;
+  self.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
+  self.alertView.alpha = 0;
 }
 -(void)viewWillAppear:(BOOL)animated; {
   [super viewWillAppear:animated];
@@ -140,45 +193,11 @@
   }];
   
 //  [UIView animateWithDuration:0.1 animations:^{self.alertView.alpha = 1.0;}];
-//  
-//  self.alertView.layer.transform = CATransform3DMakeScale(0.5, 0.5, 1.0);
-//  
-//  CAKeyframeAnimation *bounceAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
-//  bounceAnimation.values = [NSArray arrayWithObjects:
-//                            [NSNumber numberWithFloat:0.5],
-//                            [NSNumber numberWithFloat:1.1],
-//                            [NSNumber numberWithFloat:0.8],
-//                            [NSNumber numberWithFloat:1.0], nil];
-//  bounceAnimation.duration = 0.3;
-//  bounceAnimation.removedOnCompletion = NO;
-//  [self.alertView.layer addAnimation:bounceAnimation forKey:@"bounce"];
-//  
-//  self.alertView.layer.transform = CATransform3DIdentity;
+//
   
-  //  [UIView animateWithDuration:0.1 animations:^{
-  //    self.alertView.alpha = 1;
-  //  }];
-  //
-  //  self.alertView.layer.transform = CATransform3DMakeScale(0.5, 0.5, 1.0);
-  //
-  //  [UIView animateKeyframesWithDuration:0.3 delay:0 options:kNilOptions animations:^{
-  //    [UIView addKeyframeWithRelativeStartTime:0 relativeDuration:0.25 animations:^{
-  //      self.alertView.layer.transform = CATransform3DMakeScale(0.5, 0.5, 1.0);
-  //    }];
-  //    [UIView addKeyframeWithRelativeStartTime:0.25 relativeDuration:0.25 animations:^{
-  //      self.alertView.layer.transform = CATransform3DMakeScale(1.1, 1.1, 1.0);
-  //    }];
-  //    [UIView addKeyframeWithRelativeStartTime:0.5 relativeDuration:0.25 animations:^{
-  //      self.alertView.layer.transform = CATransform3DMakeScale(0.8, 0.8, 1.0);
-  //    }];
-  //    [UIView addKeyframeWithRelativeStartTime:0.75 relativeDuration:0.25 animations:^{
-  //      self.alertView.layer.transform = CATransform3DMakeScale(1.f, 1.f, 1.0);
-  //    }];
-  //
-  //  } completion:^(BOOL finished) {
-  //    self.alertView.layer.transform = CATransform3DIdentity;
-  //  }];
 
+  SHAlertViewControllerAnimationBlock animationBlock = [SHAlertViewControllerManager sharedManager].blocksAnimation[NSStringFromClass([self class])];
+    animationBlock(self.alertView);
 }
 
 -(void)viewWillDisappear:(BOOL)animated; {
@@ -219,12 +238,17 @@
 
 -(void)setTitle:(NSString *)title; {
   [super setTitle:title];
-  self.lblTitle.text = title;
+  if([self.lblTitle respondsToSelector:@selector(setAttributedText:)] && title)
+    [self setAttributedTitle:[[NSAttributedString alloc] initWithString:title attributes:@{NSTextEffectAttributeName : NSTextEffectLetterpressStyle}]];
+  else self.lblTitle.text = title;
 }
 
 -(void)setMessage:(NSString *)message; {
   _message = message;
-  self.lblMessage.text = message;
+  if([self.lblMessage respondsToSelector:@selector(setAttributedText:)] && message)
+    [self setAttributedMessage:[[NSAttributedString alloc] initWithString:message attributes:@{NSTextEffectAttributeName : NSTextEffectLetterpressStyle}]];
+  else
+    self.lblMessage.text = message;
 }
 
 -(void)setAttributedMessage:(NSAttributedString *)attributedMessage; {
@@ -480,16 +504,26 @@
 }
 
 +(void)styleAlertViewWithCompletionHandler:(SHAlertViewControllerCreateAlertBlock)completionHandler; {
+  NSParameterAssert(completionHandler);
   [SHAlertViewControllerManager sharedManager].blocksAlert[NSStringFromClass([self class])] = completionHandler;
 }
 
 +(void)styleAlertContentWithCompletionHandler:(SHAlertViewControllerCreateContentHolderBlock)completionHandler; {
+  NSParameterAssert(completionHandler);
   [SHAlertViewControllerManager sharedManager].blocksContent[NSStringFromClass([self class])] = completionHandler;
 }
 
 +(void)styleAlertButtonWithCompletionHandler:(SHAlertViewControllerCreateButtonBlock)completionHandler; {
+  NSParameterAssert(completionHandler);
   [SHAlertViewControllerManager sharedManager].blocksButton[NSStringFromClass([self class])] = completionHandler;
 }
+
+
++(void)styleAlertWithAnimation:(SHAlertViewControllerAnimationBlock)theAnimation; {
+  NSParameterAssert(theAnimation);
+  [SHAlertViewControllerManager sharedManager].blocksAnimation[NSStringFromClass([self class])] = theAnimation;
+}
+
 
 -(NSString *)alertStyle; {
   return NSStringFromClass([self class]);

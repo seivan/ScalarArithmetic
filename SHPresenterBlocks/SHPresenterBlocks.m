@@ -220,11 +220,9 @@
 
 -(UIViewController *)topViewController; {
   __block UIViewController * topViewController = nil;
-
-  NSArray * windows = [UIApplication sharedApplication].windows;
   
 
-  [windows enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(UIWindow * obj, __unused NSUInteger idx, BOOL *stop) {
+  [[UIApplication sharedApplication].windows enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(UIWindow * obj, __unused NSUInteger idx, BOOL *stop) {
     if([obj.rootViewController isKindOfClass:[__SHPresentingViewController class]]) {
       UIViewController * controller = obj.rootViewController.presentedViewController;
       topViewController = controller;
