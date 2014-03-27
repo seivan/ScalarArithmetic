@@ -50,16 +50,16 @@ typedef NS_ENUM(NSInteger, SHAVCPadding)  {
 @interface SHAlertViewController (SHAlertViewControllerStyling)
 
 typedef UIView * (^SHAlertViewControllerCreateAlertBlock)(UIView * alertView);
-+(void)styleAlertViewWithCompletionHandler:(SHAlertViewControllerCreateAlertBlock)completionHandler;
++(void)styleAlertViewBlock:(SHAlertViewControllerCreateAlertBlock)completionHandler;
 
 typedef id (^SHAlertViewControllerCreateContentHolderBlock)(NSInteger index, UILabel * lblContent);
-+(void)styleAlertContentWithCompletionHandler:(SHAlertViewControllerCreateContentHolderBlock)completionHandler;
++(void)styleAlertContentBlock:(SHAlertViewControllerCreateContentHolderBlock)completionHandler;
 
 typedef UIControl * (^SHAlertViewControllerCreateButtonBlock)(NSInteger index, UIButton * button);
-+(void)styleAlertButtonWithCompletionHandler:(SHAlertViewControllerCreateButtonBlock)completionHandler;
++(void)styleAlertButtonBlock:(SHAlertViewControllerCreateButtonBlock)completionHandler;
 
 typedef void (^SHAlertViewControllerAnimationBlock)(UIView * alertView);
-+(void)styleAlertWithAnimation:(SHAlertViewControllerAnimationBlock)theAnimation;
++(void)styleAlertAnimationBlock:(SHAlertViewControllerAnimationBlock)theAnimation;
 
 +(void)setLayoutWithPaddingType:(SHAVCPadding)thePaddingType padding:(CGFloat)thePadding;
 @end
