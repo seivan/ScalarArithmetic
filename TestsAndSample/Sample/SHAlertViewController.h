@@ -13,6 +13,12 @@ typedef NS_ENUM(NSInteger, SHAVCPadding)  {
   SHAVCPaddingHorizontalButtonToSide
 };
 
+typedef NS_ENUM(NSInteger, SHAlertViewControllerDismissSwipeDirection)  {
+  SHAlertViewControllerDismissSwipeDirectionNone,
+  SHAlertViewControllerDismissSwipeDirectionUp,
+  SHAlertViewControllerDismissSwipeDirectionDown
+};
+
 @interface SHAlertViewController : UIViewController
 
 @property(nonatomic,copy) NSString * message;
@@ -40,16 +46,19 @@ typedef NS_ENUM(NSInteger, SHAVCPadding)  {
                completion:(SHAlertViewControllerCompletionBlock)theCompletion;
 
 -(void)show;
+
 -(void)dismissWithTappedButtonIndex:(NSInteger)theButtonIndex animated:(BOOL)theAnimatedFlag;
 
 -(NSString *)buttonTitleAtIndex:(NSInteger)theButtonIndex;
 -(NSInteger)addButtonWithTitle:(NSString *)title;
+-(void)setSwipeDirection:(SHAlertViewControllerDismissSwipeDirection)theSwipeDirection;
 @end
 
 
 @interface SHAlertViewController (SHAlertViewControllerStyling)
 
-typedef UIView * (^SHAlertViewControllerCreateAlertBlock)(UIView * alertView);
+typedef UIView * (^SHAlertViewControllerCreateAlertBlock)(UIView * alertView,
+                                                          SHAlertViewControllerDismissSwipeDirection *dismissDirection);
 +(void)styleAlertViewBlock:(SHAlertViewControllerCreateAlertBlock)completionHandler;
 
 typedef id (^SHAlertViewControllerCreateContentHolderBlock)(NSInteger index, UILabel * lblContent);
@@ -58,7 +67,8 @@ typedef id (^SHAlertViewControllerCreateContentHolderBlock)(NSInteger index, UIL
 typedef UIControl * (^SHAlertViewControllerCreateButtonBlock)(NSInteger index, UIButton * button);
 +(void)styleAlertButtonBlock:(SHAlertViewControllerCreateButtonBlock)completionHandler;
 
-typedef void (^SHAlertViewControllerAnimationBlock)(UIView * alertView);
+typedef void (^SHAlertViewControllerAnimationCompletionBlock)();
+typedef void (^SHAlertViewControllerAnimationBlock)(UIView * alertView, BOOL isPresenting, SHAlertViewControllerAnimationCompletionBlock completion);
 +(void)styleAlertAnimationBlock:(SHAlertViewControllerAnimationBlock)theAnimation;
 
 +(void)setLayoutWithPaddingType:(SHAVCPadding)thePaddingType padding:(CGFloat)thePadding;

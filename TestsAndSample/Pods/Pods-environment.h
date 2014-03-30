@@ -12,3 +12,9 @@
 #define COCOAPODS_VERSION_MINOR_SHPresenterBlocks 0
 #define COCOAPODS_VERSION_PATCH_SHPresenterBlocks 0
 
+// SHTransitionBlocks
+#define COCOAPODS_POD_AVAILABLE_SHTransitionBlocks
+#define COCOAPODS_VERSION_MAJOR_SHTransitionBlocks 1
+#define COCOAPODS_VERSION_MINOR_SHTransitionBlocks 0
+#define COCOAPODS_VERSION_PATCH_SHTransitionBlocks 0
+

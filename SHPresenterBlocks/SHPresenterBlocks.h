@@ -33,8 +33,8 @@ typedef void (^SHPresenterCompletionBlock)(UIViewController * controller);
 -(void)dismissAllViewControllersAnimated:(BOOL)theAnimatedFlag
                               completion:(SHPresenterCompletionBlock)theCompletion;
 
-//+(void)dismissAllViewControllersAnimated:(BOOL)theAnimatedFlag
-//                              completion:(SHPresenterCompletionBlock)theCompletion;
++(void)dismissAllViewControllersAnimated:(BOOL)theAnimatedFlag
+                              completion:(SHPresenterCompletionBlock)theCompletion;
 
 
 @end

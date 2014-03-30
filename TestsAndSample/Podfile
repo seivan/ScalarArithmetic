@@ -2,6 +2,7 @@ platform :ios, '7.0'
 
 link_with [:Sample, :Tests]
 pod 'SHPresenterBlocks', :path => '../'
+pod 'SHTransitionBlocks'
 
 target :Tests, :exclusive => true do
   pod 'SHTestCaseAdditions'

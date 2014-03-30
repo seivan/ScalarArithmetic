@@ -253,6 +253,24 @@
 }
 
 
++(void)dismissAllViewControllersAnimated:(BOOL)theAnimatedFlag
+                              completion:(SHPresenterCompletionBlock)theCompletion; {
+  dispatch_group_t signalAllDismissedComplete = dispatch_group_create();
+  [[UIApplication sharedApplication].windows enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(UIWindow * obj, __unused NSUInteger idx, BOOL *stop) {
+    if([obj.rootViewController isKindOfClass:[__SHPresentingViewController class]]) {
+      dispatch_group_enter(signalAllDismissedComplete);
+      [obj.rootViewController dismissViewControllerAnimated:theAnimatedFlag completion:^{
+        dispatch_group_leave(signalAllDismissedComplete);
+      }];
+    }
+  }];
+  
+  dispatch_group_notify(signalAllDismissedComplete, dispatch_get_main_queue(), ^{
+    if(theCompletion) theCompletion(nil);
+  });
+  
+}
+
 #pragma mark - Properties
 -(NSMutableOrderedSet *)queue; {
   if(_queue == nil) _queue = [NSMutableOrderedSet orderedSet];

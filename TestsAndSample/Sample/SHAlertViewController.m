@@ -45,6 +45,8 @@
 @end
 
 @interface SHAlertViewController ()
+<UIScrollViewDelegate>
+
 @property(nonatomic,strong)   NSMapTable * buttonCallbacks;
 @property(nonatomic,readonly) NSArray    * buttons;
 @property(nonatomic,strong) id observerToBackground;
@@ -57,12 +59,15 @@
 @property(nonatomic,weak) SHPresenterBlocks * presenter;
 
 @property(nonatomic,readonly) NSString * alertStyle;
-
+@property(nonatomic,assign,getter = isKeyboardVisible) BOOL keyboardVisible;
+@property(nonatomic,assign) SHAlertViewControllerDismissSwipeDirection swipeDirection;
 +(void)setupInitialStyling;
 -(void)setupLayoutAlert;
 -(void)setupLayoutTitle;
 -(void)setupLayoutMessage;
 -(void)setupLayoutButtons;
+
+-(void)dismissWithClickedButtonIndex:(NSInteger)theButtonIndex animated:(BOOL)theAnimatedFlag;
 @end
 
 
@@ -99,7 +104,15 @@
 -(void)viewDidLoad; {
   [super viewDidLoad];
 
-  [self.view addSubview:self.alertView];
+  UIScrollView * scrollView = [[UIScrollView alloc] init];
+  scrollView.translatesAutoresizingMaskIntoConstraints = NO;
+  [scrollView setContentSize:CGSizeMake(320, 2000)];
+  scrollView.alwaysBounceVertical = YES;
+  scrollView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
+  scrollView.delegate = self;
+  
+  [self.view addSubview:scrollView];
+  [scrollView addSubview:self.alertView];
   [self.alertView addSubview:self.lblTitle];  
   [self.alertView addSubview:self.lblMessage];
   self.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
@@ -112,6 +125,22 @@
   [super viewWillAppear:animated];
   [self.view setNeedsUpdateConstraints];
   
+}
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView; {
+//  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+  
+  if(self.isKeyboardVisible) [scrollView setContentOffset:CGPointMake(0, CGRectGetMinY(self.alertView.frame)-20) animated:YES];
+//  });
+
+}
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset NS_AVAILABLE_IOS(5_0); {
+  NSLog(@"%f - %f", velocity.y, scrollView.contentOffset.y);
+  if(self.isKeyboardVisible == YES) return;
+  
+
+  if(scrollView.contentOffset.y < -50.f && velocity.y < -0.8f)
+    [self dismissWithTappedButtonIndex:0 animated:YES];
 }
 
 -(void)viewDidAppear:(BOOL)animated; {
@@ -126,27 +155,24 @@
   
   [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillShowNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
     
-    
-    [self.view removeConstraint:self.centerConstraint];
-    [UIView animateWithDuration:0.5 animations:^{
-      [self.view layoutIfNeeded];
-    }];
-    
+    UIScrollView * scrollView = self.view.subviews.firstObject;
+    [scrollView setContentOffset:CGPointMake(0, CGRectGetMinY(weakSelf.alertView.frame)-20) animated:YES];
+    weakSelf.keyboardVisible = YES;
     
     
   }];
   
   
   [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillHideNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-    [self.view addConstraint:self.centerConstraint];
-    
+    weakSelf.keyboardVisible = NO;
     
   }];
 
   
 
   SHAlertViewControllerAnimationBlock animationBlock = [SHAlertViewControllerManager sharedManager].blocksAnimation[NSStringFromClass([self class])];
-    animationBlock(self.alertView);
+  
+  animationBlock(self.alertView, YES, ^(){});
   
 
 
@@ -222,15 +248,21 @@
   [self.delegate alertView:(UIAlertView *)self willDismissWithButtonIndex:theButtonIndex];
 
   __weak typeof(self) weakSelf = self;
-  [self.presentingViewController dismissViewControllerAnimated:theAnimatedFlag completion:^{
-    [weakSelf.delegate alertView:(UIAlertView *)weakSelf didDismissWithButtonIndex:theButtonIndex];
-  }];
+  SHAlertViewControllerAnimationBlock animationBlock = [SHAlertViewControllerManager sharedManager].blocksAnimation[NSStringFromClass([self class])];
+
+  animationBlock(self.alertView, NO, ^(){
+    [self.presentingViewController dismissViewControllerAnimated:NO completion:^{
+      [weakSelf.delegate alertView:(UIAlertView *)weakSelf didDismissWithButtonIndex:theButtonIndex];
+    }];
+  });
 }
 
 -(void)show; {
-  [self.delegate willPresentAlertView:(UIAlertView *)self];
+  __weak typeof(self) weakSelf = self;
+  if([self.delegate respondsToSelector:@selector(willPresentAlertView:)])
+    [self.delegate willPresentAlertView:(UIAlertView *)self];
   [self.presenter enqueueViewController:self windowLevel:UIWindowLevelAlert animated:NO completion:^(UIViewController *controller) {
-    [self.delegate didPresentAlertView:(UIAlertView *)self];
+    [weakSelf.delegate didPresentAlertView:(UIAlertView *)self];
   }];
 }
 
@@ -271,7 +303,7 @@
   if (_alertView == nil) {
     _alertView = [[UIView alloc] initWithFrame:CGRectZero];
     SHAlertViewControllerCreateAlertBlock contentBlock =[SHAlertViewControllerManager sharedManager].blocksAlert[self.alertStyle];
-    if(contentBlock) _alertView = contentBlock(_alertView);
+    if(contentBlock) _alertView = contentBlock(_alertView, &_swipeDirection);
     _alertView.translatesAutoresizingMaskIntoConstraints = NO;
     NSParameterAssert(_alertView);
   }
@@ -287,6 +319,10 @@
   [self addButtonWithTitle:title completion:self.completion];
   
   return self.numberOfButtons-1;
+}
+
+-(void)setSwipeDirection:(SHAlertViewControllerDismissSwipeDirection)theSwipeDirection; {
+  _swipeDirection = theSwipeDirection;
 }
 
 -(NSArray *)buttons; {
@@ -321,33 +357,46 @@
     }];
   
   if([SHAlertViewControllerManager sharedManager].blocksAlert[NSStringFromClass([self class])] == nil)
-    [SHAlertViewController styleAlertViewBlock:^id(UIView *alertView) {
+    [SHAlertViewController styleAlertViewBlock:^id(UIView *alertView,SHAlertViewControllerDismissSwipeDirection *dismissDirection) {
       alertView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.9];
       alertView.layer.cornerRadius = 5.0;
       alertView.layer.shadowColor = [UIColor blackColor].CGColor;
       alertView.layer.shadowOpacity = 0.25;
       alertView.layer.shadowRadius = 1;
       alertView.layer.shadowOffset = CGSizeMake(0, 1);
+      *dismissDirection = SHAlertViewControllerDismissSwipeDirectionDown;
       return alertView;
     }];
   
   if([SHAlertViewControllerManager sharedManager].blocksAnimation[NSStringFromClass([self class])] == nil)
-    [SHAlertViewController styleAlertAnimationBlock:^(UIView *alertView) {
+    [SHAlertViewController styleAlertAnimationBlock:^(UIView *alertView, BOOL isPresenting, SHAlertViewControllerAnimationCompletionBlock completion) {
       
-      alertView.layer.affineTransform = CGAffineTransformMakeTranslation(0, CGRectGetHeight([UIScreen mainScreen].bounds)*-1);
-      alertView.layer.affineTransform = CGAffineTransformMakeScale(0.5, 0.5);
-      [UIView animateWithDuration:0.7 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:1 options:UIViewAnimationOptionAllowUserInteraction animations:^{
-        alertView.layer.affineTransform = CGAffineTransformIdentity;
+      
+      CGAffineTransform fromTransform = CGAffineTransformIdentity;
+      if(isPresenting)  fromTransform= CGAffineTransformMakeTranslation(0, CGRectGetHeight([UIScreen mainScreen].bounds)*-1);
+      
+      CGAffineTransform toTransform = CGAffineTransformMakeTranslation(0, CGRectGetHeight([UIScreen mainScreen].bounds));
+      if(isPresenting) toTransform = CGAffineTransformIdentity;
+      
+      alertView.transform = fromTransform;
+      CGFloat damping = 1;
+      if(isPresenting)  damping = 0.5;
+      [UIView animateWithDuration:0.7 delay:0 usingSpringWithDamping:damping initialSpringVelocity:1 options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionBeginFromCurrentState animations:^{
+        alertView.layer.affineTransform = toTransform;
       } completion:^(BOOL finished) {
-        alertView.layer.affineTransform = CGAffineTransformIdentity;
+        if(isPresenting) alertView.layer.affineTransform = CGAffineTransformIdentity;
+//        else alertView.hidden = YES;
+        completion();
       }];
     }];
 }
 
 -(void)updateViewConstraints; {
-  [super updateViewConstraints];
   [self.view removeConstraints:self.view.constraints];
+  [self.view.subviews.firstObject removeConstraints:[self.view.subviews.firstObject constraints]];
   [self.alertView removeConstraints:self.alertView.constraints];
+  [super updateViewConstraints];
+
   [self setupLayoutAlert];
   [self setupLayoutTitle];
   [self setupLayoutMessage];
@@ -357,13 +406,38 @@
 }
 
 -(void)setupLayoutAlert; {
+  UIScrollView * scrollView = self.view.subviews.firstObject;
+  
+  NSArray * constraint = [[NSLayoutConstraint
+                           constraintsWithVisualFormat:@"H:|-(==0)-[scrollView]-(==0)-|"
+                                                                   options:kNilOptions
+                                                                   metrics:nil
+                                                                     views:NSDictionaryOfVariableBindings(scrollView)]
+                            arrayByAddingObjectsFromArray:[NSLayoutConstraint
+                                                           constraintsWithVisualFormat:@"V:|-(==0)-[scrollView]-(==0)-|"
+                                                                                                   options:kNilOptions
+                                                                                                   metrics:nil
+                                                                                                     views:NSDictionaryOfVariableBindings(scrollView)
+                                                            ]
+  ];
+  [self.view addConstraints:constraint];
+  
   self.centerConstraint = [NSLayoutConstraint constraintWithItem:self.alertView
                                                        attribute:NSLayoutAttributeCenterY
                                                        relatedBy:NSLayoutRelationEqual
-                                                          toItem:self.view
+                                                          toItem:self.view.subviews.firstObject
                                                        attribute:NSLayoutAttributeCenterY
                                                       multiplier:1.f constant:0.f];
-  [self.view addConstraint:  self.centerConstraint];
+  [self.view.subviews.firstObject addConstraint:self.centerConstraint];
+  
+  [self.view.subviews.firstObject addConstraint:
+   [NSLayoutConstraint constraintWithItem:self.alertView
+                                attribute:NSLayoutAttributeCenterX
+                                relatedBy:NSLayoutRelationEqual
+                                   toItem:self.view.subviews.firstObject
+                                attribute:NSLayoutAttributeCenterX
+                               multiplier:1.f constant:0.f]
+   ];
   
   
   NSArray * constraintForAlertView = [NSLayoutConstraint
@@ -372,6 +446,7 @@
                                       metrics:nil
                                       views:NSDictionaryOfVariableBindings(_alertView)];
   
+
   constraintForAlertView = [constraintForAlertView arrayByAddingObjectsFromArray:
                             [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_alertView]-|"
                                                                     options: kNilOptions
@@ -379,7 +454,7 @@
                                                                       views:NSDictionaryOfVariableBindings(_alertView)]
                             ];
   
-  [self.view addConstraints:constraintForAlertView];
+  [self.view.subviews.firstObject addConstraints:constraintForAlertView];
 
 }
 
@@ -496,7 +571,9 @@
     
   }];
 }
-
+-(void)dismissWithClickedButtonIndex:(NSInteger)theButtonIndex animated:(BOOL)theAnimatedFlag;  {
+  [self dismissWithTappedButtonIndex:theButtonIndex animated:theAnimatedFlag];
+}
 +(void)styleAlertViewBlock:(SHAlertViewControllerCreateAlertBlock)completionHandler; {
   NSParameterAssert(completionHandler);
   [SHAlertViewControllerManager sharedManager].blocksAlert[NSStringFromClass([self class])] = completionHandler;

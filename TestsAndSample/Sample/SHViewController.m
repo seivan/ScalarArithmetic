@@ -6,32 +6,6 @@
 //  Copyright (c) 2013 Seivan Heidari. All rights reserved.
 //
 
-@interface UIImage (Private)
-+(UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size;
-+(UIImage *)imageWithColor:(UIColor *)color;
-@end
-
-@implementation UIImage (Private)
-+ (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size
-{
-  UIGraphicsBeginImageContext(size);
-  CGContextRef context = UIGraphicsGetCurrentContext();
-  
-  CGContextSetFillColorWithColor(context, color.CGColor);
-  CGContextFillRect(context, (CGRect){.size = size});
-  
-  UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-  UIGraphicsEndImageContext();
-  
-  return image;
-}
-
-+ (UIImage *)imageWithColor:(UIColor *)color
-{
-  return [UIImage imageWithColor:color size:CGSizeMake(1, 1)];
-}
-
-@end
 #import "SHViewController.h"
 #import <SHPresenterBlocks.h>
 #import "SHAlertViewController.h"
@@ -58,15 +32,15 @@
   [SHAlertViewController setLayoutWithPaddingType:SHAVCPaddingBottomToPrevious padding:25];
 
 
-  [SHAlertViewController styleAlertAnimationBlock:^(UIView *alertView) {
-    alertView.layer.affineTransform = CGAffineTransformMakeTranslation(0, CGRectGetHeight([UIScreen mainScreen].bounds)*-1);
-    [UIView animateWithDuration:0.6 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:1 options:UIViewAnimationOptionAllowUserInteraction animations:^{
-      alertView.layer.affineTransform = CGAffineTransformIdentity;
-    } completion:^(BOOL finished) {
-      alertView.layer.affineTransform = CGAffineTransformIdentity;
-    }];
-
-  }];
+//  [SHAlertViewController styleAlertAnimationBlock:^(UIView *alertView, BOOL isPresenting) {
+//    alertView.layer.affineTransform = CGAffineTransformMakeTranslation(0, CGRectGetHeight([UIScreen mainScreen].bounds)*-1);
+//    [UIView animateWithDuration:0.6 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:1 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+//      alertView.layer.affineTransform = CGAffineTransformIdentity;
+//    } completion:^(BOOL finished) {
+//      alertView.layer.affineTransform = CGAffineTransformIdentity;
+//    }];
+//
+//  }];
   
   
   [SHAlertViewController styleAlertContentBlock:^id(NSInteger index, UILabel *lblContent) {
@@ -92,13 +66,14 @@
     return button;
   }];
   
-  [SHAlertViewController styleAlertViewBlock:^UIView *(UIView *alertView) {
+  [SHAlertViewController styleAlertViewBlock:^UIView *(UIView *alertView, SHAlertViewControllerDismissSwipeDirection *direction) {
     alertView.backgroundColor = [UIColor whiteColor];
     alertView.layer.cornerRadius = 5.0;
     alertView.layer.shadowColor = [UIColor blackColor].CGColor;
     alertView.layer.shadowOpacity = 0.25;
     alertView.layer.shadowRadius = 1;
     alertView.layer.shadowOffset = CGSizeMake(0, 1);
+    *direction = SHAlertViewControllerDismissSwipeDirectionDown;
     
     return alertView;
   }];
@@ -119,7 +94,7 @@
 -(IBAction)tapShowAlert:(id)sender; {
 
   for (NSInteger i = 0; i != 5; i++) {
-    NSString * title = [NSString stringWithFormat:@"Title %@ of %@", @(i+1), @(3)];
+    NSString * title = [NSString stringWithFormat:@"Title %@ of %@", @(i+1), @(5)];
     SHAlertViewController * vc = [SHAlertViewController
                                   alertWithTitle:title
                                   message:@"This is a message"
@@ -131,8 +106,10 @@
     [vc addButtonWithTitle:@"I Should be last" completion:^(NSInteger buttonIndex) {
       NSLog(@"I am last");
     }];
+    
     [vc show];
   }
+  
 }
 -(IBAction)tapRemoveTopLayer:(id)sender; {
   

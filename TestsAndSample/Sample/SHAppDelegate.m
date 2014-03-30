@@ -7,6 +7,7 @@
 //
 
 #import "SHAppDelegate.h"
+#import <objc/runtime.h>
 
 
 @implementation SHAppDelegate
@@ -17,6 +18,7 @@
 //                                          forKey:@"UIViewShowAlignmentRects"];
 //  [[NSUserDefaults standardUserDefaults] synchronize];
   
+
 
   NSMutableArray * lol = @[].mutableCopy;
   for(NSInteger i = 0; i != 20; i++) {
