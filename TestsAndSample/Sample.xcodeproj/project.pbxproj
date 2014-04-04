@@ -25,8 +25,6 @@
 		22992CD2185F7481002E6E76 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22992C6C185F7452002E6E76 /* UIKit.framework */; };
 		22992CD8185F7481002E6E76 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22992CD6185F7481002E6E76 /* InfoPlist.strings */; };
 		22D44ADC18D9995B002B13EF /* SHPresenterBlocksTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D44ADB18D9995B002B13EF /* SHPresenterBlocksTests.m */; };
-		22D6C10C18DC2F4600897962 /* SHAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D6C10B18DC2F4600897962 /* SHAlertViewController.m */; };
-		22D6C10F18DC454B00897962 /* SHStatusBarNotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D6C10E18DC454B00897962 /* SHStatusBarNotificationController.m */; };
 		22FB041B1875B65F00D0F812 /* SHAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FB04161875B65F00D0F812 /* SHAppDelegate.m */; };
 		22FB041C1875B65F00D0F812 /* SHSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FB04181875B65F00D0F812 /* SHSecondViewController.m */; };
 		22FB041D1875B65F00D0F812 /* SHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FB041A1875B65F00D0F812 /* SHViewController.m */; };
@@ -71,10 +69,6 @@
 		22992CD7185F7481002E6E76 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		22992CDB185F7481002E6E76 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		22D44ADB18D9995B002B13EF /* SHPresenterBlocksTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPresenterBlocksTests.m; sourceTree = "<group>"; };
-		22D6C10A18DC2F4600897962 /* SHAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHAlertViewController.h; sourceTree = "<group>"; };
-		22D6C10B18DC2F4600897962 /* SHAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHAlertViewController.m; sourceTree = "<group>"; };
-		22D6C10D18DC454B00897962 /* SHStatusBarNotificationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHStatusBarNotificationController.h; sourceTree = "<group>"; };
-		22D6C10E18DC454B00897962 /* SHStatusBarNotificationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHStatusBarNotificationController.m; sourceTree = "<group>"; };
 		22FB04151875B65F00D0F812 /* SHAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHAppDelegate.h; sourceTree = "<group>"; };
 		22FB04161875B65F00D0F812 /* SHAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHAppDelegate.m; sourceTree = "<group>"; };
 		22FB04171875B65F00D0F812 /* SHSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHSecondViewController.h; sourceTree = "<group>"; };
@@ -169,10 +163,6 @@
 				22FB041E1875B66F00D0F812 /* MainStoryboard.storyboard */,
 				22FB04151875B65F00D0F812 /* SHAppDelegate.h */,
 				22FB04161875B65F00D0F812 /* SHAppDelegate.m */,
-				22D6C10D18DC454B00897962 /* SHStatusBarNotificationController.h */,
-				22D6C10E18DC454B00897962 /* SHStatusBarNotificationController.m */,
-				22D6C10A18DC2F4600897962 /* SHAlertViewController.h */,
-				22D6C10B18DC2F4600897962 /* SHAlertViewController.m */,
 				22FB04171875B65F00D0F812 /* SHSecondViewController.h */,
 				22FB04181875B65F00D0F812 /* SHSecondViewController.m */,
 				22FB04191875B65F00D0F812 /* SHViewController.h */,
@@ -430,11 +420,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				22992C75185F7452002E6E76 /* main.m in Sources */,
-				22D6C10C18DC2F4600897962 /* SHAlertViewController.m in Sources */,
 				22FB041B1875B65F00D0F812 /* SHAppDelegate.m in Sources */,
 				22FB041C1875B65F00D0F812 /* SHSecondViewController.m in Sources */,
 				22FB041D1875B65F00D0F812 /* SHViewController.m in Sources */,
-				22D6C10F18DC454B00897962 /* SHStatusBarNotificationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

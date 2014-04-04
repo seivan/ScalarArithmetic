@@ -9,9 +9,9 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '4.3'
   s.frameworks  = 'CoreGraphics'
   s.prefix_header_contents = '#import <CoreGraphics/CoreGraphics.h>'
-  s.default_subspec = 'SenTestingKit'
+  s.default_subspec = 'XCTest'
 
-  s.subspec 'SenTestingKit' do |sentest|
+  s.subspec 'OCUnit' do |sentest|
     sentest.framework = 'SenTestingKit'
     sentest.dependency 'KIF/Core'
     sentest.xcconfig = { 'OTHER_CFLAGS' => '-DKIF_SENTEST' }

@@ -1,6 +1,6 @@
 FRAMEWORK_SEARCH_PATHS = $(inherited) "$(SDKROOT)/Developer/Library/Frameworks"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/KIF" "${PODS_ROOT}/Headers/SHPresenterBlocks" "${PODS_ROOT}/Headers/SHTestCaseAdditions" "${PODS_ROOT}/Headers/SHTransitionBlocks"
-OTHER_CFLAGS = $(inherited) "-isystem${PODS_ROOT}/Headers" "-isystem${PODS_ROOT}/Headers/KIF" "-isystem${PODS_ROOT}/Headers/SHPresenterBlocks" "-isystem${PODS_ROOT}/Headers/SHTestCaseAdditions" "-isystem${PODS_ROOT}/Headers/SHTransitionBlocks" -DKIF_XCTEST
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/KIF" "${PODS_ROOT}/Headers/SHAlertViewController" "${PODS_ROOT}/Headers/SHPresenterBlocks" "${PODS_ROOT}/Headers/SHTestCaseAdditions"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers" -isystem "${PODS_ROOT}/Headers/KIF" -isystem "${PODS_ROOT}/Headers/SHAlertViewController" -isystem "${PODS_ROOT}/Headers/SHPresenterBlocks" -isystem "${PODS_ROOT}/Headers/SHTestCaseAdditions" -DKIF_XCTEST
 OTHER_LDFLAGS = -ObjC -framework CoreGraphics -framework XCTest
 PODS_ROOT = ${SRCROOT}/Pods

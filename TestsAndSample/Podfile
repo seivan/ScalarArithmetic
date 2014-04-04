@@ -2,7 +2,7 @@ platform :ios, '7.0'
 
 link_with [:Sample, :Tests]
 pod 'SHPresenterBlocks', :path => '../'
-pod 'SHTransitionBlocks'
+pod 'SHAlertViewController', :path => '../../SHAlertViewController'
 
 target :Tests, :exclusive => true do
   pod 'SHTestCaseAdditions'

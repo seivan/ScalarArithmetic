@@ -1,0 +1,5 @@
+#include "Pods-SHAlertViewController.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/SHAlertViewController" "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/KIF" "${PODS_ROOT}/Headers/SHAlertViewController" "${PODS_ROOT}/Headers/SHPresenterBlocks" "${PODS_ROOT}/Headers/SHTestCaseAdditions"
+OTHER_LDFLAGS = -ObjC
+PODS_ROOT = ${SRCROOT}

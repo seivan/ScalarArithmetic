@@ -41,6 +41,8 @@ install_resource()
       ;;
   esac
 }
+install_resource "../../../SHAlertViewController/SHAlertViewController/__SHAlertViewControllerLayout.private"
+install_resource "../../../SHAlertViewController/SHAlertViewController/__SHAlertViewControllerStyling.private"
 install_resource "../../SHPresenterBlocks/__SHPresenterManager.private"
 install_resource "../../SHPresenterBlocks/__SHPresentingViewController.private"
 
