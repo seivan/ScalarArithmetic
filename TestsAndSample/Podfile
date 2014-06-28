@@ -1,13 +1,12 @@
-platform :ios, '7.0' 
+platform :ios, '8.0' 
 
 link_with [:Sample, :Tests]
-pod 'SHPresenterBlocks', :path => '../'
-pod 'SHAlertViewController', :path => '../../SHAlertViewController'
+pod 'ScalarOperatable', :path => '../'
 
-target :Tests, :exclusive => true do
-  pod 'SHTestCaseAdditions'
-  pod "KIF/XCTest", :git => "https://github.com/tonyd256/KIF", :branch => "xctest"
-end
+
+# target :Tests, :exclusive => true do
+#   pod 'SHTestCaseAdditions'
+# end
 
 
 

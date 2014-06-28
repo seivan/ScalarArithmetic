@@ -6,15 +6,9 @@
 // project.
 
 
-// SHAlertViewController
-#define COCOAPODS_POD_AVAILABLE_SHAlertViewController
-#define COCOAPODS_VERSION_MAJOR_SHAlertViewController 1
-#define COCOAPODS_VERSION_MINOR_SHAlertViewController 0
-#define COCOAPODS_VERSION_PATCH_SHAlertViewController 0
-
-// SHPresenterBlocks
-#define COCOAPODS_POD_AVAILABLE_SHPresenterBlocks
-#define COCOAPODS_VERSION_MAJOR_SHPresenterBlocks 1
-#define COCOAPODS_VERSION_MINOR_SHPresenterBlocks 0
-#define COCOAPODS_VERSION_PATCH_SHPresenterBlocks 0
+// ScalarOperatable
+#define COCOAPODS_POD_AVAILABLE_ScalarOperatable
+#define COCOAPODS_VERSION_MAJOR_ScalarOperatable 1
+#define COCOAPODS_VERSION_MINOR_ScalarOperatable 0
+#define COCOAPODS_VERSION_PATCH_ScalarOperatable 0
 

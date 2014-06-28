@@ -1,1 +1,0 @@
-../../SHTestCaseAdditions/SHTestCaseAdditions/XCTest/SHTestCaseAdditions.h

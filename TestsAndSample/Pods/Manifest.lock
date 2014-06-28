@@ -1,32 +1,14 @@
 PODS:
-  - KIF/Core (2.0.0)
-  - KIF/XCTest (2.0.0):
-    - KIF/Core
-  - SHAlertViewController (1.0.0)
-  - SHPresenterBlocks (1.0.0)
-  - SHTestCaseAdditions (1.4.1):
-    - SHTestCaseAdditions/XCTest
-  - SHTestCaseAdditions/XCTest (1.4.1)
+  - ScalarOperatable (1.0.0)
 
 DEPENDENCIES:
-  - KIF/XCTest (from `https://github.com/tonyd256/KIF`, branch `xctest`)
-  - SHAlertViewController (from `../../SHAlertViewController`)
-  - SHPresenterBlocks (from `../`)
-  - SHTestCaseAdditions
+  - ScalarOperatable (from `../`)
 
 EXTERNAL SOURCES:
-  KIF:
-    :branch: xctest
-    :git: https://github.com/tonyd256/KIF
-  SHAlertViewController:
-    :path: ../../SHAlertViewController
-  SHPresenterBlocks:
+  ScalarOperatable:
     :path: ../
 
 SPEC CHECKSUMS:
-  KIF: 4e0fcfe8f21fc555e74d9c3d64bb9a70c0406a82
-  SHAlertViewController: d47ae436b984d0f2977d03728ad0b61441e97850
-  SHPresenterBlocks: efbd6f8626ba0a1421e69a968be7333a37210791
-  SHTestCaseAdditions: ff32e10731f37effd08c254e538c3e7998f74921
+  ScalarOperatable: dc3ce33750f35c22aa37282ac64e8c8b209b16b3
 
-COCOAPODS: 0.31.1
+COCOAPODS: 0.33.1
