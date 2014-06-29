@@ -1,9 +1,33 @@
 #ScalarArithmetic
 
-[![Build Status](https://travis-ci.org/seivan/ScalarArithmetic.png?branch=master)](https://travis-ci.org/seivan/ScalarArithmetic)
-[![Version](https://cocoapod-badges.herokuapp.com/v/ScalarArithmetic/badge.png)](http://cocoadocs.org/docsets/ScalarArithmetic)
-[![Platform](https://cocoapod-badges.herokuapp.com/p/ScalarArithmetic/badge.png)](http://cocoadocs.org/docsets/ScalarArithmetic)
+### Overview
 
+Adds math functions as properties and makes it easier to just use type inference from Double.
+``var = 2.0`` will give you a double
+and this library makes it easier to compare to ```Int```, ```Float``` and ```CGFloat``` regardless of architecture.
+Naturally this library is only necessary until Apple takes care of the quirks. Works on both Mac OS and iOS.
+
+
+### Usage
+```swift
+protocol ScalarFunctions {
+  var acos:Double  {get}
+  var asin:Double  {get}
+  var atan:Double  {get}
+  func atan2(x:Double) -> Double
+  var cos:Double   {get}
+  var sin:Double   {get}
+  var tan:Double   {get}
+  var exp:Double   {get}
+  var exp2:Double  {get}
+  var log:Double   {get}
+  var log10:Double {get}
+  var log2:Double  {get}
+  func pow(exponent:Double) -> Double
+  var sqrt:Double  {get}
+}
+
+```
 
 
 ###Contact
