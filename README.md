@@ -6,7 +6,8 @@ Adds math functions as properties and takes care of operators for interacting be
 This library makes it easier to compare to ```Int```, ```Float``` and ```CGFloat``` regardless of architecture.
 
 ``var myDouble = 2.0`` will give you a ```Double``` and you'd want to use that with other types. 
-(```CGFloat``` is not a ```Double``` on 32bit)
+
+Since ```CGFloat``` is not a ```Double``` on 32bit, it becomes hard to use CGGeomtry and frameworks like CoreGraphics or SpriteKite. This library makes it a but less painful and hopefully Apple takes care of it soon. 
 
 Works on both Mac OS and iOS.
 
