@@ -4,8 +4,10 @@
 
 Adds math functions as properties and takes care of operators for interacting between different types of scalars.
 This library makes it easier to compare to ```Int```, ```Float``` and ```CGFloat``` regardless of architecture.
-``var = 2.0`` will give you a ```Double``` and you'd want to use that with other types. 
-(Double is not a CGFloat on 32bit)
+
+``var myDouble = 2.0`` will give you a ```Double``` and you'd want to use that with other types. 
+(```CGFloat``` is not a ```Double``` on 32bit)
+
 Works on both Mac OS and iOS.
 
 ### Math Functions
