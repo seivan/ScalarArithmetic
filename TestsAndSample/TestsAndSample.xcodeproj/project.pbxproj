@@ -9,7 +9,13 @@
 /* Begin PBXBuildFile section */
 		22AFC47F195F9D02003572F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AFC47E195F9D02003572F3 /* AppDelegate.swift */; };
 		22AFC481195F9D02003572F3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AFC480195F9D02003572F3 /* Images.xcassets */; };
-		22AFC48D195F9D02003572F3 /* TestsAndSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AFC48C195F9D02003572F3 /* TestsAndSampleTests.swift */; };
+		22AFC48D195F9D02003572F3 /* TestsDoubleFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AFC48C195F9D02003572F3 /* TestsDoubleFunctions.swift */; };
+		22AFC49D195FAF2A003572F3 /* TestsCGFloatFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AFC49C195FAF2A003572F3 /* TestsCGFloatFunctions.swift */; };
+		22AFC4A019603997003572F3 /* ScalarArithmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AFC49F19603997003572F3 /* ScalarArithmetic.swift */; };
+		22AFC4A119603997003572F3 /* ScalarArithmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AFC49F19603997003572F3 /* ScalarArithmetic.swift */; };
+		22AFC4A319603A0F003572F3 /* SuperTestsScalarFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AFC4A219603A0F003572F3 /* SuperTestsScalarFunctions.swift */; };
+		22AFC4A519603BBE003572F3 /* TestsScalarArithmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AFC4A419603BBE003572F3 /* TestsScalarArithmetic.swift */; };
+		22AFC4A71960769A003572F3 /* TestsScalarComparableGeneric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AFC4A61960769A003572F3 /* TestsScalarComparableGeneric.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,13 +29,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		22AFC479195F9D02003572F3 /* TestsAndSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestsAndSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		22AFC479195F9D02003572F3 /* TestsAndSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = TestsAndSample.app; path = Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22AFC47D195F9D02003572F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22AFC47E195F9D02003572F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22AFC480195F9D02003572F3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		22AFC486195F9D02003572F3 /* TestsAndSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestsAndSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		22AFC486195F9D02003572F3 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		22AFC48B195F9D02003572F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		22AFC48C195F9D02003572F3 /* TestsAndSampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsAndSampleTests.swift; sourceTree = "<group>"; };
+		22AFC48C195F9D02003572F3 /* TestsDoubleFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsDoubleFunctions.swift; sourceTree = "<group>"; };
+		22AFC49C195FAF2A003572F3 /* TestsCGFloatFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsCGFloatFunctions.swift; sourceTree = "<group>"; };
+		22AFC49F19603997003572F3 /* ScalarArithmetic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScalarArithmetic.swift; sourceTree = "<group>"; };
+		22AFC4A219603A0F003572F3 /* SuperTestsScalarFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuperTestsScalarFunctions.swift; sourceTree = "<group>"; };
+		22AFC4A419603BBE003572F3 /* TestsScalarArithmetic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsScalarArithmetic.swift; sourceTree = "<group>"; };
+		22AFC4A61960769A003572F3 /* TestsScalarComparableGeneric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsScalarComparableGeneric.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +64,7 @@
 		22AFC470195F9D02003572F3 = {
 			isa = PBXGroup;
 			children = (
+				22AFC49E19603997003572F3 /* ScalarArithmetic */,
 				22AFC47B195F9D02003572F3 /* TestsAndSample */,
 				22AFC489195F9D02003572F3 /* TestsAndSampleTests */,
 				22AFC47A195F9D02003572F3 /* Products */,
@@ -63,7 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				22AFC479195F9D02003572F3 /* TestsAndSample.app */,
-				22AFC486195F9D02003572F3 /* TestsAndSampleTests.xctest */,
+				22AFC486195F9D02003572F3 /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -89,7 +101,11 @@
 		22AFC489195F9D02003572F3 /* TestsAndSampleTests */ = {
 			isa = PBXGroup;
 			children = (
-				22AFC48C195F9D02003572F3 /* TestsAndSampleTests.swift */,
+				22AFC4A219603A0F003572F3 /* SuperTestsScalarFunctions.swift */,
+				22AFC48C195F9D02003572F3 /* TestsDoubleFunctions.swift */,
+				22AFC49C195FAF2A003572F3 /* TestsCGFloatFunctions.swift */,
+				22AFC4A419603BBE003572F3 /* TestsScalarArithmetic.swift */,
+				22AFC4A61960769A003572F3 /* TestsScalarComparableGeneric.swift */,
 				22AFC48A195F9D02003572F3 /* Supporting Files */,
 			);
 			path = TestsAndSampleTests;
@@ -101,6 +117,15 @@
 				22AFC48B195F9D02003572F3 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		22AFC49E19603997003572F3 /* ScalarArithmetic */ = {
+			isa = PBXGroup;
+			children = (
+				22AFC49F19603997003572F3 /* ScalarArithmetic.swift */,
+			);
+			name = ScalarArithmetic;
+			path = ../ScalarArithmetic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +163,7 @@
 			);
 			name = Tests;
 			productName = TestsAndSampleTests;
-			productReference = 22AFC486195F9D02003572F3 /* TestsAndSampleTests.xctest */;
+			productReference = 22AFC486195F9D02003572F3 /* Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -201,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22AFC47F195F9D02003572F3 /* AppDelegate.swift in Sources */,
+				22AFC4A019603997003572F3 /* ScalarArithmetic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,7 +234,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22AFC48D195F9D02003572F3 /* TestsAndSampleTests.swift in Sources */,
+				22AFC49D195FAF2A003572F3 /* TestsCGFloatFunctions.swift in Sources */,
+				22AFC4A519603BBE003572F3 /* TestsScalarArithmetic.swift in Sources */,
+				22AFC4A119603997003572F3 /* ScalarArithmetic.swift in Sources */,
+				22AFC4A71960769A003572F3 /* TestsScalarComparableGeneric.swift in Sources */,
+				22AFC48D195F9D02003572F3 /* TestsDoubleFunctions.swift in Sources */,
+				22AFC4A319603A0F003572F3 /* SuperTestsScalarFunctions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,7 +358,7 @@
 		22AFC494195F9D02003572F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TestsAndSample.app/TestsAndSample";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Sample.app/Sample";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -347,7 +378,7 @@
 		22AFC495195F9D02003572F3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TestsAndSample.app/TestsAndSample";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Sample.app/Sample";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -379,6 +410,7 @@
 				22AFC492195F9D02003572F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		22AFC493195F9D02003572F3 /* Build configuration list for PBXNativeTarget "Tests" */ = {
 			isa = XCConfigurationList;
@@ -387,6 +419,7 @@
 				22AFC495195F9D02003572F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
