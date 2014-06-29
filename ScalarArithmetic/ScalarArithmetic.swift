@@ -1,6 +1,7 @@
 
 import Darwin
 import CoreGraphics
+import Foundation
 
 protocol ScalarFunctions {
   var acos:Double  {get}
@@ -84,12 +85,12 @@ extension CGFloat : ScalarArithmetic, ScalarFunctions {
 @infix func < <T:ScalarArithmetic, U:ScalarArithmetic> (lhs:T,rhs:U) -> Bool {
   return (lhs.toDouble <  rhs.toDouble)
 }
-//@infix func >= <T:ScalarArithmetic, U:ScalarArithmetic> (lhs:T,rhs:U) -> Bool {
-//  return (lhs < rhs) == false
-//}
-//@infix func >  <T:ScalarArithmetic, U:ScalarArithmetic> (lhs:T,rhs:U) -> Bool {
-//  return (lhs <= rhs) == false
-//}
+@infix func >= <T:ScalarArithmetic, U:ScalarArithmetic> (lhs:T,rhs:U) -> Bool {
+  return (lhs < rhs) == false
+}
+@infix func >  <T:ScalarArithmetic, U:ScalarArithmetic> (lhs:T,rhs:U) -> Bool {
+  return (lhs <= rhs) == false
+}
 
 //Equality Double<==>T
 //@infix func == <T:ScalarArithmetic> (lhs:Double, rhs:T) -> Bool {
@@ -104,12 +105,12 @@ extension CGFloat : ScalarArithmetic, ScalarFunctions {
 @infix func < <T:ScalarArithmetic> (lhs:Double, rhs:T) -> Bool {
   return (lhs <  rhs.toDouble)
 }
-//@infix func >= <T:ScalarArithmetic> (lhs:Double, rhs:T) -> Bool {
-//  return (lhs < rhs) == false
-//}
-//@infix func >  <T:ScalarArithmetic> (lhs:Double, rhs:T) -> Bool {
-//  return (lhs <= rhs) == false
-//}
+@infix func >= <T:ScalarArithmetic> (lhs:Double, rhs:T) -> Bool {
+  return (lhs < rhs) == false
+}
+@infix func >  <T:ScalarArithmetic> (lhs:Double, rhs:T) -> Bool {
+  return (lhs <= rhs) == false
+}
 
 
 //Equality T<==>Double
@@ -125,12 +126,12 @@ extension CGFloat : ScalarArithmetic, ScalarFunctions {
 @infix func < <T:ScalarArithmetic> (lhs:T,rhs:Double) -> Bool {
   return (lhs.toDouble <  rhs)
 }
-//@infix func >= <T:ScalarArithmetic> (lhs:T,rhs:Double) -> Bool {
-//  return (lhs < rhs) == false
-//}
-//@infix func >  <T:ScalarArithmetic> (lhs:T,rhs:Double) -> Bool {
-//  return (lhs <= rhs) == false
-//}
+@infix func >= <T:ScalarArithmetic> (lhs:T,rhs:Double) -> Bool {
+  return (lhs < rhs) == false
+}
+@infix func >  <T:ScalarArithmetic> (lhs:T,rhs:Double) -> Bool {
+  return (lhs <= rhs) == false
+}
 
 
 //SUBTRACTION

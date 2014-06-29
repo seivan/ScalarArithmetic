@@ -29,7 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		22AFC479195F9D02003572F3 /* TestsAndSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = TestsAndSample.app; path = Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		22AFC479195F9D02003572F3 /* Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22AFC47D195F9D02003572F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22AFC47E195F9D02003572F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22AFC480195F9D02003572F3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 		22AFC47A195F9D02003572F3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				22AFC479195F9D02003572F3 /* TestsAndSample.app */,
+				22AFC479195F9D02003572F3 /* Sample.app */,
 				22AFC486195F9D02003572F3 /* Tests.xctest */,
 			);
 			name = Products;
@@ -145,7 +145,7 @@
 			);
 			name = Sample;
 			productName = TestsAndSample;
-			productReference = 22AFC479195F9D02003572F3 /* TestsAndSample.app */;
+			productReference = 22AFC479195F9D02003572F3 /* Sample.app */;
 			productType = "com.apple.product-type.application";
 		};
 		22AFC485195F9D02003572F3 /* Tests */ = {
