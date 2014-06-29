@@ -17,25 +17,56 @@ class TestsScalarComparableGeneric: SuperTestsScalarFunctions {
   func testEqual() {
     XCTAssert(self.cgFloatValue == self.doubleValue);
     XCTAssert(self.cgFloatValue == self.intValue);
-    XCTAssert(self.doubleValue == self.doubleValue);
-    XCTAssert(self.intValue == self.doubleValue);
     XCTAssert(self.doubleValue == self.intValue);
+    XCTAssert(self.doubleValue == self.cgFloatValue);
     XCTAssert(self.intValue == self.doubleValue);
+    XCTAssert(self.intValue == self.cgFloatValue);
+
   }
   func testNotEqual() {
     XCTAssertFalse(self.cgFloatValue != self.doubleValue);
     XCTAssertFalse(self.cgFloatValue != self.intValue);
-    XCTAssertFalse(self.doubleValue != self.doubleValue);
-    XCTAssertFalse(self.intValue != self.doubleValue);
     XCTAssertFalse(self.doubleValue != self.intValue);
+    XCTAssertFalse(self.doubleValue != self.cgFloatValue);
     XCTAssertFalse(self.intValue != self.doubleValue);
+    XCTAssertFalse(self.intValue != self.cgFloatValue);
     
   }
   func testLessThanOrEqual() {
+    XCTAssert(self.cgFloatValue <= self.doubleValue);
+    XCTAssert(self.cgFloatValue <= self.intValue);
+    XCTAssert(self.doubleValue <= self.intValue);
+    XCTAssert(self.doubleValue <= self.cgFloatValue);
+    XCTAssert(self.intValue <= self.doubleValue);
+    XCTAssert(self.intValue <= self.cgFloatValue);
     
+    self.cgFloatValue = -1
+    XCTAssert(self.cgFloatValue <= self.doubleValue);
+    XCTAssert(self.cgFloatValue <= self.intValue);
+    
+    self.doubleValue = -2
+    XCTAssert(self.doubleValue <= self.intValue);
+    XCTAssert(self.doubleValue <= self.cgFloatValue);
+
+    self.intValue = -3
+    XCTAssert(self.intValue <= self.doubleValue);
+    XCTAssert(self.intValue <= self.cgFloatValue);
+
+
   }
   func testLessThan() {
+    self.cgFloatValue = -1
+    XCTAssert(self.cgFloatValue < self.doubleValue);
+    XCTAssert(self.cgFloatValue < self.intValue);
     
+    self.doubleValue = -2
+    XCTAssert(self.doubleValue < self.intValue);
+    XCTAssert(self.doubleValue < self.cgFloatValue);
+    
+    self.intValue = -3
+    XCTAssert(self.intValue < self.doubleValue);
+    XCTAssert(self.intValue < self.cgFloatValue);
+
   }
   func testGreaterThanOrEqual() {
     
