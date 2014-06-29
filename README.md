@@ -2,13 +2,13 @@
 
 ### Overview
 
-Adds math functions as properties and makes it easier to just use type inference from Double.
-``var = 2.0`` will give you a double
-and this library makes it easier to compare to ```Int```, ```Float``` and ```CGFloat``` regardless of architecture.
-Naturally this library is only necessary until Apple takes care of the quirks. Works on both Mac OS and iOS.
+Adds math functions as properties and takes care of operators for interacting between different types of scalars.
+This library makes it easier to compare to ```Int```, ```Float``` and ```CGFloat``` regardless of architecture.
+``var = 2.0`` will give you a ```Double``` and you'd want to use that with other types. 
+(Double is not a CGFloat on 32bit)
+Works on both Mac OS and iOS.
 
-
-### Usage
+### Math Functions
 ```swift
 protocol ScalarFunctions {
   var acos:Double  {get}
