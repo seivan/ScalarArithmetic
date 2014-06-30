@@ -1,9 +1,15 @@
 #ScalarArithmetic
 
 ### Why?
-Because I don't need explicit casts to ```Double``` if I am expecting a ```Double```.
+* Because I don't need explicit casts to ```Double``` if I am expecting a ```Double```.
+* ```5 + 5.0 ``` should return a ```Double```
+* Because Double is a CGFloat only on 64bit you can't do this
+```
+let myHeight = 34.5
+let myWidth = 100.23
+let sizeOfWindow = CGSize(:width : myWidth, height:myHeight) 
+````
 
-```5 + 5.0 ``` should return a ```Double```
 
 
 ### Overview
