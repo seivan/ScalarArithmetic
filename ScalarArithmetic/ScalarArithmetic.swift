@@ -190,3 +190,25 @@ extension CGFloat : ScalarArithmetic, ScalarFunctions {
   lhs = lhs / rhs.toDouble
 }
 
+
+#if !(arch(x86_64) || arch(arm64))
+extension CGPoint {
+  init(x:Double, y:Double) {
+    self.init(x:CGFloat(x), y:CGFloat(y))
+  }
+}
+
+
+extension CGSize {
+  init(width:Double, height:Double) {
+    self.init(width:CGFloat(width), height:CGFloat(height))
+  }
+}
+
+extension CGVector   {
+  init(_ dx:Double, _ dy:Double) {
+    self.dx = CGFloat(dx)
+    self.dy = CGFloat(dy)
+  }
+}
+#endif

@@ -1,5 +1,17 @@
 #ScalarArithmetic
 
+### Why?
+* Because I don't need explicit casts to ```Double``` if I am expecting a ```Double```.
+* ```5 + 5.0 ``` should return a ```Double```
+* Because Double is only a CGFloat on 64bit, so you can't do this on 32 bit:
+```swift
+let myHeight = 34.5
+let myWidth = 100.23
+let sizeOfWindow = CGSize(width:myWidth, height:myHeight) 
+````
+
+
+
 ### Overview
 
 Adds math functions as properties and takes care of operators for interacting between different types of scalars.
@@ -7,7 +19,7 @@ This library makes it easier to compare to ```Int```, ```Float``` and ```CGFloat
 
 ``var myDouble = 2.0`` will give you a ```Double``` and you'd want to use that with other types. 
 
-Since ```CGFloat``` is not a ```Double``` on 32bit, it becomes hard to use CGGeomtry and frameworks like CoreGraphics or SpriteKite. This library makes it a little easier and hopefully Apple takes care of it soon. 
+Since ```CGFloat``` is not a ```Double``` on 32bit, it becomes hard to use CGGeomtry and frameworks like CoreGraphics or SpriteKit. This library makes it a little easier and hopefully Apple takes care of it soon. 
 
 Works on both Mac OS and iOS.
 
