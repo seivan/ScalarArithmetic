@@ -9,9 +9,11 @@
 import XCTest
 
 
-class TestsDouble: SuperTestsScalarFunctions {
+class TestsDouble: XCTestCase {
   let doubleValue = 5.5
   var expected:Double?
+  let additionalValue = 7.7
+
 
   
   func testAcos() {

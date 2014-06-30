@@ -9,9 +9,11 @@
 import XCTest
 import CoreGraphics
 
-class TestsCGFloat: SuperTestsScalarFunctions {
+class TestsCGFloat: XCTestCase {
   let doubleValue:CGFloat = 5.5
   var expected:CGFloat?
+  let additionalValue = 7.7
+
   
 #if !(arch(x86_64) || arch(arm64))
   func testAcos() {
