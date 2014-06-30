@@ -1,7 +1,8 @@
 #ScalarArithmetic
 
 ### Why?
-Because I don't need explicit casts to ```Double``` if I am expecting ```Double```
+Because I don't need explicit casts to ```Double``` if I am expecting a ```Double```.
+
 ```5 + 5.0 ``` should return a ```Double```
 
 
