@@ -4,10 +4,10 @@
 * Because I don't need explicit casts to ```Double``` if I am expecting a ```Double```.
 * ```5 + 5.0 ``` should return a ```Double```
 * Because Double is only a CGFloat on 64bit, so you can't do this on 32 bit:
-```
+```swift
 let myHeight = 34.5
 let myWidth = 100.23
-let sizeOfWindow = CGSize(:width : myWidth, height:myHeight) 
+let sizeOfWindow = CGSize(width:myWidth, height:myHeight) 
 ````
 
 
