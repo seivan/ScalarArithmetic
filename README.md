@@ -33,7 +33,7 @@ Works on both Mac OS and iOS.
 ### Math Functions
 
 Many people disagreed with the global math functions being used as properties. I was on the fence on that one because I didn't want to write over them for 32 bit. However now that implicit casts are in place. This works on 32bit. 
-```
+```swift
 let yay = abs(2.0)
 ```
 
