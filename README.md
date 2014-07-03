@@ -8,14 +8,19 @@
 let myHeight = 34.5
 let myWidth = 100.23
 let sizeOfWindow = CGSize(width:myWidth, height:myHeight) 
+let myDouble:Double = sizeOfWindow.height // .height is a CGFloat
+let isLargerThan = 213.3 > sizeOfWindow.width // 213.3 is a Double
 ````
 
 
 
 ### Overview
 
-Adds math functions as properties and takes care of operators for interacting between different types of scalars.
+Takes care of operators for interacting between different types of scalars.
 This library makes it easier to compare to ```Int```, ```Float``` and ```CGFloat``` regardless of architecture.
+
+This also makes implicit casts to Double or CGFloat for arguments or variables that takes either types. 
+
 
 ``var myDouble = 2.0`` will give you a ```Double``` and you'd want to use that with other types. 
 
@@ -23,25 +28,13 @@ Since ```CGFloat``` is not a ```Double``` on 32bit, it becomes hard to use CGGeo
 
 Works on both Mac OS and iOS.
 
-### Math Functions
-```swift
-protocol ScalarFunctions {
-  var acos:Double  {get}
-  var asin:Double  {get}
-  var atan:Double  {get}
-  func atan2(x:Double) -> Double
-  var cos:Double   {get}
-  var sin:Double   {get}
-  var tan:Double   {get}
-  var exp:Double   {get}
-  var exp2:Double  {get}
-  var log:Double   {get}
-  var log10:Double {get}
-  var log2:Double  {get}
-  func pow(exponent:Double) -> Double
-  var sqrt:Double  {get}
-}
 
+
+### Math Functions
+
+Many people disagreed with the global math functions being used as properties. I was on the fence on that one because I didn't want to write over them for 32 bit. However now that implicit casts are in place. This works on 32bit. 
+```swift
+let yay = abs(2.0)
 ```
 
 
