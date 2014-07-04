@@ -31,9 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var int16Value:Int16        = 5
     var int32Value:Int32        = 5
     var int64Value:Int64        = 5
-    var uInt16Value:UInt16        = 5
-    var uInt32Value:UInt32        = 5
-    var uInt64Value:UInt64        = 5
+    var uInt16Value:UInt16      = 5
+    var uInt32Value:UInt32      = 5
+    var uInt64Value:UInt64      = 5
     
     doubleValue = doubleValue + int16Value
     doubleValue = doubleValue + int32Value

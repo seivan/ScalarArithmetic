@@ -10,7 +10,20 @@ let myWidth = 100.23
 let sizeOfWindow = CGSize(width:myWidth, height:myHeight) 
 let myDouble:Double = sizeOfWindow.height // .height is a CGFloat
 let isLargerThan = 213.3 > sizeOfWindow.width // 213.3 is a Double
+
+
+//You can now compare or do mathematical operations on the following: 
+    var doubleValue:Double      = 5.0
+    var cgFloatValue:CGFloat    = 5.0
+    var intValue:Int            = 5
+    var int16Value:Int16        = 5
+    var int32Value:Int32        = 5
+    var int64Value:Int64        = 5
+    var uInt16Value:UInt16      = 5
+    var uInt32Value:UInt32      = 5
+    var uInt64Value:UInt64      = 5
 ````
+
 
 
 
@@ -27,6 +40,7 @@ This also makes implicit casts to Double or CGFloat for arguments or variables t
 Since ```CGFloat``` is not a ```Double``` on 32bit, it becomes hard to use CGGeometry and frameworks like CoreGraphics or SpriteKit. This library makes it a little easier and hopefully Apple takes care of it soon. 
 
 Works on both Mac OS and iOS.
+
 
 
 
