@@ -13,21 +13,46 @@ class TestsCGFloatComparable: SuperTestsScalarComparable, ScalarComparableTestin
   func testEqual() {
     XCTAssert(self.cgFloatValue == self.doubleValue);
     XCTAssert(self.cgFloatValue == self.intValue);
-    
+    XCTAssert(self.cgFloatValue == self.int16Value);
+    XCTAssert(self.cgFloatValue == self.int32Value);
+    XCTAssert(self.cgFloatValue == self.int64Value);
+    XCTAssert(self.cgFloatValue == self.uInt16Value);
+    XCTAssert(self.cgFloatValue == self.uInt16Value);
+    XCTAssert(self.cgFloatValue == self.uInt16Value);
   }
+  
   func testNotEqual() {
     XCTAssertFalse(self.cgFloatValue != self.doubleValue);
     XCTAssertFalse(self.cgFloatValue != self.intValue);
+    XCTAssertFalse(self.cgFloatValue != self.int16Value);
+    XCTAssertFalse(self.cgFloatValue != self.int32Value);
+    XCTAssertFalse(self.cgFloatValue != self.int64Value);
+    XCTAssertFalse(self.cgFloatValue != self.uInt16Value);
+    XCTAssertFalse(self.cgFloatValue != self.uInt16Value);
+    XCTAssertFalse(self.cgFloatValue != self.uInt16Value);
+
     
   }
   func testLessThanOrEqual() {
     XCTAssert(self.cgFloatValue <= self.doubleValue);
     XCTAssert(self.cgFloatValue <= self.intValue);
+    XCTAssert(self.cgFloatValue <= self.int16Value);
+    XCTAssert(self.cgFloatValue <= self.int32Value);
+    XCTAssert(self.cgFloatValue <= self.int64Value);
+    XCTAssert(self.cgFloatValue <= self.uInt16Value);
+    XCTAssert(self.cgFloatValue <= self.uInt16Value);
+    XCTAssert(self.cgFloatValue <= self.uInt16Value);
     
     self.cgFloatValue = -1
     XCTAssert(self.cgFloatValue <= self.doubleValue);
     XCTAssert(self.cgFloatValue <= self.intValue);
-    
+    XCTAssert(self.cgFloatValue <= self.int16Value);
+    XCTAssert(self.cgFloatValue <= self.int32Value);
+    XCTAssert(self.cgFloatValue <= self.int64Value);
+    XCTAssert(self.cgFloatValue <= self.uInt16Value);
+    XCTAssert(self.cgFloatValue <= self.uInt16Value);
+    XCTAssert(self.cgFloatValue <= self.uInt16Value);
+
     
     
   }
@@ -35,6 +60,13 @@ class TestsCGFloatComparable: SuperTestsScalarComparable, ScalarComparableTestin
     self.cgFloatValue = -1
     XCTAssert(self.cgFloatValue < self.doubleValue);
     XCTAssert(self.cgFloatValue < self.intValue);
+    XCTAssert(self.cgFloatValue < self.int16Value);
+    XCTAssert(self.cgFloatValue < self.int32Value);
+    XCTAssert(self.cgFloatValue < self.int64Value);
+    XCTAssert(self.cgFloatValue < self.uInt16Value);
+    XCTAssert(self.cgFloatValue < self.uInt16Value);
+    XCTAssert(self.cgFloatValue < self.uInt16Value);
+
     
   }
   
@@ -42,10 +74,24 @@ class TestsCGFloatComparable: SuperTestsScalarComparable, ScalarComparableTestin
     
     XCTAssert(self.cgFloatValue >= self.doubleValue);
     XCTAssert(self.cgFloatValue >= self.intValue);
+    XCTAssert(self.cgFloatValue >= self.int16Value);
+    XCTAssert(self.cgFloatValue >= self.int32Value);
+    XCTAssert(self.cgFloatValue >= self.int64Value);
+    XCTAssert(self.cgFloatValue >= self.uInt16Value);
+    XCTAssert(self.cgFloatValue >= self.uInt16Value);
+    XCTAssert(self.cgFloatValue >= self.uInt16Value);
+
     
     self.cgFloatValue = -1
     XCTAssertFalse(self.cgFloatValue >= self.doubleValue);
     XCTAssertFalse(self.cgFloatValue >= self.intValue);
+    XCTAssertFalse(self.cgFloatValue >= self.int16Value);
+    XCTAssertFalse(self.cgFloatValue >= self.int32Value);
+    XCTAssertFalse(self.cgFloatValue >= self.int64Value);
+    XCTAssertFalse(self.cgFloatValue >= self.uInt16Value);
+    XCTAssertFalse(self.cgFloatValue >= self.uInt16Value);
+    XCTAssertFalse(self.cgFloatValue >= self.uInt16Value);
+
     
     
   }
@@ -54,6 +100,13 @@ class TestsCGFloatComparable: SuperTestsScalarComparable, ScalarComparableTestin
     self.cgFloatValue = -1
     XCTAssertFalse(self.cgFloatValue > self.doubleValue);
     XCTAssertFalse(self.cgFloatValue >  self.intValue);
+    XCTAssertFalse(self.cgFloatValue > self.int16Value);
+    XCTAssertFalse(self.cgFloatValue > self.int32Value);
+    XCTAssertFalse(self.cgFloatValue > self.int64Value);
+    XCTAssertFalse(self.cgFloatValue > self.uInt16Value);
+    XCTAssertFalse(self.cgFloatValue > self.uInt16Value);
+    XCTAssertFalse(self.cgFloatValue > self.uInt16Value);
+
     
     
   }
