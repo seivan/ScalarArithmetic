@@ -13,12 +13,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             
   var window: UIWindow?
 
+  
+  
+  
+  
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool {
     self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
     // Override point for customization after application launch.
     self.window!.backgroundColor = UIColor.whiteColor()
     self.window!.makeKeyAndVisible()
+    
+    
+    var doubleValue:Double      = 5.0
+    var cgFloatValue:CGFloat    = 5.0
+    var intValue:Int            = 5
+    var int16Value:Int16        = 5
+    var int32Value:Int32        = 5
+    var int64Value:Int64        = 5
+    var uInt16Value:UInt16      = 5
+    var uInt32Value:UInt32      = 5
+    var uInt64Value:UInt64      = 5
+    
+    doubleValue = doubleValue + int16Value
+    doubleValue = doubleValue + int32Value
+    doubleValue = doubleValue + int64Value
+    
+    doubleValue = doubleValue + uInt16Value
+    doubleValue = doubleValue + uInt32Value
+    doubleValue = doubleValue + uInt64Value
+
+    cgFloatValue = cgFloatValue + int16Value
+    cgFloatValue = cgFloatValue + int32Value
+    cgFloatValue = cgFloatValue + int64Value
+
+    cgFloatValue = cgFloatValue + uInt16Value
+    cgFloatValue = cgFloatValue + uInt32Value
+    cgFloatValue = cgFloatValue + uInt64Value
+    
+    intValue = intValue + int64Value
+    intValue = intValue + uInt64Value
+    intValue = uInt64Value + int64Value
+    
+    intValue > int64Value
+    
     return true
   }
 
