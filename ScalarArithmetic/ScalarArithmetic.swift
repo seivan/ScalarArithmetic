@@ -10,10 +10,16 @@
   }
 
   extension CGFloat {
-  @conversion func __conversion() -> Double {
-    return Double(self)
+    @conversion func __conversion() -> Double {
+      return Double(self)
     }
   }
+  
+//  extension Double {
+//    @conversion func __conversion() -> CGFloat {
+//      return CGFloat(self)
+//    }
+//  }
 
 
   extension Int16 {

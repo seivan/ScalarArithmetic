@@ -13,6 +13,7 @@
 		226C9AF419622257002E395C /* TestsDoubleArithmeticTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C9AF319622257002E395C /* TestsDoubleArithmeticTesting.swift */; };
 		226C9AF619622386002E395C /* TestsCGFloatArithmeticTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C9AF519622386002E395C /* TestsCGFloatArithmeticTesting.swift */; };
 		226C9AF819622393002E395C /* TestsIntArithmeticTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C9AF719622393002E395C /* TestsIntArithmeticTesting.swift */; };
+		2283D06D196769FF00DD9618 /* TestNumericConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2283D06C196769FF00DD9618 /* TestNumericConversion.swift */; };
 		22AFC47F195F9D02003572F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AFC47E195F9D02003572F3 /* AppDelegate.swift */; };
 		22AFC481195F9D02003572F3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AFC480195F9D02003572F3 /* Images.xcassets */; };
 		22AFC4A019603997003572F3 /* ScalarArithmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AFC49F19603997003572F3 /* ScalarArithmetic.swift */; };
@@ -38,6 +39,7 @@
 		226C9AF319622257002E395C /* TestsDoubleArithmeticTesting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsDoubleArithmeticTesting.swift; sourceTree = "<group>"; };
 		226C9AF519622386002E395C /* TestsCGFloatArithmeticTesting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsCGFloatArithmeticTesting.swift; sourceTree = "<group>"; };
 		226C9AF719622393002E395C /* TestsIntArithmeticTesting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsIntArithmeticTesting.swift; sourceTree = "<group>"; };
+		2283D06C196769FF00DD9618 /* TestNumericConversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestNumericConversion.swift; sourceTree = "<group>"; };
 		22AFC479195F9D02003572F3 /* Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22AFC47D195F9D02003572F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22AFC47E195F9D02003572F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				226C9AED19621EA9002E395C /* TestsDoubleComparable.swift */,
 				226C9AEF19621F3F002E395C /* TestsCGFloatComparable.swift */,
 				226C9AF119621F4B002E395C /* TestsIntComparable.swift */,
+				2283D06C196769FF00DD9618 /* TestNumericConversion.swift */,
 				22AFC48A195F9D02003572F3 /* Supporting Files */,
 			);
 			path = TestsAndSampleTests;
@@ -248,6 +251,7 @@
 				22AFC4A519603BBE003572F3 /* SuperTestsScalarArithmetic.swift in Sources */,
 				226C9AEE19621EA9002E395C /* TestsDoubleComparable.swift in Sources */,
 				22AFC4A119603997003572F3 /* ScalarArithmetic.swift in Sources */,
+				2283D06D196769FF00DD9618 /* TestNumericConversion.swift in Sources */,
 				22AFC4A71960769A003572F3 /* SuperTestsScalarComparable.swift in Sources */,
 				226C9AF619622386002E395C /* TestsCGFloatArithmeticTesting.swift in Sources */,
 				226C9AF819622393002E395C /* TestsIntArithmeticTesting.swift in Sources */,
