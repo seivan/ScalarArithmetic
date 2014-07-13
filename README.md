@@ -24,7 +24,10 @@ let isLargerThan = 213.3 > sizeOfWindow.width // 213.3 is a Double
     var uInt64Value:UInt64      = 5
 ````
 
+> There are issues with Double on 32bit in regards to CGFloat values.
 
+Because of the bugs on 32bit, you can't currently do ```CGPoint(x: 23.5, y:99)``` 
+I'd suggest using [VectorArithmetic](https://github.com/seivan/VectorArithmetic) for that. 
 
 
 ### Overview
