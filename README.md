@@ -3,6 +3,9 @@
 ### Why?
 * Because I don't need explicit casts to ```Double``` if I am expecting a ```Double```.
 * ```5 + 5.0 ``` should return a ```Double```
+* Because of the [confirmed bugs](https://devforums.apple.com/message/998222#998222) on 32bit, you can't currently do ```CGPoint(x: 23.5, y:99)``` 
+I'd suggest using [VectorArithmetic](https://github.com/seivan/VectorArithmetic) for that. 
+
 * Because Double is only a CGFloat on 64bit, so you can't do this on 32 bit:
 ```swift
 let myHeight = 34.5
@@ -24,10 +27,7 @@ let isLargerThan = 213.3 > sizeOfWindow.width // 213.3 is a Double
     var uInt64Value:UInt64      = 5
 ````
 
-> There are issues with Double on 32bit in regards to CGFloat values.
 
-Because of the bugs on 32bit, you can't currently do ```CGPoint(x: 23.5, y:99)``` 
-I'd suggest using [VectorArithmetic](https://github.com/seivan/VectorArithmetic) for that. 
 
 
 ### Overview
