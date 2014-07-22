@@ -35,6 +35,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var uInt32Value:UInt32      = 5
     var uInt64Value:UInt64      = 5
     
+    doubleValue = doubleValue + intValue
+    doubleValue = doubleValue + cgFloatValue
+    doubleValue = cgFloatValue + intValue
+    
+
+    cgFloatValue = cgFloatValue + intValue
+    cgFloatValue = cgFloatValue + doubleValue
+    cgFloatValue = doubleValue + cgFloatValue
+    cgFloatValue = doubleValue + intValue
+      
     doubleValue = doubleValue + int16Value
     doubleValue = doubleValue + int32Value
     doubleValue = doubleValue + int64Value
@@ -53,9 +63,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     intValue = intValue + int64Value
     intValue = intValue + uInt64Value
-    intValue = uInt64Value + int64Value
+//    intValue = uInt64Value + int64Value
     
     intValue > int64Value
+    
+    let x = 25.25
+    CGPoint(x: 20.5, y: 20.5)
+    CGPoint(x: doubleValue, y: doubleValue)
     
     return true
   }
