@@ -25,22 +25,22 @@ class TestsIntArithmeticTesting: SuperTestsScalarArithmetic, ScalarArithmeticTes
     self.expectedIntValue = 10
     
     self.assignmentIntValue = self.intValue + self.int16Value
-    XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
+    XCTAssertEqual(self.assignmentIntValue, self.expectedIntValue!)
     
     self.assignmentIntValue = self.intValue + self.int32Value
-    XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
+    XCTAssertEqual(self.assignmentIntValue, self.expectedIntValue!)
     
     self.assignmentIntValue = self.intValue + self.int64Value
-    XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
+    XCTAssertEqual(self.assignmentIntValue, self.expectedIntValue!)
     
     self.assignmentIntValue = self.intValue + self.uInt16Value
-    XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
+    XCTAssertEqual(self.assignmentIntValue, self.expectedIntValue!)
     
     self.assignmentIntValue = self.intValue + self.uInt32Value
-    XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
+    XCTAssertEqual(self.assignmentIntValue, self.expectedIntValue!)
     
     self.assignmentIntValue = self.intValue + self.uInt64Value
-    XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
+    XCTAssertEqual(self.assignmentIntValue, self.expectedIntValue!)
 
     
     
@@ -54,34 +54,34 @@ class TestsIntArithmeticTesting: SuperTestsScalarArithmetic, ScalarArithmeticTes
     XCTAssertEqual(self.assignmentValue, self.expectedValue!)
 
     self.assignmentValue = 1
-    self.assignmentValue += self.cgFloatValue
-    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
+    self.assignmentIntValue += self.cgFloatValue
+    XCTAssertEqual(self.assignmentIntValue, self.expectedValue!)
     
     self.expectedIntValue = 6
 
     self.assignmentIntValue = 1
     self.assignmentIntValue += self.int16Value
-    XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
+    XCTAssertEqual(self.assignmentIntValue, self.expectedIntValue!)
 
     self.assignmentIntValue = 1
     self.assignmentIntValue += self.int32Value
-    XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
+    XCTAssertEqual(self.assignmentIntValue, self.expectedIntValue!)
     
     self.assignmentIntValue = 1
     self.assignmentIntValue += self.int64Value
-    XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
+    XCTAssertEqual(self.assignmentIntValue, self.expectedIntValue!)
     
     self.assignmentIntValue = 1
     self.assignmentIntValue += self.uInt16Value
-    XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
+    XCTAssertEqual(self.assignmentIntValue, self.expectedIntValue!)
     
     self.assignmentIntValue = 1
     self.assignmentIntValue += self.uInt32Value
-    XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
+    XCTAssertEqual(self.assignmentIntValue, self.expectedIntValue!)
     
     self.assignmentIntValue = 1
     self.assignmentIntValue += self.uInt64Value
-    XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
+    XCTAssertEqual(self.assignmentIntValue, self.expectedIntValue!)
 
 
 
@@ -98,24 +98,24 @@ class TestsIntArithmeticTesting: SuperTestsScalarArithmetic, ScalarArithmeticTes
     XCTAssertEqual(self.assignmentValue, self.expectedValue!)
     
     self.expectedIntValue = 0
-    
+    let x = self.intValue - self.int16Value
     self.assignmentIntValue = self.intValue - self.int16Value
-    XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
+    XCTAssertEqual(self.assignmentIntValue, self.expectedIntValue!)
     
     self.assignmentIntValue = self.intValue - self.int32Value
-    XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
+    XCTAssertEqual(self.assignmentIntValue, self.expectedIntValue!)
     
     self.assignmentIntValue = self.intValue - self.int64Value
-    XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
+    XCTAssertEqual(self.assignmentIntValue, self.expectedIntValue!)
     
     self.assignmentIntValue = self.intValue - self.uInt16Value
-    XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
+    XCTAssertEqual(self.assignmentIntValue, self.expectedIntValue!)
     
     self.assignmentIntValue = self.intValue - self.uInt32Value
-    XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
+    XCTAssertEqual(self.assignmentIntValue, self.expectedIntValue!)
     
     self.assignmentIntValue = self.intValue - self.uInt64Value
-    XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
+    XCTAssertEqual(self.assignmentIntValue, self.expectedIntValue!)
 
     
   }
@@ -236,61 +236,24 @@ class TestsIntArithmeticTesting: SuperTestsScalarArithmetic, ScalarArithmeticTes
     XCTAssertEqual(self.assignmentValue, self.expectedValue!)
     
     self.expectedIntValue = 1
-    self.assignmentIntValue = self.intValue / self.int16Value
+    self.assignmentValue = self.intValue / self.int16Value
     XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
     
-    self.assignmentIntValue = self.intValue / self.int32Value
+    self.assignmentValue = self.intValue / self.int32Value
     XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
     
-    self.assignmentIntValue = self.intValue / self.int64Value
+    self.assignmentValue = self.intValue / self.int64Value
     XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
     
-    self.assignmentIntValue = self.intValue / self.uInt16Value
+    self.assignmentValue = self.intValue / self.uInt16Value
     XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
     
-    self.assignmentIntValue = self.intValue / self.uInt32Value
+    self.assignmentValue = self.intValue / self.uInt32Value
     XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
     
-    self.assignmentIntValue = self.intValue / self.uInt64Value
+    self.assignmentValue = self.intValue / self.uInt64Value
     XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
     
   }
   
-  func testDivisionAssignment() {
-    self.expectedValue = 2.0
-
-    self.assignmentValue = 10.0
-    self.assignmentValue /= self.intValue
-    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
-    
-    self.expectedIntValue = 2
-    
-    self.assignmentIntValue = 10
-    self.assignmentIntValue /= self.int16Value
-    XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
-    
-    self.assignmentIntValue = 10
-    self.assignmentIntValue /= self.int32Value
-    XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
-    
-    self.assignmentIntValue = 10
-    self.assignmentIntValue /= self.int64Value
-    XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
-    
-    self.assignmentIntValue = 10
-    self.assignmentIntValue /= self.uInt16Value
-    XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
-    
-    self.assignmentIntValue = 10
-    self.assignmentIntValue /= self.uInt32Value
-    XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
-    
-    self.assignmentIntValue = 10
-    self.assignmentIntValue /= self.uInt64Value
-    XCTAssertEqual(self.assignmentValue, self.expectedIntValue!)
-    
-    
-  }
-
-
 }

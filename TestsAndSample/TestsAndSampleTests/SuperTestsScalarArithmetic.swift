@@ -17,7 +17,7 @@ protocol ScalarArithmeticTesting {
   func testMultiplication()
   func testMultiplicationAssignment()
   func testDivision()
-  func testDivisionAssignment()
+
 }
 class SuperTestsScalarArithmetic: XCTestCase {
   let doubleValue:Double      = 5.0

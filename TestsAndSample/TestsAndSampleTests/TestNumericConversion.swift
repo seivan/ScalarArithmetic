@@ -22,6 +22,7 @@ class TestNumericConversion: XCTestCase {
   
   func testSetCGFloat() {
     
+    self.cgFloatValue = self.doubleValue
 //    self.cgFloatValue = self.intValue
 //    self.cgFloatValue = self.int16Value
 //    self.cgFloatValue = self.int32Value
@@ -42,12 +43,12 @@ class TestNumericConversion: XCTestCase {
     
   }
   func testSetInt() {
-    self.intValue = self.int16Value
-    self.intValue = self.int32Value
-    self.intValue = self.int64Value
-    self.intValue = self.uInt16Value
-    self.intValue = self.uInt32Value
-    self.intValue = self.uInt64Value
+//    self.intValue = self.int16Value
+//    self.intValue = self.int32Value
+//    self.intValue = self.int64Value
+//    self.intValue = self.uInt16Value
+//    self.intValue = self.uInt32Value
+//    self.intValue = self.uInt64Value
     
   }
   
