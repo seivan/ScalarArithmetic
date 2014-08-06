@@ -2,7 +2,7 @@
 
 import Darwin
 import CoreGraphics
-import Foundation
+
 
 protocol ScalarFunctions {
   var acos:Double  {get}
@@ -44,11 +44,13 @@ extension Double :  ScalarFunctions {
 
 
 protocol ScalarArithmetic {
+  typealias ItemType
   var toDouble:Double { get }
   init(_ value:Double)
 }
 
 extension CGFloat : ScalarArithmetic, ScalarFunctions {
+  typealias ItemType = CGFloat
   var toDouble:Double { return Double(self)      }
   var abs:Double      { return Double(self).abs  }
   var acos:Double     { return Double(self).acos }
@@ -68,62 +70,92 @@ extension CGFloat : ScalarArithmetic, ScalarFunctions {
   func __conversion() -> Double { return Double(self) }
 }
 
-extension Int : ScalarArithmetic {
+
+
+protocol IntegerArithmetic : ScalarArithmetic {
+  var toInt:Int { get }
+}
+
+extension Int : IntegerArithmetic {
   var toDouble:Double { return Double(self) }
   func __conversion() -> Double { return Double(self) }
+  typealias ItemType = Int
+  var toInt:Int { return Int(self) }
+
 }
-extension Int16 : ScalarArithmetic {
+extension Int16 : IntegerArithmetic {
   var toDouble:Double { return Double(self) }
   func __conversion() -> Double { return Double(self) }
+  typealias ItemType = Int
+  var toInt:Int { return Int(self) }
+
 }
-extension Int32 : ScalarArithmetic {
+extension Int32 : IntegerArithmetic {
   var toDouble:Double { return Double(self) }
   func __conversion() -> Double { return Double(self) }
+  typealias ItemType = Int
+  var toInt:Int { return Int(self) }
+
 }
-extension Int64 : ScalarArithmetic {
+extension Int64 : IntegerArithmetic {
   var toDouble:Double { return Double(self) }
   func __conversion() -> Double { return Double(self) }
+  typealias ItemType = Int
+  var toInt:Int { return Int(self) }
+
 }
-extension UInt : ScalarArithmetic {
+extension UInt : IntegerArithmetic {
   var toDouble:Double { return Double(self) }
   func __conversion() -> Double { return Double(self) }
+  typealias ItemType = Int
+  var toInt:Int { return Int(self) }
+
 }
-extension UInt16  : ScalarArithmetic {
+extension UInt16  : IntegerArithmetic {
   var toDouble:Double { return Double(self) }
   func __conversion() -> Double { return Double(self) }
+  typealias ItemType = Int
+  var toInt:Int { return Int(self) }
+
 }
-extension UInt32 : ScalarArithmetic {
+extension UInt32 : IntegerArithmetic {
   var toDouble:Double { return Double(self) }
   func __conversion() -> Double { return Double(self) }
+  typealias ItemType = Int
+  var toInt:Int { return Int(self) }
+
 }
-extension UInt64 : ScalarArithmetic {
+extension UInt64 : IntegerArithmetic {
   var toDouble:Double { return Double(self) }
-  func __conversion() -> Double { return Double(0.0) }
+  func __conversion() -> Double { return Double(self) }
+  typealias ItemType = Int
+  var toInt:Int { return Int(self) }
+
 }
 
 
 
-extension Float : ScalarArithmetic, ScalarFunctions {
+extension Float : ScalarArithmetic {
+  typealias ItemType = Float
   var toDouble:Double { return Double(self)      }
-  var abs:Double      { return Double(self).abs  }
-  var acos:Double     { return Double(self).acos }
-  var asin:Double     { return Double(self).asin }
-  var atan:Double     { return Double(self).atan }
-  func atan2(x:Double) -> Double { return Double(self).atan2(x) }
-  var cos:Double      { return Double(self).cos  }
-  var sin:Double      { return Double(self).sin  }
-  var tan:Double      { return Double(self).tan  }
-  var exp:Double      { return Double(self).exp  }
-  var exp2:Double     { return Double(self).exp2 }
-  var log:Double      { return Double(self).log  }
-  var log10:Double    { return Double(self).log10}
-  var log2:Double     { return Double(self).log2 }
-  func pow(exponent:Double)-> Double { return Double(self).pow(exponent) }
-  var sqrt:Double     { return Double(self).sqrt }
 }
 
 
-  
+
+
+
+func + <T:IntegerArithmetic where T.ItemType == Int>(lhs:T, rhs:Int) -> Int { return lhs + rhs }
+func + <T:IntegerArithmetic where T.ItemType == Int>(lhs:Int, rhs:T) -> Int { return lhs + rhs.toInt }
+
+func - <T:IntegerArithmetic where T.ItemType == Int>(lhs:T, rhs:Int) -> Int { return lhs.toInt - rhs }
+func - <T:IntegerArithmetic where T.ItemType == Int>(lhs:Int, rhs:T) -> Int { return lhs - rhs.toInt }
+
+func * <T:IntegerArithmetic where T.ItemType == Int>(lhs:T, rhs:Int) -> Int { return lhs.toInt * rhs }
+func * <T:IntegerArithmetic where T.ItemType == Int>(lhs:Int, rhs:T) -> Int { return lhs * rhs.toInt }
+
+func / <T:IntegerArithmetic where T.ItemType == Int>(lhs:T, rhs:Int) -> Int { return lhs.toInt / rhs }
+func / <T:IntegerArithmetic where T.ItemType == Int>(lhs:Int, rhs:T) -> Int { return lhs / rhs.toInt }
+
 
 
 //Equality T<===>T

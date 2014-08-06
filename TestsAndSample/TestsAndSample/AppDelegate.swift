@@ -8,6 +8,11 @@
 
 import UIKit
 
+
+
+
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
                             
@@ -27,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var floatValue:Float        = 5.0
     var doubleValue:Double      = 5.0
     var cgFloatValue:CGFloat    = 5.0
-    var intValue:Int            = 5
+    var intValue:Int            = Int(5)
     var int16Value:Int16        = 5
     var int32Value:Int32        = 5
     var int64Value:Int64        = 5
@@ -35,11 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var uInt32Value:UInt32      = 5
     var uInt64Value:UInt64      = 5
     
-
-
-
-    
-      intValue += intValue
 //    cgFloatValue = intValue
     cgFloatValue = doubleValue
 
@@ -153,48 +153,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     
     
-//    floatValue = floatValue + intValue
-//    floatValue = floatValue + cgFloatValue
-//    floatValue = floatValue + doubleValue
-//    
-//    floatValue = intValue + floatValue
-//    floatValue = cgFloatValue + floatValue
-//    floatValue = doubleValue + floatValue
-//    
-//    
-//    floatValue = intValue + cgFloatValue
-//    floatValue = intValue + doubleValue
-//    floatValue = doubleValue + cgFloatValue
-//    floatValue = doubleValue + intValue
-//    floatValue = cgFloatValue + doubleValue
-//    floatValue = cgFloatValue + intValue
-//    
-//    floatValue += intValue
-//    floatValue += cgFloatValue
-//    floatValue += doubleValue
-    
  
-//    doubleValue = doubleValue + int16Value
-//    doubleValue = doubleValue + int32Value
-//    doubleValue = doubleValue + int64Value
-//    
-//    doubleValue = doubleValue + uInt16Value
-//    doubleValue = doubleValue + uInt32Value
-//    doubleValue = doubleValue + uInt64Value
-//
-//    cgFloatValue = cgFloatValue + int16Value
-//    cgFloatValue = cgFloatValue + int32Value
-//    cgFloatValue = cgFloatValue + int64Value
-//
-//    cgFloatValue = cgFloatValue + uInt16Value
-//    cgFloatValue = cgFloatValue + uInt32Value
-//    cgFloatValue = cgFloatValue + uInt64Value
-//    
-//    intValue = intValue + int64Value
-//    intValue = intValue + uInt64Value
-//    intValue = uInt64Value + int64Value
+    doubleValue = doubleValue + int16Value
+    doubleValue = doubleValue + int32Value
+    doubleValue = doubleValue + int64Value
     
-//    intValue > int64Value
+    doubleValue = doubleValue + uInt16Value
+    doubleValue = doubleValue + uInt32Value
+    doubleValue = doubleValue + uInt64Value
+
+    cgFloatValue = cgFloatValue + int16Value
+    cgFloatValue = cgFloatValue + int32Value
+    cgFloatValue = cgFloatValue + int64Value
+
+    cgFloatValue = cgFloatValue + uInt16Value
+    cgFloatValue = cgFloatValue + uInt32Value
+    cgFloatValue = cgFloatValue + uInt64Value
+    
+    intValue > int64Value
     
 
     CGPoint(x: 20.5, y: 20.5)
