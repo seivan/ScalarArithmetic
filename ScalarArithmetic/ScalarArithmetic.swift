@@ -43,14 +43,12 @@ extension Double :  ScalarFunctions {
 
 
 
-protocol ScalarArithmetic {
-  typealias ItemType
+protocol ScalarFloatingPointType {
   var toDouble:Double { get }
   init(_ value:Double)
 }
 
-extension CGFloat : ScalarArithmetic, ScalarFunctions {
-  typealias ItemType = CGFloat
+extension CGFloat : ScalarFloatingPointType, ScalarFunctions {
   var toDouble:Double { return Double(self)      }
   var abs:Double      { return Double(self).abs  }
   var acos:Double     { return Double(self).acos }
@@ -70,155 +68,135 @@ extension CGFloat : ScalarArithmetic, ScalarFunctions {
   func __conversion() -> Double { return Double(self) }
 }
 
+extension Float : ScalarFloatingPointType { var toDouble:Double { return Double(self)      } }
 
-
-protocol IntegerArithmetic : ScalarArithmetic {
-  var toInt:Int { get }
+protocol ScalarIntegerType : ScalarFloatingPointType {
+   var toInt:Int { get }
 }
 
-extension Int : IntegerArithmetic {
+extension Int : ScalarIntegerType {
   var toDouble:Double { return Double(self) }
   func __conversion() -> Double { return Double(self) }
-  typealias ItemType = Int
   var toInt:Int { return Int(self) }
 
 }
-extension Int16 : IntegerArithmetic {
+extension Int16 : ScalarIntegerType {
   var toDouble:Double { return Double(self) }
   func __conversion() -> Double { return Double(self) }
-  typealias ItemType = Int
   var toInt:Int { return Int(self) }
 
 }
-extension Int32 : IntegerArithmetic {
+extension Int32 : ScalarIntegerType {
   var toDouble:Double { return Double(self) }
   func __conversion() -> Double { return Double(self) }
-  typealias ItemType = Int
   var toInt:Int { return Int(self) }
 
 }
-extension Int64 : IntegerArithmetic {
+extension Int64 : ScalarIntegerType {
   var toDouble:Double { return Double(self) }
   func __conversion() -> Double { return Double(self) }
-  typealias ItemType = Int
   var toInt:Int { return Int(self) }
 
 }
-extension UInt : IntegerArithmetic {
+extension UInt : ScalarFloatingPointType {
   var toDouble:Double { return Double(self) }
   func __conversion() -> Double { return Double(self) }
-  typealias ItemType = Int
-  var toInt:Int { return Int(self) }
 
 }
-extension UInt16  : IntegerArithmetic {
+extension UInt16  : ScalarFloatingPointType {
   var toDouble:Double { return Double(self) }
   func __conversion() -> Double { return Double(self) }
-  typealias ItemType = Int
-  var toInt:Int { return Int(self) }
 
 }
-extension UInt32 : IntegerArithmetic {
+extension UInt32 : ScalarFloatingPointType {
   var toDouble:Double { return Double(self) }
   func __conversion() -> Double { return Double(self) }
-  typealias ItemType = Int
-  var toInt:Int { return Int(self) }
-
 }
-extension UInt64 : IntegerArithmetic {
+extension UInt64 : ScalarFloatingPointType {
   var toDouble:Double { return Double(self) }
   func __conversion() -> Double { return Double(self) }
-  typealias ItemType = Int
-  var toInt:Int { return Int(self) }
 
 }
 
 
 
-extension Float : ScalarArithmetic {
-  typealias ItemType = Float
-  var toDouble:Double { return Double(self)      }
-}
 
 
+func + <T:ScalarIntegerType>(lhs:T, rhs:Int) -> Int { return lhs + rhs }
+func + <T:ScalarIntegerType>(lhs:Int, rhs:T) -> Int { return lhs + rhs.toInt }
 
+func - <T:ScalarIntegerType>(lhs:T, rhs:Int) -> Int { return lhs.toInt - rhs }
+func - <T:ScalarIntegerType>(lhs:Int, rhs:T) -> Int { return lhs - rhs.toInt }
 
+func * <T:ScalarIntegerType>(lhs:T, rhs:Int) -> Int { return lhs.toInt * rhs }
+func * <T:ScalarIntegerType>(lhs:Int, rhs:T) -> Int { return lhs * rhs.toInt }
 
-func + <T:IntegerArithmetic where T.ItemType == Int>(lhs:T, rhs:Int) -> Int { return lhs + rhs }
-func + <T:IntegerArithmetic where T.ItemType == Int>(lhs:Int, rhs:T) -> Int { return lhs + rhs.toInt }
-
-func - <T:IntegerArithmetic where T.ItemType == Int>(lhs:T, rhs:Int) -> Int { return lhs.toInt - rhs }
-func - <T:IntegerArithmetic where T.ItemType == Int>(lhs:Int, rhs:T) -> Int { return lhs - rhs.toInt }
-
-func * <T:IntegerArithmetic where T.ItemType == Int>(lhs:T, rhs:Int) -> Int { return lhs.toInt * rhs }
-func * <T:IntegerArithmetic where T.ItemType == Int>(lhs:Int, rhs:T) -> Int { return lhs * rhs.toInt }
-
-func / <T:IntegerArithmetic where T.ItemType == Int>(lhs:T, rhs:Int) -> Int { return lhs.toInt / rhs }
-func / <T:IntegerArithmetic where T.ItemType == Int>(lhs:Int, rhs:T) -> Int { return lhs / rhs.toInt }
+func / <T:ScalarIntegerType>(lhs:T, rhs:Int) -> Int { return lhs.toInt / rhs }
+func / <T:ScalarIntegerType>(lhs:Int, rhs:T) -> Int { return lhs / rhs.toInt }
 
 
 
 //Equality T<===>T
-func == <T:ScalarArithmetic, U:ScalarArithmetic> (lhs:U,rhs:T) -> Bool { return (lhs.toDouble == rhs.toDouble) }
-func == <T:ScalarArithmetic> (lhs:Double,rhs:T) -> Bool { return (lhs == rhs.toDouble) }
-func == <T:ScalarArithmetic> (lhs:T,rhs:Double) -> Bool { return (lhs.toDouble == rhs) }
+func == <T:ScalarFloatingPointType, U:ScalarFloatingPointType> (lhs:U,rhs:T) -> Bool { return (lhs.toDouble == rhs.toDouble) }
+func == <T:ScalarFloatingPointType> (lhs:Double,rhs:T) -> Bool { return (lhs == rhs.toDouble) }
+func == <T:ScalarFloatingPointType> (lhs:T,rhs:Double) -> Bool { return (lhs.toDouble == rhs) }
 
-func != <T:ScalarArithmetic, U:ScalarArithmetic> (lhs:U,rhs:T) -> Bool { return (lhs.toDouble == rhs.toDouble) == false }
-func != <T:ScalarArithmetic> (lhs:Double,rhs:T) -> Bool { return (lhs == rhs.toDouble) == false }
-func != <T:ScalarArithmetic> (lhs:T,rhs:Double) -> Bool { return (lhs.toDouble == rhs) == false }
+func != <T:ScalarFloatingPointType, U:ScalarFloatingPointType> (lhs:U,rhs:T) -> Bool { return (lhs.toDouble == rhs.toDouble) == false }
+func != <T:ScalarFloatingPointType> (lhs:Double,rhs:T) -> Bool { return (lhs == rhs.toDouble) == false }
+func != <T:ScalarFloatingPointType> (lhs:T,rhs:Double) -> Bool { return (lhs.toDouble == rhs) == false }
 
-func <= <T:ScalarArithmetic, U:ScalarArithmetic> (lhs:T,rhs:U) -> Bool { return (lhs.toDouble <= rhs.toDouble) }
-func <= <T:ScalarArithmetic> (lhs:Double, rhs:T) -> Bool { return (lhs <= rhs.toDouble) }
-func <= <T:ScalarArithmetic> (lhs:T,rhs:Double) -> Bool { return (lhs.toDouble <= rhs) }
+func <= <T:ScalarFloatingPointType, U:ScalarFloatingPointType> (lhs:T,rhs:U) -> Bool { return (lhs.toDouble <= rhs.toDouble) }
+func <= <T:ScalarFloatingPointType> (lhs:Double, rhs:T) -> Bool { return (lhs <= rhs.toDouble) }
+func <= <T:ScalarFloatingPointType> (lhs:T,rhs:Double) -> Bool { return (lhs.toDouble <= rhs) }
 
-func < <T:ScalarArithmetic, U:ScalarArithmetic> (lhs:T,rhs:U) -> Bool { return (lhs.toDouble <  rhs.toDouble) }
-func < <T:ScalarArithmetic> (lhs:Double, rhs:T) -> Bool { return (lhs <  rhs.toDouble) }
-func < <T:ScalarArithmetic> (lhs:T,rhs:Double) -> Bool { return (lhs.toDouble <  rhs) }
+func < <T:ScalarFloatingPointType, U:ScalarFloatingPointType> (lhs:T,rhs:U) -> Bool { return (lhs.toDouble <  rhs.toDouble) }
+func < <T:ScalarFloatingPointType> (lhs:Double, rhs:T) -> Bool { return (lhs <  rhs.toDouble) }
+func < <T:ScalarFloatingPointType> (lhs:T,rhs:Double) -> Bool { return (lhs.toDouble <  rhs) }
 
-func >  <T:ScalarArithmetic, U:ScalarArithmetic> (lhs:T,rhs:U) -> Bool { return (lhs <= rhs) == false }
-func >  <T:ScalarArithmetic> (lhs:Double, rhs:T) -> Bool { return (lhs <= rhs) == false}
-func >  <T:ScalarArithmetic> (lhs:T,rhs:Double) -> Bool { return (lhs <= rhs) == false }
+func >  <T:ScalarFloatingPointType, U:ScalarFloatingPointType> (lhs:T,rhs:U) -> Bool { return (lhs <= rhs) == false }
+func >  <T:ScalarFloatingPointType> (lhs:Double, rhs:T) -> Bool { return (lhs <= rhs) == false}
+func >  <T:ScalarFloatingPointType> (lhs:T,rhs:Double) -> Bool { return (lhs <= rhs) == false }
 
-func >= <T:ScalarArithmetic, U:ScalarArithmetic> (lhs:T,rhs:U) -> Bool { return (lhs < rhs) == false }
-func >= <T:ScalarArithmetic> (lhs:Double, rhs:T) -> Bool { return (lhs < rhs) == false }
-func >= <T:ScalarArithmetic> (lhs:T,rhs:Double) -> Bool { return (lhs < rhs) == false }
+func >= <T:ScalarFloatingPointType, U:ScalarFloatingPointType> (lhs:T,rhs:U) -> Bool { return (lhs < rhs) == false }
+func >= <T:ScalarFloatingPointType> (lhs:Double, rhs:T) -> Bool { return (lhs < rhs) == false }
+func >= <T:ScalarFloatingPointType> (lhs:T,rhs:Double) -> Bool { return (lhs < rhs) == false }
 
 
 
 //SUBTRACTION
-func - <T:ScalarArithmetic, U:ScalarArithmetic>(lhs:U, rhs:T) -> Double  {return (lhs.toDouble - rhs.toDouble) }
-func - <T:ScalarArithmetic>(lhs:Double, rhs:T) -> T  { return T(lhs - rhs.toDouble) }
-func - <T:ScalarArithmetic>(lhs:T, rhs:Double) -> T  { return T(lhs.toDouble - rhs) }
-func - <T:ScalarArithmetic>(lhs:Double, rhs:T) -> Double  { return (lhs - rhs.toDouble) }
-func - <T:ScalarArithmetic>(lhs:T, rhs:Double) -> Double  { return (lhs.toDouble - rhs) }
-func -= <T:ScalarArithmetic, U:ScalarArithmetic>(inout lhs:T, rhs:U) { lhs = T(lhs.toDouble - rhs.toDouble) }
-func -= <T:ScalarArithmetic>(inout lhs:Double, rhs:T)  { lhs = lhs - rhs.toDouble }
+func - <T:ScalarFloatingPointType, U:ScalarFloatingPointType>(lhs:U, rhs:T) -> Double  {return (lhs.toDouble - rhs.toDouble) }
+func - <T:ScalarFloatingPointType>(lhs:Double, rhs:T) -> T  { return T(lhs - rhs.toDouble) }
+func - <T:ScalarFloatingPointType>(lhs:T, rhs:Double) -> T  { return T(lhs.toDouble - rhs) }
+func - <T:ScalarFloatingPointType>(lhs:Double, rhs:T) -> Double  { return (lhs - rhs.toDouble) }
+func - <T:ScalarFloatingPointType>(lhs:T, rhs:Double) -> Double  { return (lhs.toDouble - rhs) }
+func -= <T:ScalarFloatingPointType, U:ScalarFloatingPointType>(inout lhs:T, rhs:U) { lhs = T(lhs.toDouble - rhs.toDouble) }
+func -= <T:ScalarFloatingPointType>(inout lhs:Double, rhs:T)  { lhs = lhs - rhs.toDouble }
 
 //ADDITION
-func + <T:ScalarArithmetic, U:ScalarArithmetic>(lhs:U, rhs:T) -> Double  {return (lhs.toDouble + rhs.toDouble) }
-func + <T:ScalarArithmetic>(lhs:Double, rhs:T) -> T  { return T(lhs + rhs.toDouble) }
-func + <T:ScalarArithmetic>(lhs:T, rhs:Double) -> T  { return T(lhs.toDouble + rhs) }
-func + <T:ScalarArithmetic>(lhs:Double, rhs:T) -> Double  { return (lhs + rhs.toDouble) }
-func + <T:ScalarArithmetic>(lhs:T, rhs:Double) -> Double  { return (lhs.toDouble + rhs) }
-func += <T:ScalarArithmetic, U:ScalarArithmetic>(inout lhs:T, rhs:U) { lhs = T(lhs.toDouble + rhs.toDouble) }
-func += <T:ScalarArithmetic>(inout lhs:Double, rhs:T)  { lhs = lhs + rhs.toDouble }
+func + <T:ScalarFloatingPointType, U:ScalarFloatingPointType>(lhs:U, rhs:T) -> Double  {return (lhs.toDouble + rhs.toDouble) }
+func + <T:ScalarFloatingPointType>(lhs:Double, rhs:T) -> T  { return T(lhs + rhs.toDouble) }
+func + <T:ScalarFloatingPointType>(lhs:T, rhs:Double) -> T  { return T(lhs.toDouble + rhs) }
+func + <T:ScalarFloatingPointType>(lhs:Double, rhs:T) -> Double  { return (lhs + rhs.toDouble) }
+func + <T:ScalarFloatingPointType>(lhs:T, rhs:Double) -> Double  { return (lhs.toDouble + rhs) }
+func += <T:ScalarFloatingPointType, U:ScalarFloatingPointType>(inout lhs:T, rhs:U) { lhs = T(lhs.toDouble + rhs.toDouble) }
+func += <T:ScalarFloatingPointType>(inout lhs:Double, rhs:T)  { lhs = lhs + rhs.toDouble }
 
 //MULTIPLICATION
-func * <T:ScalarArithmetic, U:ScalarArithmetic>(lhs:U, rhs:T) -> Double  {return (lhs.toDouble * rhs.toDouble) }
-func * <T:ScalarArithmetic>(lhs:Double, rhs:T) -> T  { return T(lhs * rhs.toDouble) }
-func * <T:ScalarArithmetic>(lhs:T, rhs:Double) -> T  { return T(lhs.toDouble * rhs) }
-func * <T:ScalarArithmetic>(lhs:Double, rhs:T) -> Double  { return (lhs * rhs.toDouble) }
-func * <T:ScalarArithmetic>(lhs:T, rhs:Double) -> Double  { return (lhs.toDouble * rhs) }
-func *= <T:ScalarArithmetic, U:ScalarArithmetic>(inout lhs:T, rhs:U) { lhs = T(lhs.toDouble * rhs.toDouble) }
-func *= <T:ScalarArithmetic>(inout lhs:Double, rhs:T)  { lhs = lhs * rhs.toDouble }
+func * <T:ScalarFloatingPointType, U:ScalarFloatingPointType>(lhs:U, rhs:T) -> Double  {return (lhs.toDouble * rhs.toDouble) }
+func * <T:ScalarFloatingPointType>(lhs:Double, rhs:T) -> T  { return T(lhs * rhs.toDouble) }
+func * <T:ScalarFloatingPointType>(lhs:T, rhs:Double) -> T  { return T(lhs.toDouble * rhs) }
+func * <T:ScalarFloatingPointType>(lhs:Double, rhs:T) -> Double  { return (lhs * rhs.toDouble) }
+func * <T:ScalarFloatingPointType>(lhs:T, rhs:Double) -> Double  { return (lhs.toDouble * rhs) }
+func *= <T:ScalarFloatingPointType, U:ScalarFloatingPointType>(inout lhs:T, rhs:U) { lhs = T(lhs.toDouble * rhs.toDouble) }
+func *= <T:ScalarFloatingPointType>(inout lhs:Double, rhs:T)  { lhs = lhs * rhs.toDouble }
 
 //DIVISION
-func / <T:ScalarArithmetic, U:ScalarArithmetic>(lhs:U, rhs:T) -> Double  {return (lhs.toDouble / rhs.toDouble) }
-func / <T:ScalarArithmetic>(lhs:Double, rhs:T) -> T  { return T(lhs / rhs.toDouble) }
-func / <T:ScalarArithmetic>(lhs:T, rhs:Double) -> T  { return T(lhs.toDouble / rhs) }
-func / <T:ScalarArithmetic>(lhs:Double, rhs:T) -> Double  { return (lhs / rhs.toDouble) }
-func / <T:ScalarArithmetic>(lhs:T, rhs:Double) -> Double  { return (lhs.toDouble / rhs) }
-func /= <T:ScalarArithmetic, U:ScalarArithmetic>(inout lhs:T, rhs:U) { lhs = T(lhs.toDouble / rhs.toDouble) }
-func /= <T:ScalarArithmetic>(inout lhs:Double, rhs:T)  { lhs = lhs / rhs.toDouble }
+func / <T:ScalarFloatingPointType, U:ScalarFloatingPointType>(lhs:U, rhs:T) -> Double  {return (lhs.toDouble / rhs.toDouble) }
+func / <T:ScalarFloatingPointType>(lhs:Double, rhs:T) -> T  { return T(lhs / rhs.toDouble) }
+func / <T:ScalarFloatingPointType>(lhs:T, rhs:Double) -> T  { return T(lhs.toDouble / rhs) }
+func / <T:ScalarFloatingPointType>(lhs:Double, rhs:T) -> Double  { return (lhs / rhs.toDouble) }
+func / <T:ScalarFloatingPointType>(lhs:T, rhs:Double) -> Double  { return (lhs.toDouble / rhs) }
+func /= <T:ScalarFloatingPointType, U:ScalarFloatingPointType>(inout lhs:T, rhs:U) { lhs = T(lhs.toDouble / rhs.toDouble) }
+func /= <T:ScalarFloatingPointType>(inout lhs:Double, rhs:T)  { lhs = lhs / rhs.toDouble }
 
 

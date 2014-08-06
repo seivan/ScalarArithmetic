@@ -1,5 +1,5 @@
 //
-//  TestsScalarArithmetic.swift
+//  TestsScalarFloatingPointType.swift
 //  TestsAndSample
 //
 //  Created by Seivan Heidari on 29/06/14.
@@ -9,7 +9,7 @@
 import CoreGraphics
 import XCTest
 
-protocol ScalarArithmeticTesting {
+protocol ScalarFloatingPointTypeTesting {
   func testAddition()
   func testAdditionAssignment()
   func testSubtraction()
@@ -19,7 +19,7 @@ protocol ScalarArithmeticTesting {
   func testDivision()
 
 }
-class SuperTestsScalarArithmetic: XCTestCase {
+class SuperTestsScalarFloatingPointType: XCTestCase {
   let doubleValue:Double      = 5.0
   let cgFloatValue:CGFloat    = 5.0
   let intValue:Int            = 5

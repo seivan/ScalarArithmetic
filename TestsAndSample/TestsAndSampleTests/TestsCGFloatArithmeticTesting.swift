@@ -8,7 +8,7 @@
 
 import XCTest
 
-class TestsCGFloatArithmeticTesting: SuperTestsScalarArithmetic, ScalarArithmeticTesting {
+class TestsCGFloatArithmeticTesting: SuperTestsScalarFloatingPointType, ScalarFloatingPointTypeTesting {
   func testAddition() {
     self.expectedValue = 10.0
     

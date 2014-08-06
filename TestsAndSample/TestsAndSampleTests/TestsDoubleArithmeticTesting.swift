@@ -8,7 +8,7 @@
 
 import XCTest
 
-class TestsDoubleArithmeticTesting: SuperTestsScalarArithmetic, ScalarArithmeticTesting {
+class TestsDoubleArithmeticTesting: SuperTestsScalarFloatingPointType, ScalarFloatingPointTypeTesting {
 
   func testAddition() {
     self.expectedValue = 10.0

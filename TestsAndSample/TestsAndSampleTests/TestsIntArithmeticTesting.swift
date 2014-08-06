@@ -9,7 +9,7 @@
 import XCTest
 
 
-class TestsIntArithmeticTesting: SuperTestsScalarArithmetic, ScalarArithmeticTesting {
+class TestsIntArithmeticTesting: SuperTestsScalarFloatingPointType, ScalarFloatingPointTypeTesting {
   var assignmentIntValue:Int = Int(0)
   var expectedIntValue:Int?
   
