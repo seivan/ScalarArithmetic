@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		221218DB1991E7A100332BDA /* TestsMathFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221218DA1991E7A100332BDA /* TestsMathFunctions.swift */; };
 		226C9AF419622257002E395C /* TestsDoubleArithmeticTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C9AF319622257002E395C /* TestsDoubleArithmeticTesting.swift */; };
 		22AFC47F195F9D02003572F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AFC47E195F9D02003572F3 /* AppDelegate.swift */; };
 		22AFC481195F9D02003572F3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22AFC480195F9D02003572F3 /* Images.xcassets */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		221218DA1991E7A100332BDA /* TestsMathFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsMathFunctions.swift; sourceTree = "<group>"; };
 		226C9AED19621EA9002E395C /* TestsDoubleComparable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsDoubleComparable.swift; sourceTree = "<group>"; };
 		226C9AEF19621F3F002E395C /* TestsCGFloatComparable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsCGFloatComparable.swift; sourceTree = "<group>"; };
 		226C9AF119621F4B002E395C /* TestsIntComparable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsIntComparable.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				226C9AEF19621F3F002E395C /* TestsCGFloatComparable.swift */,
 				226C9AF119621F4B002E395C /* TestsIntComparable.swift */,
 				2283D06C196769FF00DD9618 /* TestNumericConversion.swift */,
+				221218DA1991E7A100332BDA /* TestsMathFunctions.swift */,
 				22AFC48A195F9D02003572F3 /* Supporting Files */,
 			);
 			path = TestsAndSampleTests;
@@ -254,6 +257,7 @@
 				22ECDF28197EB9F70058DC78 /* TestNumericConversion.swift in Sources */,
 				22ECDF21197EB5BC0058DC78 /* TestsIntComparable.swift in Sources */,
 				22AFC4A519603BBE003572F3 /* SuperTestsScalarArithmetic.swift in Sources */,
+				221218DB1991E7A100332BDA /* TestsMathFunctions.swift in Sources */,
 				22AFC4A119603997003572F3 /* ScalarArithmetic.swift in Sources */,
 				22AFC4A71960769A003572F3 /* SuperTestsScalarComparable.swift in Sources */,
 			);

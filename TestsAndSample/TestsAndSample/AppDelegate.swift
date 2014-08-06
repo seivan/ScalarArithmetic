@@ -8,6 +8,11 @@
 
 import UIKit
 
+
+
+
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
                             
@@ -23,11 +28,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Override point for customization after application launch.
     self.window!.backgroundColor = UIColor.whiteColor()
     self.window!.makeKeyAndVisible()
-    
-    
+
+    var floatValue:Float        = 5.0
     var doubleValue:Double      = 5.0
     var cgFloatValue:CGFloat    = 5.0
-    var intValue:Int            = 5
+    var intValue:Int            = Int(5)
     var int16Value:Int16        = 5
     var int32Value:Int32        = 5
     var int64Value:Int64        = 5
@@ -35,16 +40,134 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var uInt32Value:UInt32      = 5
     var uInt64Value:UInt64      = 5
     
+
+    cgFloatValue = cgFloatValue.atan2(doubleValue)
+    cgFloatValue = cgFloatValue.atan2(cgFloatValue)
+    cgFloatValue = doubleValue.atan2(doubleValue)
+    cgFloatValue = doubleValue.atan2(cgFloatValue)
+
+    
+    
+    doubleValue = cgFloatValue.atan2(doubleValue)
+    doubleValue = cgFloatValue.atan2(cgFloatValue)
+    doubleValue = doubleValue.atan2(doubleValue)
+    doubleValue = doubleValue.atan2(cgFloatValue)
+
+    doubleValue = asin(doubleValue)
+//    cgFloatValue = intValue
+    cgFloatValue = doubleValue
+
+    doubleValue = intValue
+    doubleValue = cgFloatValue
+    
     doubleValue = doubleValue + intValue
     doubleValue = doubleValue + cgFloatValue
+    doubleValue = doubleValue + floatValue
+
+    doubleValue = intValue + doubleValue
+    doubleValue = cgFloatValue + doubleValue
+    doubleValue = floatValue + doubleValue
+
+
+    doubleValue = intValue + cgFloatValue
+    doubleValue = intValue + floatValue
+    doubleValue = floatValue + cgFloatValue
+    doubleValue = floatValue + intValue
+    doubleValue = cgFloatValue + floatValue
     doubleValue = cgFloatValue + intValue
     
+    doubleValue += intValue
+    doubleValue += cgFloatValue
+    doubleValue += floatValue
 
-    cgFloatValue = cgFloatValue + intValue
+    /////////////////////
+
     cgFloatValue = cgFloatValue + doubleValue
+    cgFloatValue = cgFloatValue + intValue
+    cgFloatValue = cgFloatValue + floatValue
+
+
     cgFloatValue = doubleValue + cgFloatValue
+    cgFloatValue = intValue + cgFloatValue
+    cgFloatValue = floatValue + cgFloatValue
+
+    cgFloatValue = intValue + doubleValue
+    cgFloatValue = intValue + floatValue
+    cgFloatValue = floatValue + doubleValue
+    cgFloatValue = floatValue + intValue
+    cgFloatValue = doubleValue + floatValue
     cgFloatValue = doubleValue + intValue
-      
+
+    
+    cgFloatValue += doubleValue
+    cgFloatValue += intValue
+    cgFloatValue += floatValue
+    
+    
+/////////////////////
+    
+    doubleValue == doubleValue
+    doubleValue == cgFloatValue
+    doubleValue == intValue
+    
+    cgFloatValue == doubleValue
+    cgFloatValue == intValue
+    intValue == doubleValue
+    intValue == cgFloatValue
+
+
+    doubleValue != doubleValue
+    doubleValue != cgFloatValue
+    doubleValue != intValue
+    
+    cgFloatValue != doubleValue
+    cgFloatValue != intValue
+    intValue != doubleValue
+    intValue != cgFloatValue
+
+    
+    doubleValue >= doubleValue
+    doubleValue >= cgFloatValue
+    doubleValue >= intValue
+    
+    cgFloatValue >= doubleValue
+    cgFloatValue >= intValue
+    intValue >= doubleValue
+    intValue >= cgFloatValue
+
+    doubleValue > doubleValue
+    doubleValue > cgFloatValue
+    doubleValue > intValue
+    
+    cgFloatValue > doubleValue
+    cgFloatValue > intValue
+    intValue > doubleValue
+    intValue > cgFloatValue
+
+    
+    doubleValue <= doubleValue
+    doubleValue <= cgFloatValue
+    doubleValue <= intValue
+    
+    cgFloatValue <= doubleValue
+    cgFloatValue <= intValue
+    intValue <= doubleValue
+    intValue <= cgFloatValue
+
+    
+    doubleValue < doubleValue
+    doubleValue < cgFloatValue
+    doubleValue < intValue
+    
+    cgFloatValue < doubleValue
+    cgFloatValue < intValue
+    intValue < doubleValue
+    intValue < cgFloatValue
+
+
+    
+    
+ 
     doubleValue = doubleValue + int16Value
     doubleValue = doubleValue + int32Value
     doubleValue = doubleValue + int64Value
@@ -61,15 +184,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     cgFloatValue = cgFloatValue + uInt32Value
     cgFloatValue = cgFloatValue + uInt64Value
     
-    intValue = intValue + int64Value
-    intValue = intValue + uInt64Value
-//    intValue = uInt64Value + int64Value
-    
     intValue > int64Value
     
-    let x = 25.25
+
     CGPoint(x: 20.5, y: 20.5)
-    CGPoint(x: doubleValue, y: doubleValue)
+//    CGPoint(x: doubleValue, y: doubleValue)
     
     return true
   }
