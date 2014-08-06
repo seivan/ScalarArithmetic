@@ -3,18 +3,8 @@
 ### Why?
 * Because I don't need explicit casts to ```Double``` if I am expecting a ```Double```.
 * ```5 + 5.0 ``` should return a ```Double```
-* Because of the [confirmed bugs](https://devforums.apple.com/message/998222#998222) on 32bit, you can't currently do ```CGPoint(x: 23.5, y:99)``` 
-I'd suggest using [VectorArithmetic](https://github.com/seivan/VectorArithmetic) for that. 
-* Because Double is only a CGFloat on 64bit, so you can't do this on 32 bit:
 ```swift
-let myHeight = 34.5
-let myWidth = 100.23
-let sizeOfWindow = CGSize(width:myWidth, height:myHeight) 
-let myDouble:Double = sizeOfWindow.height // .height is a CGFloat
-let isLargerThan = 213.3 > sizeOfWindow.width // 213.3 is a Double
-
-
-//You can now compare or do mathematical operations on the following: 
+//You can now compare or do mathematical operations between the following types: 
     var doubleValue:Double      = 5.0
     var cgFloatValue:CGFloat    = 5.0
     var intValue:Int            = 5
@@ -26,7 +16,7 @@ let isLargerThan = 213.3 > sizeOfWindow.width // 213.3 is a Double
     var uInt64Value:UInt64      = 5
 ````
 
-
+To see what is fully possible. Run the test suite, then comment out ScalarArithmetic and try to run the test suite again.
 
 
 ### Overview
@@ -36,23 +26,163 @@ This library makes it easier to compare to ```Int```, ```Float``` and ```CGFloat
 
 This also makes implicit casts to Double or CGFloat for arguments or variables that takes either types. 
 
-
 ``var myDouble = 2.0`` will give you a ```Double``` and you'd want to use that with other types. 
-
-Since ```CGFloat``` is not a ```Double``` on 32bit, it becomes hard to use CGGeometry and frameworks like CoreGraphics or SpriteKit. This library makes it a little easier and hopefully Apple takes care of it soon. 
 
 Works on both Mac OS and iOS.
 
 
 
-
 ### Math Functions
 
-Many people disagreed with the global math functions being used as properties. I was on the fence on that one because I didn't want to write over them for 32 bit. However now that implicit casts are in place. This works on 32bit. 
 ```swift
-let yay = abs(2.0)
+protocol FloatingPointMathType {
+  var acos:Self  {get}
+  var asin:Self  {get}
+  var atan:Self  {get}
+  func atan2(x:Self) -> Self
+  var cos:Self   {get}
+  var sin:Self   {get}
+  var tan:Self   {get}
+  var exp:Self   {get}
+  var exp2:Self  {get}
+  var log:Self   {get}
+  var log10:Self {get}
+  var log2:Self  {get}
+  func pow(exponent:Self) -> Self
+  var sqrt:Self  {get}
+}
+
 ```
 
+### Sample 
+
+```swift
+    cgFloatValue = doubleValue
+
+    doubleValue = intValue
+    doubleValue = cgFloatValue
+    
+    doubleValue = doubleValue + intValue
+    doubleValue = doubleValue + cgFloatValue
+    doubleValue = doubleValue + floatValue
+
+    doubleValue = intValue + doubleValue
+    doubleValue = cgFloatValue + doubleValue
+    doubleValue = floatValue + doubleValue
+
+
+    doubleValue = intValue + cgFloatValue
+    doubleValue = intValue + floatValue
+    doubleValue = floatValue + cgFloatValue
+    doubleValue = floatValue + intValue
+    doubleValue = cgFloatValue + floatValue
+    doubleValue = cgFloatValue + intValue
+    
+    doubleValue += intValue
+    doubleValue += cgFloatValue
+    doubleValue += floatValue
+
+    /////////////////////
+
+    cgFloatValue = cgFloatValue + doubleValue
+    cgFloatValue = cgFloatValue + intValue
+    cgFloatValue = cgFloatValue + floatValue
+
+
+    cgFloatValue = doubleValue + cgFloatValue
+    cgFloatValue = intValue + cgFloatValue
+    cgFloatValue = floatValue + cgFloatValue
+
+    cgFloatValue = intValue + doubleValue
+    cgFloatValue = intValue + floatValue
+    cgFloatValue = floatValue + doubleValue
+    cgFloatValue = floatValue + intValue
+    cgFloatValue = doubleValue + floatValue
+    cgFloatValue = doubleValue + intValue
+
+    
+    cgFloatValue += doubleValue
+    cgFloatValue += intValue
+    cgFloatValue += floatValue
+    
+    
+/////////////////////
+    
+    doubleValue == doubleValue
+    doubleValue == cgFloatValue
+    doubleValue == intValue
+    
+    cgFloatValue == doubleValue
+    cgFloatValue == intValue
+    intValue == doubleValue
+    intValue == cgFloatValue
+
+
+    doubleValue != doubleValue
+    doubleValue != cgFloatValue
+    doubleValue != intValue
+    
+    cgFloatValue != doubleValue
+    cgFloatValue != intValue
+    intValue != doubleValue
+    intValue != cgFloatValue
+
+    
+    doubleValue >= doubleValue
+    doubleValue >= cgFloatValue
+    doubleValue >= intValue
+    
+    cgFloatValue >= doubleValue
+    cgFloatValue >= intValue
+    intValue >= doubleValue
+    intValue >= cgFloatValue
+
+    doubleValue > doubleValue
+    doubleValue > cgFloatValue
+    doubleValue > intValue
+    
+    cgFloatValue > doubleValue
+    cgFloatValue > intValue
+    intValue > doubleValue
+    intValue > cgFloatValue
+
+    
+    doubleValue <= doubleValue
+    doubleValue <= cgFloatValue
+    doubleValue <= intValue
+    
+    cgFloatValue <= doubleValue
+    cgFloatValue <= intValue
+    intValue <= doubleValue
+    intValue <= cgFloatValue
+
+    
+    doubleValue < doubleValue
+    doubleValue < cgFloatValue
+    doubleValue < intValue
+    
+    cgFloatValue < doubleValue
+    cgFloatValue < intValue
+    intValue < doubleValue
+    intValue < cgFloatValue
+
+    doubleValue = doubleValue + int16Value
+    doubleValue = doubleValue + int32Value
+    doubleValue = doubleValue + int64Value
+    
+    doubleValue = doubleValue + uInt16Value
+    doubleValue = doubleValue + uInt32Value
+    doubleValue = doubleValue + uInt64Value
+
+    cgFloatValue = cgFloatValue + int16Value
+    cgFloatValue = cgFloatValue + int32Value
+    cgFloatValue = cgFloatValue + int64Value
+
+    cgFloatValue = cgFloatValue + uInt16Value
+    cgFloatValue = cgFloatValue + uInt32Value
+    cgFloatValue = cgFloatValue + uInt64Value
+
+```
 
 ###Contact
 

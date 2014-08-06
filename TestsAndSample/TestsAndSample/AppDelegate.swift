@@ -40,6 +40,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var uInt32Value:UInt32      = 5
     var uInt64Value:UInt64      = 5
     
+
+    cgFloatValue = cgFloatValue.atan2(doubleValue)
+    cgFloatValue = cgFloatValue.atan2(cgFloatValue)
+    cgFloatValue = doubleValue.atan2(doubleValue)
+    cgFloatValue = doubleValue.atan2(cgFloatValue)
+
+    
+    
+    doubleValue = cgFloatValue.atan2(doubleValue)
+    doubleValue = cgFloatValue.atan2(cgFloatValue)
+    doubleValue = doubleValue.atan2(doubleValue)
+    doubleValue = doubleValue.atan2(cgFloatValue)
+
+    doubleValue = asin(doubleValue)
 //    cgFloatValue = intValue
     cgFloatValue = doubleValue
 
