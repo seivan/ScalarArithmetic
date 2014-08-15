@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  name           = "ScalarOperatable"
+  name           = "ScalarArithmetic"
   url            = "https://github.com/seivan/#{name}"
   git_url        = "#{url}.git"
   s.name         = name
@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => git_url, :tag => version}
   
   
-  s.platform  = :ios, "8.0"
+  s.platform  = :ios, "7.0"
 
   s.source_files = source_files
 
