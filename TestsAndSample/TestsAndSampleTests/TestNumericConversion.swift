@@ -22,33 +22,33 @@ class TestNumericConversion: XCTestCase {
   
   func testSetCGFloat() {
     
-    self.cgFloatValue = self.doubleValue
-//    self.cgFloatValue = self.intValue
-//    self.cgFloatValue = self.int16Value
-//    self.cgFloatValue = self.int32Value
-//    self.cgFloatValue = self.int64Value
-//    self.cgFloatValue = self.uInt16Value
-//    self.cgFloatValue = self.uInt32Value
-//    self.cgFloatValue = self.uInt64Value
+    self.cgFloatValue = self.doubleValue.__conversion()
+    self.cgFloatValue = self.intValue.__conversion()
+    self.cgFloatValue = self.int16Value.__conversion()
+    self.cgFloatValue = self.int32Value.__conversion()
+    self.cgFloatValue = self.int64Value.__conversion()
+    self.cgFloatValue = self.uInt16Value.__conversion()
+    self.cgFloatValue = self.uInt32Value.__conversion()
+    self.cgFloatValue = self.uInt64Value.__conversion()
   }
   func testSetDouble() {
-    self.doubleValue = self.cgFloatValue
-    self.doubleValue = self.intValue
-    self.doubleValue = self.int16Value
-    self.doubleValue = self.int32Value
-    self.doubleValue = self.int64Value
-    self.doubleValue = self.uInt16Value
-    self.doubleValue = self.uInt32Value
-    self.doubleValue = self.uInt64Value
+    self.doubleValue = self.cgFloatValue.__conversion()
+    self.doubleValue = self.intValue.__conversion()
+    self.doubleValue = self.int16Value.__conversion()
+    self.doubleValue = self.int32Value.__conversion()
+    self.doubleValue = self.int64Value.__conversion()
+    self.doubleValue = self.uInt16Value.__conversion()
+    self.doubleValue = self.uInt32Value.__conversion()
+    self.doubleValue = self.uInt64Value.__conversion()
     
   }
   func testSetInt() {
-//    self.intValue = self.int16Value
-//    self.intValue = self.int32Value
-//    self.intValue = self.int64Value
-//    self.intValue = self.uInt16Value
-//    self.intValue = self.uInt32Value
-//    self.intValue = self.uInt64Value
+    self.intValue = self.int16Value
+    self.intValue = self.int32Value
+    self.intValue = self.int64Value
+    self.intValue = self.uInt16Value
+    self.intValue = self.uInt32Value
+    self.intValue = self.uInt64Value
     
   }
   

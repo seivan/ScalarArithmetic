@@ -4,118 +4,168 @@ import Darwin
 import CoreGraphics
 
 
-protocol FloatingPointMathType {
-  var acos:Self  {get}
-  var asin:Self  {get}
-  var atan:Self  {get}
-  func atan2(x:Self) -> Self
-  var cos:Self   {get}
-  var sin:Self   {get}
-  var tan:Self   {get}
-  var exp:Self   {get}
-  var exp2:Self  {get}
-  var log:Self   {get}
-  var log10:Self {get}
-  var log2:Self  {get}
-  func pow(exponent:Self) -> Self
-  var sqrt:Self  {get}
+protocol ScalarFloatingPointType {
+    var toDouble:Double { get }
+    init(_ value:Double)
+}
+
+
+public protocol FloatingPointMathType {
+    typealias Main
+    typealias Alternative
+    typealias Avoid
+    
+    var abs:Main   {get}
+    var acos:Main  {get}
+    var asin:Main  {get}
+    var atan:Main  {get}
+    func atan2(x:Main) -> Main
+    func atan2(x:Alternative) -> Main
+    var cos:Main   {get}
+    var sin:Main   {get}
+    var tan:Main   {get}
+    var exp:Main   {get}
+    var exp2:Main  {get}
+    var log:Main   {get}
+    var log10:Main {get}
+    var log2:Main  {get}
+    func pow(exponent:Main) -> Main
+    func pow(exponent:Alternative) -> Main
+    var sqrt:Main  {get}
 }
 
 
 extension Double :  FloatingPointMathType {
-  var abs:Double  { return Double.abs(self)   }
-  var acos:Double { return Darwin.acos(self)  }
-  var asin:Double { return Darwin.asin(self)  }
-  var atan:Double { return Darwin.atan(self)  }
-  func atan2(x:Double) -> Double { return Darwin.atan2(self,x) }
-  var cos:Double  { return Darwin.cos(self)   }
-  var sin:Double  { return Darwin.sin(self)   }
-  var tan:Double  { return Darwin.tan(self)   }
-  var exp:Double  { return Darwin.exp(self)   }
-  var exp2:Double { return Darwin.exp2(self)  }
-  var log:Double  { return Darwin.log(self)   }
-  var log10:Double{ return Darwin.log10(self) }
-  var log2:Double { return Darwin.log2(self)  }
-  func pow(exponent:Double)-> Double { return Darwin.pow(self, exponent) }
-  var sqrt:Double { return Darwin.sqrt(self)  }
-  func __conversion() -> CGFloat { return CGFloat(self) }
+    public typealias Main = Double
+    public typealias Alternative = CGFloat
+    public typealias Avoid = Float
+    
+    public var toCGFloat:Alternative  { return Alternative(self) }
+    
+    public var abs:Main  { return Double.abs(self)   }
+    public var acos:Main { return Darwin.acos(self)  }
+    public var asin:Main { return Darwin.asin(self)  }
+    public var atan:Main { return Darwin.atan(self)  }
+    public func atan2(x:Main) -> Main { return Darwin.atan2(self,x) }
+    public func atan2(x:Alternative) -> Main { return Darwin.atan2(self,x.toDouble) }
+    public var cos:Main  { return Darwin.cos(self)   }
+    public var sin:Main  { return Darwin.sin(self)   }
+    public var tan:Main  { return Darwin.tan(self)   }
+    public var exp:Main  { return Darwin.exp(self)   }
+    public var exp2:Main { return Darwin.exp2(self)  }
+    public var log:Main  { return Darwin.log(self)   }
+    public var log10:Main{ return Darwin.log10(self) }
+    public var log2:Main { return Darwin.log2(self)  }
+    public func pow(exponent:Main)-> Main { return Darwin.pow(self, exponent) }
+    public func pow(exponent:Alternative)-> Main { return Darwin.pow(self, exponent.toDouble) }
+    public var sqrt:Main { return Darwin.sqrt(self)  }
+
+
+    
 }
 
 
 
-protocol ScalarFloatingPointType {
-  var toDouble:Double { get }
-  init(_ value:Double)
-}
 
 extension CGFloat : ScalarFloatingPointType, FloatingPointMathType {
-  var toDouble:Double  { return Double(self)      }
-  var abs:CGFloat      { return self.abs  }
-  var acos:CGFloat     { return Darwin.acos(self) }
-  var asin:CGFloat     { return Darwin.asin(self) }
-  var atan:CGFloat     { return Darwin.atan(self) }
-  func atan2(x:CGFloat) -> CGFloat { return Darwin.atan2(self, x) }
-  var cos:CGFloat      { return Darwin.cos(self)  }
-  var sin:CGFloat      { return Darwin.sin(self)  }
-  var tan:CGFloat      { return Darwin.tan(self)  }
-  var exp:CGFloat      { return Darwin.exp(self)  }
-  var exp2:CGFloat     { return Darwin.exp2(self) }
-  var log:CGFloat      { return Darwin.log(self)  }
-  var log10:CGFloat    { return Darwin.log10(self)}
-  var log2:CGFloat     { return Darwin.log2(self)}
-  func pow(exponent:CGFloat)-> CGFloat { return Darwin.pow(self, exponent) }
-  var sqrt:CGFloat     { return Darwin.sqrt(self) }
-  func __conversion() -> Double { return Double(self) }
+    public typealias Main = CGFloat
+    public typealias Alternative = Double
+    public typealias Avoid = Float
+
+    
+    public var toDouble:Alternative  { return Alternative(self) }
+    
+    public var abs:Main      { return CGFloat.abs(self)  }
+//    public var acos:Main     { return self.native.acos.toCGFloat }
+    public var acos:Main     { return self.native.acos.toCGFloat }
+    public var asin:Main     { return self.native.asin.toCGFloat }
+    public var atan:Main     { return self.native.atan.toCGFloat }
+    public func atan2(x:Main) -> Main { return self.native.atan2(x).toCGFloat }
+    public func atan2(x:Alternative) -> Main { return self.native.atan2(x.toCGFloat).toCGFloat }
+    public var cos:Main      { return self.native.cos.toCGFloat }
+    public var sin:Main      { return self.native.sin.toCGFloat }
+    public var tan:Main      { return self.native.tan .toCGFloat }
+    public var exp:Main      { return self.native.exp.toCGFloat }
+    public var exp2:Main     { return self.native.exp2.toCGFloat }
+    public var log:Main      { return self.native.log.toCGFloat }
+    public var log10:Main    { return self.native.log10.toCGFloat }
+    public var log2:Main     { return self.native.log2.toCGFloat }
+    public func pow(exponent:Main)-> Main { return self.native.pow(exponent).toCGFloat }
+    public func pow(exponent:Alternative)-> Main { return self.native.pow(exponent.toCGFloat).toCGFloat }
+    public var sqrt:Main     { return self.native.acos.toCGFloat }
+    
 }
 
-extension Float : ScalarFloatingPointType { var toDouble:Double { return Double(self)      } }
+extension Float : ScalarFloatingPointType, FloatingPointMathType {
+    public typealias Main = Float
+    public typealias Alternative = Double
+    public typealias Avoid = CGFloat
+
+    
+    public var toDouble:Alternative    { return Alternative(self) }
+    public var toCGFloat:Avoid         { return Avoid(self) }
+    
+    public var abs:Main  { return Float.abs(self) }
+    public var acos:Main { return Darwin.acos(self)  }
+    public var asin:Main { return Darwin.asin(self)  }
+    public var atan:Main { return Darwin.atan(self)  }
+    public func atan2(x:Main) -> Main { return Darwin.atan2(self,Float(x)) }
+    public func atan2(x:Alternative) -> Main { return Darwin.atan2(self,Float(x)) }
+    public func atan2(x:Avoid) -> Main { return Darwin.atan2(self,Float(x)) }
+    public var cos:Main  { return Darwin.cos(self)   }
+    public var sin:Main  { return Darwin.sin(self)   }
+    public var tan:Main  { return Darwin.tan(self)   }
+    public var exp:Main  { return Darwin.exp(self)   }
+    public var exp2:Main { return Darwin.exp2(self)  }
+    public var log:Main  { return Darwin.log(self)   }
+    public var log10:Main{ return Darwin.log10(self) }
+    public var log2:Main { return Darwin.log2(self)  }
+    public func pow(exponent:Main)-> Main { return Darwin.pow(self, Float(exponent)) }
+    public func pow(exponent:Alternative)-> Main { return Darwin.pow(self, Float(exponent)) }
+    public func pow(exponent:Avoid)-> Main { return Darwin.pow(self, Float(exponent)) }
+    public var sqrt:Main { return Darwin.sqrt(self)  }
+
+    
+}
 
 protocol ScalarIntegerType : ScalarFloatingPointType {
-   var toInt:Int { get }
+    var toInt:Int { get }
 }
 
 extension Int : ScalarIntegerType {
-  var toDouble:Double { return Double(self) }
-  func __conversion() -> Double { return Double(self) }
-  var toInt:Int { return Int(self) }
-
+    var toDouble:Double { return Double(self) }
+    var toInt:Int { return Int(self) }
+    
 }
 extension Int16 : ScalarIntegerType {
-  var toDouble:Double { return Double(self) }
-  func __conversion() -> Double { return Double(self) }
-  var toInt:Int { return Int(self) }
-
+    var toDouble:Double { return Double(self) }
+    var toInt:Int { return Int(self) }
+    
 }
 extension Int32 : ScalarIntegerType {
-  var toDouble:Double { return Double(self) }
-  func __conversion() -> Double { return Double(self) }
-  var toInt:Int { return Int(self) }
-
+    var toDouble:Double { return Double(self) }
+    var toInt:Int { return Int(self) }
+    
 }
 extension Int64 : ScalarIntegerType {
-  var toDouble:Double { return Double(self) }
-  func __conversion() -> Double { return Double(self) }
-  var toInt:Int { return Int(self) }
-
+    var toDouble:Double { return Double(self) }
+    var toInt:Int { return Int(self) }
+    
 }
 extension UInt : ScalarFloatingPointType {
-  var toDouble:Double { return Double(self) }
-  func __conversion() -> Double { return Double(self) }
-
+    var toDouble:Double { return Double(self) }
+    
 }
 extension UInt16  : ScalarFloatingPointType {
-  var toDouble:Double { return Double(self) }
-  func __conversion() -> Double { return Double(self) }
-
+    var toDouble:Double { return Double(self) }
+    
 }
 extension UInt32 : ScalarFloatingPointType {
-  var toDouble:Double { return Double(self) }
-  func __conversion() -> Double { return Double(self) }
+    var toDouble:Double { return Double(self) }
 }
 extension UInt64 : ScalarFloatingPointType {
-  var toDouble:Double { return Double(self) }
-  func __conversion() -> Double { return Double(self) }
-
+    var toDouble:Double { return Double(self) }
+    
 }
 
 
