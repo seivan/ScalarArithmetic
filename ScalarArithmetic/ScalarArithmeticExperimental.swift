@@ -99,7 +99,13 @@ public protocol FloatingPointOperating {
     var sqrt:Main  {get}
 }
 
-public extension Double : InternalFloatingPointMathTyping {
+public protocol zample {
+  
+}
+
+
+
+extension Double : InternalFloatingPointMathTyping {
     public typealias Main = Double
     public typealias Alternative = CGFloat
     public typealias Avoid = Float
@@ -107,7 +113,7 @@ public extension Double : InternalFloatingPointMathTyping {
     
 }
 
-public extension Float : InternalFloatingPointMathTyping {
+extension Float : InternalFloatingPointMathTyping {
     public typealias Main = Float
     public typealias Alternative = Double
     public typealias Avoid = CGFloat
@@ -229,42 +235,6 @@ extension Int32 : SignedIntegerToIntConvertible { public var toInt:Int { return 
 extension Int64 : SignedIntegerToIntConvertible { public var toInt:Int { return Int(self) } }
 
 
-
-//}
-//extension Int16 : ScalarIntegerType {
-//    var toDouble:Double { return Double(self) }
-//    var toInt:Int { return Int(self) }
-//
-//}
-//extension Int32 : ScalarIntegerType {
-//    var toDouble:Double { return Double(self) }
-//    var toInt:Int { return Int(self) }
-//
-//}
-//extension Int64 : ScalarIntegerType {
-//    var toDouble:Double { return Double(self) }
-//    var toInt:Int { return Int(self) }
-//
-//}
-//extension UInt : ScalarFloatingPointType {
-//    var toDouble:Double { return Double(self) }
-//
-//}
-//extension UInt16  : ScalarFloatingPointType {
-//    var toDouble:Double { return Double(self) }
-//
-//}
-//extension UInt32 : ScalarFloatingPointType {
-//    var toDouble:Double { return Double(self) }
-//}
-//extension UInt64 : ScalarFloatingPointType {
-//    var toDouble:Double { return Double(self) }
-//
-//}
-//
-//
-//
-//
 //
 //func + <T:ScalarIntegerType>(lhs:T, rhs:Int) -> Int { return lhs + rhs }
 //func + <T:ScalarIntegerType>(lhs:Int, rhs:T) -> Int { return lhs + rhs.toInt }

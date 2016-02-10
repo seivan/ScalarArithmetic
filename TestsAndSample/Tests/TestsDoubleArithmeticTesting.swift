@@ -8,7 +8,7 @@
 
 import XCTest
 
-extension Int : IntegerConverting {}
+
 
 class TestsDoubleArithmeticTesting: SuperTestsScalarFloatingPointType, ScalarFloatingPointTypeTesting {
   typealias Main = Double
@@ -21,8 +21,12 @@ class TestsDoubleArithmeticTesting: SuperTestsScalarFloatingPointType, ScalarFlo
     self.assignmentValue = self.doubleValue + self.cgFloatValue
     XCTAssertEqual(self.assignmentValue, self.expectedValue!)
 
-    let xalf = Int(34)
-    xalf.to
+    let zap = self.doubleValue + self.cgFloatValue
+    let crap:CGFloat = self.cgFloatValue + self.doubleValue
+
+    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
+
+
 
 //    self.assignmentValue = self.doubleValue + self.intValue
 //    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
