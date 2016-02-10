@@ -5,22 +5,6 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
-      <BuildActionEntries>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "22AFC478195F9D02003572F3"
-               BuildableName = "Sample.app"
-               BlueprintName = "Sample"
-               ReferencedContainer = "container:TestsAndSample.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-      </BuildActionEntries>
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
@@ -32,9 +16,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "22AFC485195F9D02003572F3"
-               BuildableName = "Tests.xctest"
-               BlueprintName = "Tests"
+               BlueprintIdentifier = "223C4D5B1C6B709300E658E6"
+               BuildableName = "Tests64.xctest"
+               BlueprintName = "Tests64"
                ReferencedContainer = "container:TestsAndSample.xcodeproj">
             </BuildableReference>
             <SkippedTests>
@@ -48,19 +32,10 @@
                   Identifier = "TestNumericConversion">
                </Test>
                <Test
-                  Identifier = "TestsCGFloat">
-               </Test>
-               <Test
                   Identifier = "TestsCGFloatArithmeticTesting">
                </Test>
                <Test
                   Identifier = "TestsCGFloatComparable">
-               </Test>
-               <Test
-                  Identifier = "TestsDouble">
-               </Test>
-               <Test
-                  Identifier = "TestsDoubleArithmeticTesting">
                </Test>
                <Test
                   Identifier = "TestsDoubleComparable">
@@ -71,18 +46,15 @@
                <Test
                   Identifier = "TestsIntComparable">
                </Test>
+               <Test
+                  Identifier = "TestsMathFunctionsCGFloat">
+               </Test>
+               <Test
+                  Identifier = "TestsMathFunctionsDouble">
+               </Test>
             </SkippedTests>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "22AFC478195F9D02003572F3"
-            BuildableName = "Sample.app"
-            BlueprintName = "Sample"
-            ReferencedContainer = "container:TestsAndSample.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -96,16 +68,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "22AFC478195F9D02003572F3"
-            BuildableName = "Sample.app"
-            BlueprintName = "Sample"
-            ReferencedContainer = "container:TestsAndSample.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -115,16 +77,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "22AFC478195F9D02003572F3"
-            BuildableName = "Sample.app"
-            BlueprintName = "Sample"
-            ReferencedContainer = "container:TestsAndSample.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

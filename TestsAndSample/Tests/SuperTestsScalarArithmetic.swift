@@ -10,13 +10,16 @@ import CoreGraphics
 import XCTest
 
 protocol ScalarFloatingPointTypeTesting {
+  typealias Main
+  typealias Alternative
+  typealias Avoid
   func testAddition()
-  func testAdditionAssignment()
-  func testSubtraction()
-  func testSubtractionAssignment()
-  func testMultiplication()
-  func testMultiplicationAssignment()
-  func testDivision()
+//  func testAdditionAssignment()
+//  func testSubtraction()
+//  func testSubtractionAssignment()
+//  func testMultiplication()
+//  func testMultiplicationAssignment()
+//  func testDivision()
 
 }
 class SuperTestsScalarFloatingPointType: XCTestCase {
