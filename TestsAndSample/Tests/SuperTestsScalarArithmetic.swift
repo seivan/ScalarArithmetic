@@ -9,6 +9,7 @@
 import CoreGraphics
 import XCTest
 
+
 protocol ScalarFloatingPointTypeTesting {
   func testAddition()
   func testAdditionAssignment()
@@ -19,19 +20,17 @@ protocol ScalarFloatingPointTypeTesting {
   func testDivision()
 
 }
-class SuperTestsScalarFloatingPointType: XCTestCase {
-  let doubleValue:Double      = 5.0
-  let cgFloatValue:CGFloat    = 5.0
-  let intValue:Int            = 5
-  let int16Value:Int16        = 5
-  let int32Value:Int32        = 5
-  let int64Value:Int64        = 5
-  let uInt16Value:UInt16        = 5
-  let uInt32Value:UInt32        = 5
-  let uInt64Value:UInt64        = 5
+public class SuperTestsScalarFloatingPointType: XCTestCase {
+  let doubleValue:Double = 5.0
+  let cgFloatValue:CGFloat = 5.0
+  let intValue:Int = 5
+  let int16Value:Int16 = 5
+  let int32Value:Int32 = 5
+  let int64Value:Int64 = 5
+  let uInt16Value:UInt16 = 5
+  let uInt32Value:UInt32 = 5
+  let uInt64Value:UInt64 = 5
 
-  var expectedValue:Double?
-  var assignmentValue:Double  = 0.0
 
 
 }
