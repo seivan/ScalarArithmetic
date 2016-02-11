@@ -1,3 +1,4 @@
 language: objective-c
-xcode_project: TestsAndSample/TestsAndSample.xcodeproj
-xcode_scheme: [Tests64, Tests32]
+script:
+  - xctool -project TestsAndSample/TestsAndSample.xcodeproj -scheme Tests64 test
+  - xctool -project TestsAndSample/TestsAndSample.xcodeproj -scheme Tests32 test
