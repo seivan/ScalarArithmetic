@@ -228,6 +228,12 @@ extension Int16 : IntegerToFloatTypeConvertible { public var toDouble:Double { r
 extension Int32 : IntegerToFloatTypeConvertible { public var toDouble:Double { return Double(self) } }
 extension Int64 : IntegerToFloatTypeConvertible { public var toDouble:Double { return Double(self) } }
 
+extension UInt : IntegerToFloatTypeConvertible { public var toDouble:Double { return Double(self) } }
+extension UInt8 : IntegerToFloatTypeConvertible { public var toDouble:Double { return Double(self) } }
+extension UInt16 : IntegerToFloatTypeConvertible { public var toDouble:Double { return Double(self) } }
+extension UInt32 : IntegerToFloatTypeConvertible { public var toDouble:Double { return Double(self) } }
+extension UInt64 : IntegerToFloatTypeConvertible { public var toDouble:Double { return Double(self) } }
+
 extension Int : SignedIntegerToIntConvertible { public var toInt:Int { return Int(self) } }
 extension Int8 : SignedIntegerToIntConvertible { public var toInt:Int { return Int(self) } }
 extension Int16 : SignedIntegerToIntConvertible { public var toInt:Int { return Int(self) } }
@@ -296,30 +302,48 @@ func + <LHS:FloatingPointOperating, RHS:FloatingPointOperating
 
 func + <LHS:FloatingPointOperating, RHS:FloatingPointOperating
   where
-  LHS.Main == Double, LHS.Alternative == CGFloat, LHS.Avoid == Float,
-  RHS.Main == CGFloat, RHS.Alternative == Double, RHS.Avoid == Float>
-  (lhs:LHS, rhs:RHS) -> RHS.Main  {return (lhs.castToMain + rhs.toDouble).toCGFloat }
-
-
-func + <LHS:FloatingPointOperating, RHS:FloatingPointOperating
-  where
   LHS.Main == CGFloat, LHS.Alternative == Double, LHS.Avoid == Float,
   RHS.Main == Double, RHS.Alternative == CGFloat, RHS.Avoid == Float>
   (lhs:LHS, rhs:RHS) -> LHS.Main  {return lhs.castToMain + rhs.toCGFloat }
 
 
-func + <LHS:FloatingPointOperating, RHS:FloatingPointOperating
+func + <LHS:FloatingPointOperating, RHS:IntegerToFloatTypeConvertible
   where
-  LHS.Main == CGFloat, LHS.Alternative == Double, LHS.Avoid == Float,
+  LHS.Main == Double, LHS.Alternative == CGFloat, LHS.Avoid == Float>
+  (lhs:LHS, rhs:RHS) -> LHS.Main  {return lhs.castToMain + rhs.toDouble }
+
+func + <LHS:IntegerToFloatTypeConvertible, RHS:FloatingPointOperating
+  where
   RHS.Main == Double, RHS.Alternative == CGFloat, RHS.Avoid == Float>
-  (lhs:LHS, rhs:RHS) -> RHS.Main  {return (lhs.castToMain + rhs.toCGFloat).toDouble }
+  (lhs:LHS, rhs:RHS) -> RHS.Main  {return lhs.toDouble + rhs.castToMain }
+
+func + <LHS:FloatingPointOperating, RHS:IntegerToFloatTypeConvertible
+  where
+  LHS.Main == CGFloat, LHS.Alternative == Double, LHS.Avoid == Float>
+  (lhs:LHS, rhs:RHS) -> LHS.Main  {return lhs.castToMain + rhs.toDouble.toCGFloat }
+
+func + <LHS:IntegerToFloatTypeConvertible, RHS:FloatingPointOperating
+  where
+  RHS.Main == CGFloat, RHS.Alternative == Double, RHS.Avoid == Float>
+  (lhs:LHS, rhs:RHS) -> RHS.Main  {return lhs.toDouble.toCGFloat + rhs.castToMain }
+
+func + <LHS:SignedIntegerToIntConvertible, RHS:SignedIntegerToIntConvertible>
+  (lhs:LHS, rhs:RHS) -> Int  {return lhs.toInt + rhs.toInt }
 
 
 
-//func + <T:ScalarFloatingPointType>(lhs:Double, rhs:T) -> T  { return T(lhs + rhs.toDouble) }
-//func + <T:ScalarFloatingPointType>(lhs:T, rhs:Double) -> T  { return T(lhs.toDouble + rhs) }
-//func + <T:ScalarFloatingPointType>(lhs:Double, rhs:T) -> Double  { return (lhs + rhs.toDouble) }
-//func + <T:ScalarFloatingPointType>(lhs:T, rhs:Double) -> Double  { return (lhs.toDouble + rhs) }
+func += <LHS:FloatingPointOperating, RHS:FloatingPointOperating
+  where
+  LHS.Main == Double, LHS.Alternative == CGFloat, LHS.Avoid == Float,
+  RHS.Main == CGFloat, RHS.Alternative == Double, RHS.Avoid == Float>
+  (inout lhs:LHS.Main, rhs:RHS)  {  lhs = lhs + rhs.toDouble }
+
+//func + <LHS:FloatingPointOperating, RHS:FloatingPointOperating
+//  where
+//  LHS.Main == CGFloat, LHS.Alternative == Double, LHS.Avoid == Float,
+//  RHS.Main == Double, RHS.Alternative == CGFloat, RHS.Avoid == Float>
+//  (lhs:LHS, rhs:RHS) -> LHS.Main  {return lhs.castToMain + rhs.toCGFloat }
+
 //func += <T:ScalarFloatingPointType, U:ScalarFloatingPointType>(inout lhs:T, rhs:U) { lhs = T(lhs.toDouble + rhs.toDouble) }
 //func += <T:ScalarFloatingPointType>(inout lhs:Double, rhs:T)  { lhs = lhs + rhs.toDouble }
 //

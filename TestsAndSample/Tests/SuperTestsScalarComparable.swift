@@ -19,14 +19,14 @@ protocol ScalarComparableTesting {
 }
   
 class SuperTestsScalarComparable: XCTestCase {
-  var cgFloatValue  = CGFloat(2.0)
-  var doubleValue   = Double(2.0)
-  var intValue      = 2
-  let int16Value:Int16        = 2
-  let int32Value:Int32        = 2
-  let int64Value:Int64        = 2
-  let uInt16Value:UInt16        = 2
-  let uInt32Value:UInt32        = 2
-  let uInt64Value:UInt64        = 2
+  var cgFloatValue = CGFloat(2.0)
+  var doubleValue = Double(2.0)
+  var intValue = 2
+  let int16Value:Int16 = 2
+  let int32Value:Int32 = 2
+  let int64Value:Int64 = 2
+  let uInt16Value:UInt16 = 2
+  let uInt32Value:UInt32 = 2
+  let uInt64Value:UInt64 = 2
 
 }

@@ -1,4 +1,3 @@
 language: objective-c
-before_install:
-  - gem install xcpretty
-script:  xcodebuild -workspace TestsAndSample/Sample.xcworkspace -scheme Tests -sdk iphonesimulator7.0 test | xcpretty -c
+xcode_project: TestsAndSample/TestsAndSample.xcodeproj
+xcode_scheme: [Tests64, Tests32]

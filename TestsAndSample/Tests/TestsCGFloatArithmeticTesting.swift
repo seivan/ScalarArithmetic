@@ -9,6 +9,9 @@
 import XCTest
 
 class TestsCGFloatArithmeticTesting: SuperTestsScalarFloatingPointType, ScalarFloatingPointTypeTesting {
+  var expectedValue:CGFloat?
+  var assignmentValue:CGFloat  = 0.0
+
   func testAddition() {
     self.expectedValue = 10.0
     
@@ -73,7 +76,7 @@ class TestsCGFloatArithmeticTesting: SuperTestsScalarFloatingPointType, ScalarFl
     XCTAssertEqual(self.assignmentValue, self.expectedValue!)
     
   }
-  
+
   func testSubtraction() {
     self.expectedValue = 0.0
     
@@ -83,23 +86,23 @@ class TestsCGFloatArithmeticTesting: SuperTestsScalarFloatingPointType, ScalarFl
     self.assignmentValue = self.cgFloatValue - self.intValue
     XCTAssertEqual(self.assignmentValue, self.expectedValue!)
     
-//    self.assignmentValue = self.cgFloatValue - self.int16Value
-//    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
-//    
-//    self.assignmentValue = self.cgFloatValue - self.int32Value
-//    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
-//    
-//    self.assignmentValue = self.cgFloatValue - self.int64Value
-//    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
-//    
-//    self.assignmentValue = self.cgFloatValue - self.uInt16Value
-//    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
-//    
-//    self.assignmentValue = self.cgFloatValue - self.uInt32Value
-//    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
-//    
-//    self.assignmentValue = self.cgFloatValue - self.uInt64Value
-//    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
+    self.assignmentValue = self.cgFloatValue - self.int16Value
+    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
+    
+    self.assignmentValue = self.cgFloatValue - self.int32Value
+    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
+    
+    self.assignmentValue = self.cgFloatValue - self.int64Value
+    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
+    
+    self.assignmentValue = self.cgFloatValue - self.uInt16Value
+    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
+    
+    self.assignmentValue = self.cgFloatValue - self.uInt32Value
+    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
+    
+    self.assignmentValue = self.cgFloatValue - self.uInt64Value
+    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
   }
 
   
@@ -138,33 +141,33 @@ class TestsCGFloatArithmeticTesting: SuperTestsScalarFloatingPointType, ScalarFl
     
     
   }
-  
+
   func testMultiplication() {
     self.expectedValue = 25.0
     
     self.assignmentValue = self.cgFloatValue * self.doubleValue
     XCTAssertEqual(self.assignmentValue, self.expectedValue!)
     
-//    self.assignmentValue = self.cgFloatValue * self.intValue
-//    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
-//    
-//    self.assignmentValue = self.cgFloatValue * self.int16Value
-//    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
-//    
-//    self.assignmentValue = self.cgFloatValue * self.int32Value
-//    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
-//    
-//    self.assignmentValue = self.cgFloatValue * self.int64Value
-//    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
-//    
-//    self.assignmentValue = self.cgFloatValue * self.uInt16Value
-//    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
-//    
-//    self.assignmentValue = self.cgFloatValue * self.uInt32Value
-//    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
-//    
-//    self.assignmentValue = self.cgFloatValue * self.uInt64Value
-//    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
+    self.assignmentValue = self.cgFloatValue * self.intValue
+    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
+    
+    self.assignmentValue = self.cgFloatValue * self.int16Value
+    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
+    
+    self.assignmentValue = self.cgFloatValue * self.int32Value
+    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
+    
+    self.assignmentValue = self.cgFloatValue * self.int64Value
+    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
+    
+    self.assignmentValue = self.cgFloatValue * self.uInt16Value
+    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
+    
+    self.assignmentValue = self.cgFloatValue * self.uInt32Value
+    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
+    
+    self.assignmentValue = self.cgFloatValue * self.uInt64Value
+    XCTAssertEqual(self.assignmentValue, self.expectedValue!)
     
   }
   

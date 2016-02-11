@@ -23,34 +23,7 @@
             </BuildableReference>
             <SkippedTests>
                <Test
-                  Identifier = "SuperTestsScalarComparable">
-               </Test>
-               <Test
-                  Identifier = "SuperTestsScalarFloatingPointType">
-               </Test>
-               <Test
                   Identifier = "TestNumericConversion">
-               </Test>
-               <Test
-                  Identifier = "TestsCGFloatArithmeticTesting">
-               </Test>
-               <Test
-                  Identifier = "TestsCGFloatComparable">
-               </Test>
-               <Test
-                  Identifier = "TestsDoubleComparable">
-               </Test>
-               <Test
-                  Identifier = "TestsIntArithmeticTesting">
-               </Test>
-               <Test
-                  Identifier = "TestsIntComparable">
-               </Test>
-               <Test
-                  Identifier = "TestsMathFunctionsCGFloat">
-               </Test>
-               <Test
-                  Identifier = "TestsMathFunctionsDouble">
                </Test>
             </SkippedTests>
          </TestableReference>

@@ -8,8 +8,9 @@
 
 import XCTest
 
-extension Double : FloatingPointOperating {}
-extension CGFloat : FloatingPointOperating {}
+//extension Double : FloatingPointOperating {}
+//extension CGFloat : FloatingPointOperating {}
+
 class TestsMathFunctionsDouble: XCTestCase {
   typealias Main = Double;
   let mainType:Double = 0.5
