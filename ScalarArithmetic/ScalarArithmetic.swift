@@ -8,6 +8,7 @@ public protocol ScalarFloatingPointType:  Comparable {
   var toDouble:Double { get }
   init(_ value:Double)
 }
+
 extension CGFloat : ScalarFloatingPointType {
   public var toDouble:Double  { return Double(self) }
 }
@@ -21,9 +22,9 @@ extension Double  {
 
 
 public protocol FloatingPointOperating {
-  typealias Main : FloatingPointType
-  typealias Alternative : FloatingPointType
-  typealias Avoid : FloatingPointType
+  associatedtype Main : FloatingPointType
+  associatedtype Alternative : FloatingPointType
+  associatedtype Avoid : FloatingPointType
   
   var abs:Main   {get}
   var acos:Main  {get}
