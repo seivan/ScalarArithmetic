@@ -200,7 +200,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Seivan Heidari";
 				TargetAttributes = {
 					223C4D5B1C6B709300E658E6 = {
@@ -338,6 +338,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.seivanheidari.Tests32;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
@@ -357,6 +358,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.seivanheidari.Tests32;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};
