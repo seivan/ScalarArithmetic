@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   url            = "https://github.com/seivan/#{name}"
   git_url        = "#{url}.git"
   s.name         = name
-  version        = "2.0.2"
+  version        = "2.0.3"
   source_files   = "#{name}/**/*.{swift}"
 
   s.version      = version

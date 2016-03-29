@@ -1,4 +1,5 @@
 #ScalarArithmetic
+[![Build Status](https://travis-ci.org/seivan/ScalarArithmetic.svg?branch=master)](https://travis-ci.org/seivan/ScalarArithmetic)
 
 ### Why?
 * Because I don't need explicit casts to ```Double``` if I am expecting a ```Double```.
