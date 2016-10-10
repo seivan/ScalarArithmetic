@@ -205,6 +205,7 @@
 				TargetAttributes = {
 					223C4D5B1C6B709300E658E6 = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0800;
 					};
 					223C4D7B1C6B715400E658E6 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -302,6 +303,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -321,6 +323,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.seivanheidari.Tests64;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
